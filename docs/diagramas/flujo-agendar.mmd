@@ -1,0 +1,20 @@
+flowchart TD
+    A([Inicio]) --> B{¿Sesión iniciada?}
+    B -- No --> C[Iniciar sesión con correo institucional]
+    C --> D
+    B -- Sí --> D[Buscar asesorías por materia, día o modalidad]
+    D --> E{¿Hay horarios disponibles?}
+    E -- No --> F[Mostrar mensaje y sugerir otra materia o día]
+    F --> D
+    E -- Sí --> G[Elegir tutor y horario]
+    G --> H[Escribir el tema a revisar]
+    H --> I{¿El horario sigue libre?}
+    I -- No --> J[Avisar que ya fue ocupado]
+    J --> D
+    I -- Sí --> K[Guardar asesoría con estado PENDIENTE]
+    K --> L[Enviar correo al tutor]
+    L --> M{¿Tutor confirma?}
+    M -- Sí --> N[Estado CONFIRMADA y aviso al estudiante]
+    M -- No --> O[Estado CANCELADA, se libera el horario y se avisa al estudiante]
+    N --> P([Fin])
+    O --> P

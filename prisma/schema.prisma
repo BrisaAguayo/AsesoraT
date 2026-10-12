@@ -1,0 +1,110 @@
+// Modelo de datos inicial de AsesoraT
+// Base de datos: PostgreSQL (Neon)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Rol {
+  ESTUDIANTE
+  TUTOR
+  COORDINADOR
+}
+
+enum Modalidad {
+  PRESENCIAL
+  VIRTUAL
+}
+
+enum EstadoAsesoria {
+  PENDIENTE
+  CONFIRMADA
+  CANCELADA
+  COMPLETADA
+}
+
+model Usuario {
+  id             String   @id @default(cuid())
+  nombre         String
+  correo         String   @unique // correo institucional @tectijuana.edu.mx
+  numeroControl  String   @unique
+  carrera        String
+  semestre       Int
+  rol            Rol      @default(ESTUDIANTE)
+  passwordHash   String
+  creadoEn       DateTime @default(now())
+
+  materiasQueImparte TutorMateria[]
+  disponibilidad     Disponibilidad[]
+  asesoriasComoAlumno Asesoria[] @relation("AsesoriaEstudiante")
+  asesoriasComoTutor  Asesoria[] @relation("AsesoriaTutor")
+}
+
+model Materia {
+  id       String @id @default(cuid())
+  clave    String @unique
+  nombre   String
+  semestre Int
+
+  tutores   TutorMateria[]
+  asesorias Asesoria[]
+}
+
+// Relación muchos a muchos: qué materias puede asesorar cada tutor
+model TutorMateria {
+  tutorId   String
+  materiaId String
+  tutor     Usuario @relation(fields: [tutorId], references: [id], onDelete: Cascade)
+  materia   Materia @relation(fields: [materiaId], references: [id], onDelete: Cascade)
+
+  @@id([tutorId, materiaId])
+}
+
+// Bloques semanales en los que un tutor está disponible
+model Disponibilidad {
+  id         String    @id @default(cuid())
+  tutorId    String
+  diaSemana  Int       // 1 = lunes ... 5 = viernes
+  horaInicio String    // "13:00"
+  horaFin    String    // "14:00"
+  modalidad  Modalidad
+  lugar      String?   // aula o enlace de videollamada
+  tutor      Usuario   @relation(fields: [tutorId], references: [id], onDelete: Cascade)
+}
+
+model Asesoria {
+  id           String         @id @default(cuid())
+  estudianteId String
+  tutorId      String
+  materiaId    String
+  fecha        DateTime       @db.Date
+  horaInicio   String
+  horaFin      String
+  modalidad    Modalidad
+  lugar        String?
+  tema         String
+  estado       EstadoAsesoria @default(PENDIENTE)
+  creadoEn     DateTime       @default(now())
+
+  estudiante Usuario     @relation("AsesoriaEstudiante", fields: [estudianteId], references: [id])
+  tutor      Usuario     @relation("AsesoriaTutor", fields: [tutorId], references: [id])
+  materia    Materia     @relation(fields: [materiaId], references: [id])
+  evaluacion Evaluacion?
+
+  // Un tutor no puede tener dos asesorías en el mismo horario (RF-06)
+  @@unique([tutorId, fecha, horaInicio])
+}
+
+model Evaluacion {
+  id           String   @id @default(cuid())
+  asesoriaId   String   @unique
+  calificacion Int      // 1 a 5
+  comentario   String?
+  creadoEn     DateTime @default(now())
+  asesoria     Asesoria @relation(fields: [asesoriaId], references: [id], onDelete: Cascade)
+}

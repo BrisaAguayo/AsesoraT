@@ -1,0 +1,58 @@
+erDiagram
+    USUARIO ||--o{ ASESORIA : "solicita (estudiante)"
+    USUARIO ||--o{ ASESORIA : "imparte (tutor)"
+    MATERIA ||--o{ ASESORIA : "trata"
+    ASESORIA ||--o| EVALUACION : "recibe"
+    USUARIO ||--o{ DISPONIBILIDAD : "tiene"
+    USUARIO ||--o{ TUTOR_MATERIA : "imparte"
+    MATERIA ||--o{ TUTOR_MATERIA : "es asesorada en"
+
+    USUARIO {
+        string id PK
+        string nombre
+        string correo UK
+        string numeroControl UK
+        string carrera
+        int semestre
+        enum rol "ESTUDIANTE | TUTOR | COORDINADOR"
+        string passwordHash
+        datetime creadoEn
+    }
+    MATERIA {
+        string id PK
+        string clave UK
+        string nombre
+        int semestre
+    }
+    TUTOR_MATERIA {
+        string tutorId PK,FK
+        string materiaId PK,FK
+    }
+    DISPONIBILIDAD {
+        string id PK
+        string tutorId FK
+        int diaSemana
+        string horaInicio
+        string horaFin
+        enum modalidad
+        string lugar
+    }
+    ASESORIA {
+        string id PK
+        string estudianteId FK
+        string tutorId FK
+        string materiaId FK
+        date fecha
+        string horaInicio
+        string horaFin
+        enum modalidad
+        string lugar
+        string tema
+        enum estado "PENDIENTE | CONFIRMADA | CANCELADA | COMPLETADA"
+    }
+    EVALUACION {
+        string id PK
+        string asesoriaId FK,UK
+        int calificacion "1 a 5"
+        string comentario
+    }
