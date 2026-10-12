@@ -6,7 +6,7 @@ export default function Login() {
       <form className="flex flex-col gap-3">
         <label className="text-sm">
           Correo
-          <input type="email" placeholder="l22211514@tectijuana.edu.mx"
+          <input type="email" placeholder="l00000000@tectijuana.edu.mx"
             className="mt-1 w-full rounded border border-slate-300 px-3 py-2" />
         </label>
         <label className="text-sm">

@@ -18,7 +18,7 @@ async function main() {
     create: {
       nombre: "Andrea López",
       correo: "tutora.demo@tectijuana.edu.mx",
-      numeroControl: "19210001",
+      numeroControl: "00000001",
       carrera: "Ingeniería en Sistemas Computacionales",
       semestre: 8,
       rol: "TUTOR",
@@ -31,6 +31,8 @@ async function main() {
     skipDuplicates: true,
   });
 
+  // Evita duplicar bloques si el seed se corre otra vez
+  await prisma.disponibilidad.deleteMany({ where: { tutorId: tutora.id } });
   await prisma.disponibilidad.create({
     data: { tutorId: tutora.id, diaSemana: 1, horaInicio: "13:00", horaFin: "14:00", modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5" },
   });
