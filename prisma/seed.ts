@@ -83,13 +83,34 @@ async function main() {
     });
   }
 
-  await prisma.usuario.upsert({
+  const estudiante = await prisma.usuario.upsert({
     where: { correo: "estudiante.demo@tectijuana.edu.mx" },
     update: { passwordHash },
     create: {
       nombre: "Carlos Méndez", correo: "estudiante.demo@tectijuana.edu.mx", numeroControl: "00000010",
       carrera: "Ingeniería en Sistemas Computacionales", semestre: 2, rol: "ESTUDIANTE", passwordHash,
     },
+  });
+
+  // Asesorías de ejemplo para la pantalla "Mis asesorías"
+  const andrea = await prisma.usuario.findUniqueOrThrow({ where: { correo: "tutora.demo@tectijuana.edu.mx" } });
+  const diego = await prisma.usuario.findUniqueOrThrow({ where: { correo: "diego.demo@tectijuana.edu.mx" } });
+  const integral = await prisma.materia.findUniqueOrThrow({ where: { clave: "ACF-0902" } });
+  const estructuras = await prisma.materia.findUniqueOrThrow({ where: { clave: "AED-1026" } });
+  await prisma.asesoria.deleteMany({ where: { estudianteId: estudiante.id } });
+  await prisma.asesoria.createMany({
+    data: [
+      {
+        estudianteId: estudiante.id, tutorId: andrea.id, materiaId: integral.id, fecha: new Date("2026-11-09"),
+        horaInicio: "13:00", horaFin: "14:00", modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5",
+        tema: "Integración por partes", estado: "CONFIRMADA",
+      },
+      {
+        estudianteId: estudiante.id, tutorId: diego.id, materiaId: estructuras.id, fecha: new Date("2026-11-03"),
+        horaInicio: "16:00", horaFin: "17:00", modalidad: "VIRTUAL", lugar: "Google Meet",
+        tema: "Listas enlazadas", estado: "COMPLETADA",
+      },
+    ],
   });
 
   await prisma.usuario.upsert({
@@ -101,7 +122,7 @@ async function main() {
     },
   });
 
-  console.log(`Seed listo: ${materias.length} materias, ${tutores.length} tutores, 1 estudiante y 1 coordinación.`);
+  console.log(`Seed listo: ${materias.length} materias, ${tutores.length} tutores, 1 estudiante, 2 asesorías y 1 coordinación.`);
 }
 
 main()

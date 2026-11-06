@@ -1,4 +1,17 @@
-import type { BloqueDisponible } from "@/lib/datos-ejemplo";
+import type { Modalidad } from "@prisma/client";
+import { dias, nombreModalidad } from "@/lib/formato";
+
+export interface BloqueDisponible {
+  id: string;
+  tutor: string;
+  semestreTutor: number;
+  materia: string;
+  diaSemana: number;
+  horaInicio: string;
+  horaFin: string;
+  modalidad: Modalidad;
+  lugar: string | null;
+}
 
 export function TarjetaAsesoria({ bloque }: { bloque: BloqueDisponible }) {
   return (
@@ -6,10 +19,11 @@ export function TarjetaAsesoria({ bloque }: { bloque: BloqueDisponible }) {
       <span className="text-xs font-semibold uppercase text-marca-acento">{bloque.materia}</span>
       <h3 className="font-semibold">{bloque.tutor}</h3>
       <p className="text-sm text-slate-500">Tutor de {bloque.semestreTutor}.º semestre</p>
-      <p className="text-sm">{bloque.dia} · {bloque.horario}</p>
-      <p className="text-sm text-slate-500">{bloque.modalidad}, {bloque.lugar}</p>
-      <button className="mt-2 rounded bg-marca px-3 py-2 text-sm font-medium text-white hover:opacity-90">
-        Agendar
+      <p className="text-sm">{dias[bloque.diaSemana]} · {bloque.horaInicio} - {bloque.horaFin}</p>
+      <p className="text-sm text-slate-500">{nombreModalidad[bloque.modalidad]}, {bloque.lugar}</p>
+      <button disabled title="Agendar estará disponible en el Sprint 4"
+        className="mt-2 cursor-not-allowed rounded bg-marca px-3 py-2 text-sm font-medium text-white opacity-60">
+        Agendar (próximamente)
       </button>
     </article>
   );
