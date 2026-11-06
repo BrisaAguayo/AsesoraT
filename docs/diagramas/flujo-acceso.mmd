@@ -1,0 +1,23 @@
+flowchart TD
+    A([Inicio]) --> B{¿Tiene cuenta?}
+    B -- No --> C[Llenar registro: rol, nombre, correo, número de control, semestre, carrera y contraseña]
+    C --> D{¿Datos válidos?}
+    D -- No --> E[Mostrar errores junto a cada campo<br/>sin borrar lo escrito]
+    E --> C
+    D -- Sí --> F{¿Correo o número de control ya existen?}
+    F -- Sí --> G[Avisar que ya está registrado]
+    G --> C
+    F -- No --> H[Guardar usuario con contraseña cifrada bcrypt]
+    H --> K
+    B -- Sí --> I[Iniciar sesión con correo institucional y contraseña]
+    I --> J{¿Credenciales correctas?}
+    J -- No --> L[Mostrar: correo o contraseña incorrectos]
+    L --> I
+    J -- Sí --> K[Crear sesión JWT con id y rol]
+    K --> M{Rol}
+    M -- Estudiante --> N[Panel: buscar asesorías, mis asesorías]
+    M -- Tutor --> O[Panel: mis materias, disponibilidad, solicitudes]
+    M -- Coordinación --> Q[Panel: reporte de horas]
+    N --> Z([Fin])
+    O --> Z
+    Q --> Z
