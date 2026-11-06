@@ -14,8 +14,8 @@ export default function Inicio() {
         <Link href="/asesorias" className="rounded bg-marca px-4 py-2 font-medium text-white">
           Buscar asesorías
         </Link>
-        <Link href="/login" className="rounded border border-marca px-4 py-2 font-medium text-marca">
-          Quiero ser tutor
+        <Link href="/registro" className="rounded border border-marca px-4 py-2 font-medium text-marca">
+          Crear cuenta
         </Link>
       </div>
     </section>
