@@ -1,8 +1,9 @@
-// Modelo de datos inicial de AsesoraT
-// Base de datos: PostgreSQL (Neon)
+// Modelo de datos de AsesoraT
+// Base de datos: PostgreSQL (local en desarrollo, Neon en despliegue)
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
