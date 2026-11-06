@@ -7,7 +7,7 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 
 ## Estado actual
 
-**Versión 0.2.0. Etapa II: planificación del proyecto (Sprint 2 terminado).** La aplicación ya está conectada a PostgreSQL: los usuarios se registran con su correo institucional, inician sesión, ven un panel según su rol, los tutores eligen sus materias y la búsqueda de asesorías lee de la base de datos.
+**Versión 0.2.1. Etapa II: planificación del proyecto (Sprint 2 terminado).** La aplicación ya está conectada a PostgreSQL: los usuarios se registran con su correo institucional, inician sesión, ven un panel según su rol, los tutores eligen sus materias y la búsqueda de asesorías lee de la base de datos.
 
 | Módulo | Estado |
 |---|---|
@@ -17,11 +17,11 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 | Panel por rol y protección de rutas (HU-01, RNF-04) | ✅ Listo (Sprint 2) |
 | Materias del tutor (HU-02) | ✅ Listo (Sprint 2) |
 | Búsqueda de asesorías desde la base de datos (HU-04) | 🟡 Filtros listos; falta disponibilidad editable (Sprint 3) |
-| Disponibilidad del tutor (HU-03) | ⏳ Sprint 3 |
-| Agendar / confirmar / cancelar asesorías | ⏳ Sprints 4 y 5 |
-| Notificaciones por correo | ⏳ Sprint 5 |
-| Calificación y reportes para coordinación | ⏳ Sprint 6 |
-| Pruebas con usuarios y despliegue | ⏳ Sprint 7 |
+| Disponibilidad del tutor (HU-03) | ⏳ Sprint 3 (9 a 13 nov) |
+| Agendar y confirmar asesorías (HU-05, HU-06) | ⏳ Sprint 4 (16 a 20 nov) |
+| Cancelar, historial y reporte para coordinación (HU-07, HU-09, HU-11) | ⏳ Sprint 5 (23 a 27 nov) |
+| Pruebas con usuarios, despliegue y entrega de la versión 1.0.0 | ⏳ Sprint 6 (30 nov a 4 dic) |
+| Avisos por correo (HU-08) y calificación (HU-10) | Versión 1.1, después del semestre |
 
 ## Tecnologías
 
@@ -29,7 +29,7 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 - **Tailwind CSS** para estilos
 - **PostgreSQL 16** + **Prisma ORM** con adaptador `pg` (local en desarrollo, **Neon** en despliegue)
 - **NextAuth.js** (sesión JWT) y **bcrypt** para contraseñas
-- **Resend** para avisos por correo (Sprint 5)
+- **Resend** para avisos por correo (versión 1.1)
 - **Vercel** para despliegue
 - **GitHub Projects** (tablero Kanban) e **Issues** para backlog y control de cambios
 

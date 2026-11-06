@@ -18,7 +18,7 @@ const opcionesPorRol: Record<string, Opcion[]> = {
     { titulo: "Solicitudes", descripcion: "Confirma o rechaza asesorías.", proximamente: "Sprint 4" },
   ],
   COORDINADOR: [
-    { titulo: "Reporte de horas", descripcion: "Asesorías y horas por tutor.", proximamente: "Sprint 6" },
+    { titulo: "Reporte de horas", descripcion: "Asesorías y horas por tutor.", proximamente: "Sprint 5" },
   ],
 };
 

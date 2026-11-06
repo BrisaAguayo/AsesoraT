@@ -11,9 +11,9 @@
 | RF-05 | El estudiante agenda una asesoría en un horario disponible indicando el tema a revisar. | Alta | HU-05 |
 | RF-06 | El sistema impide reservar un horario ya ocupado (sin empalmes). | Alta | HU-05 |
 | RF-07 | El tutor confirma o rechaza la solicitud; estudiante y tutor pueden cancelar hasta 2 horas antes. | Alta | HU-06, HU-07 |
-| RF-08 | El sistema envía un correo de aviso al agendar, confirmar o cancelar una asesoría. | Media | HU-08 |
+| RF-08 | El sistema envía un correo de aviso al agendar, confirmar o cancelar una asesoría. | Media (versión 1.1) | HU-08 |
 | RF-09 | Cada usuario consulta su historial de asesorías y su estado. | Media | HU-09 |
-| RF-10 | El estudiante califica la asesoría (1 a 5) y deja un comentario al terminar. | Baja | HU-10 |
+| RF-10 | El estudiante califica la asesoría (1 a 5) y deja un comentario al terminar. | Baja (versión 1.1) | HU-10 |
 | RF-11 | La coordinación consulta un reporte de asesorías y horas impartidas por tutor. | Media | HU-11 |
 
 ## Requerimientos no funcionales
