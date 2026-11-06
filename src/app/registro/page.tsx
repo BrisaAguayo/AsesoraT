@@ -22,7 +22,10 @@ export default function Registro() {
   const [pendiente, iniciar] = useTransition();
   const errores = estado && !estado.ok ? estado.errores ?? {} : {};
 
-  function enviar(formData: FormData) {
+  function enviar(evento: React.FormEvent<HTMLFormElement>) {
+    // Se usa onSubmit (y no action) para que el formulario no se borre si hay errores
+    evento.preventDefault();
+    const formData = new FormData(evento.currentTarget);
     iniciar(async () => {
       const resultado = await registrarUsuario(formData);
       setEstado(resultado);
@@ -44,7 +47,7 @@ export default function Registro() {
       <h1 className="mb-1 text-xl font-bold text-marca">Crear cuenta</h1>
       <p className="mb-5 text-sm text-slate-500">Regístrate con tu correo institucional del Tecnológico de Tijuana.</p>
 
-      <form action={enviar} className="flex flex-col gap-4" noValidate>
+      <form onSubmit={enviar} className="flex flex-col gap-4" noValidate>
         <fieldset className="flex gap-3">
           <legend className="mb-1 text-sm font-medium text-slate-700">Me registro como</legend>
           <label className="flex flex-1 cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm has-[:checked]:border-marca has-[:checked]:bg-marca-claro">

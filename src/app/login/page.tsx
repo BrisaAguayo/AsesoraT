@@ -12,7 +12,10 @@ export default function Login() {
   const [error, setError] = useState("");
   const [pendiente, iniciar] = useTransition();
 
-  function enviar(formData: FormData) {
+  function enviar(evento: React.FormEvent<HTMLFormElement>) {
+    // Se usa onSubmit (y no action) para que el formulario no se borre si hay errores
+    evento.preventDefault();
+    const formData = new FormData(evento.currentTarget);
     const correo = String(formData.get("correo") ?? "");
     const password = String(formData.get("password") ?? "");
 
@@ -36,7 +39,7 @@ export default function Login() {
     <section className="mx-auto max-w-sm rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
       <h1 className="mb-1 text-xl font-bold text-marca">Iniciar sesión</h1>
       <p className="mb-5 text-sm text-slate-500">Usa tu correo institucional.</p>
-      <form action={enviar} className="flex flex-col gap-4" noValidate>
+      <form onSubmit={enviar} className="flex flex-col gap-4" noValidate>
         <Campo etiqueta="Correo">
           <input name="correo" type="email" placeholder="l00000000@tectijuana.edu.mx" className={estiloInput} />
         </Campo>
