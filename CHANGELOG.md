@@ -2,6 +2,13 @@
 
 Formato basado en *Keep a Changelog* y versionado semántico.
 
+## [0.2.1] - 2026-11-06
+
+### Cambiado
+- Cronograma reprogramado para terminar antes del fin del semestre: sprints de 1 semana desde el Sprint 3 y entrega de la versión 1.0.0 el 4 dic 2026 (CC-003).
+- Avisos por correo (HU-08) y calificación (HU-10) pasan a la versión 1.1.
+- El panel de coordinación indica que el reporte llega en el Sprint 5.
+
 ## [0.2.0] - 2026-11-06
 
 Sprint 2: acceso y perfil de tutor.
