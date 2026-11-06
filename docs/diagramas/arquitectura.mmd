@@ -1,0 +1,20 @@
+flowchart LR
+    U(["Usuario<br/>celular o computadora"])
+    subgraph Next["Aplicación Next.js (Vercel)"]
+        direction TB
+        P["Pantallas<br/>React + Tailwind"]
+        MW["Middleware<br/>protección por rol"]
+        SA["Server Actions<br/>registro, materias"]
+        NA["NextAuth.js<br/>sesión JWT + bcrypt"]
+        PR["Prisma ORM<br/>adaptador pg"]
+    end
+    DB[("PostgreSQL<br/>local en desarrollo<br/>Neon en despliegue")]
+    GH["GitHub<br/>código, issues, versiones"]
+
+    U -- HTTPS --> MW --> P
+    P --> SA
+    P --> NA
+    SA --> PR
+    NA --> PR
+    PR -- SQL --> DB
+    GH -. despliegue .-> Next

@@ -7,61 +7,94 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 
 ## Estado actual
 
-**Etapa I - Gestión de calidad.** Se tiene la estructura base del proyecto, el modelo de datos inicial (Prisma), las pantallas iniciales de la interfaz y la documentación de planeación en `docs/`.
+**Versión 0.2.0. Etapa II: planificación del proyecto (Sprint 2 terminado).** La aplicación ya está conectada a PostgreSQL: los usuarios se registran con su correo institucional, inician sesión, ven un panel según su rol, los tutores eligen sus materias y la búsqueda de asesorías lee de la base de datos.
 
 | Módulo | Estado |
 |---|---|
 | Estructura del proyecto (Next.js + TS + Tailwind) | ✅ Listo |
-| Modelo de datos (Prisma / PostgreSQL) | ✅ Versión inicial |
-| Pantallas iniciales (inicio, login, buscar asesorías, mis asesorías) | 🟡 Interfaz con datos de ejemplo |
-| Autenticación con correo institucional | ⏳ Sprint 2 |
-| Agendar / confirmar / cancelar asesorías | ⏳ Sprints 3 a 4 |
+| Base de datos (Prisma + PostgreSQL) con migración inicial | ✅ Listo (Sprint 2) |
+| Registro e inicio de sesión con correo institucional (HU-01) | ✅ Listo (Sprint 2) |
+| Panel por rol y protección de rutas (HU-01, RNF-04) | ✅ Listo (Sprint 2) |
+| Materias del tutor (HU-02) | ✅ Listo (Sprint 2) |
+| Búsqueda de asesorías desde la base de datos (HU-04) | 🟡 Filtros listos; falta disponibilidad editable (Sprint 3) |
+| Disponibilidad del tutor (HU-03) | ⏳ Sprint 3 |
+| Agendar / confirmar / cancelar asesorías | ⏳ Sprints 4 y 5 |
 | Notificaciones por correo | ⏳ Sprint 5 |
-| Reportes para coordinación | ⏳ Sprint 6 |
+| Calificación y reportes para coordinación | ⏳ Sprint 6 |
+| Pruebas con usuarios y despliegue | ⏳ Sprint 7 |
 
 ## Tecnologías
 
-- **Next.js 15** (App Router) + **React 19** + **TypeScript**
+- **Next.js 15** (App Router, Server Actions) + **React 19** + **TypeScript**
 - **Tailwind CSS** para estilos
-- **PostgreSQL** (Neon) + **Prisma ORM**
-- **NextAuth.js** para autenticación y **Resend** para avisos por correo (planeados)
+- **PostgreSQL 16** + **Prisma ORM** con adaptador `pg` (local en desarrollo, **Neon** en despliegue)
+- **NextAuth.js** (sesión JWT) y **bcrypt** para contraseñas
+- **Resend** para avisos por correo (Sprint 5)
 - **Vercel** para despliegue
 - **GitHub Projects** (tablero Kanban) e **Issues** para backlog y control de cambios
+
+## Cómo correrlo
+
+Requisitos: Node.js 20 o superior y una base de datos PostgreSQL (local o en Neon).
+
+```bash
+npm install
+cp .env.example .env        # pon tu DATABASE_URL y un NEXTAUTH_SECRET
+npm run db:deploy           # crea las tablas con la migración
+npm run db:seed             # carga materias y cuentas de ejemplo
+npm run dev                 # http://localhost:3000
+```
+
+### Cuentas de ejemplo
+
+Todas usan la contraseña `Asesorat2026` (solo para desarrollo).
+
+| Rol | Correo |
+|---|---|
+| Estudiante | estudiante.demo@tectijuana.edu.mx |
+| Tutor | tutora.demo@tectijuana.edu.mx |
+| Coordinación | coordinacion.demo@tectijuana.edu.mx |
+
+### Scripts
+
+| Comando | Qué hace |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Compilación de producción |
+| `npm test` | Pruebas automatizadas de las reglas de registro |
+| `npm run lint` / `npm run typecheck` | Revisión de código y de tipos |
+| `npm run db:migrate` | Crea una migración nueva al cambiar el modelo |
+| `npm run db:deploy` | Aplica las migraciones a la base de datos |
+| `npm run db:seed` | Carga datos de ejemplo |
 
 ## Estructura de carpetas
 
 ```
 asesorat/
-├── docs/                    # Documentación del proyecto
-│   ├── plan-de-calidad.md   # Resumen del Plan de Calidad
-│   ├── requerimientos.md    # RF y RNF con su identificador
+├── docs/                      # Documentación del proyecto
+│   ├── plan-de-calidad.md     # Resumen del Plan de Calidad (Etapa I)
+│   ├── requerimientos.md      # RF y RNF con su identificador
 │   ├── historias-de-usuario.md
-│   ├── backlog.md
-│   ├── diagramas/           # Casos de uso, flujo, modelo de BD (Mermaid)
-│   └── bitacora-cambios.md  # Registro de solicitudes de cambio
+│   ├── backlog.md             # Backlog y cronograma reprogramado
+│   ├── seguimiento.md         # Seguimiento y control por sprint
+│   ├── bitacora-cambios.md    # Solicitudes de cambio (CC-###)
+│   ├── capturas/              # Pantallas por sprint
+│   └── diagramas/             # Casos de uso, flujos, modelo de BD, arquitectura
 ├── prisma/
-│   ├── schema.prisma        # Modelo de datos
-│   └── seed.ts              # Datos de ejemplo
+│   ├── migrations/            # Migraciones de la base de datos
+│   ├── schema.prisma          # Modelo de datos
+│   └── seed.ts                # Datos de ejemplo
 ├── src/
-│   ├── app/                 # Rutas (App Router)
-│   ├── components/          # Componentes reutilizables
-│   └── lib/                 # Cliente de Prisma, utilidades, validaciones
-├── .github/                 # Plantillas de issues y pull requests
+│   ├── app/                   # Rutas: inicio, registro, login, panel, asesorias,
+│   │                          # mis-asesorias, tutor/materias, api/auth
+│   ├── components/            # Encabezado, TarjetaAsesoria, Campo, BotonSalir
+│   ├── lib/                   # prisma, auth, sesion, validaciones (+ pruebas), formato
+│   ├── types/                 # Tipos de la sesión de NextAuth
+│   └── middleware.ts          # Protección de rutas por sesión y rol
+├── .github/                   # Plantillas de issues y pull requests
 ├── CHANGELOG.md
-└── CONTRIBUTING.md          # Flujo de trabajo y control de cambios
+└── CONTRIBUTING.md            # Flujo de trabajo y control de cambios
 ```
-
-## Cómo correrlo
-
-```bash
-npm install
-cp .env.example .env        # agrega tu DATABASE_URL de Neon
-npx prisma migrate dev --name init
-npm run db:seed
-npm run dev
-```
-
-Abrir http://localhost:3000
 
 ## Flujo de trabajo
 
