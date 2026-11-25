@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { formatearFecha, nombreModalidad } from "@/lib/formato";
 import { responderSolicitud } from "./actions";
-import { boton, aviso } from "@/components/estilos";
+import { boton, aviso, enGrupo, grupoBotones } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -50,16 +50,16 @@ export default async function Solicitudes({ searchParams }: { searchParams: Prom
                 <p className="text-slate-500">Tema: {a.tema}</p>
               </div>
               {/* Un formulario por botón: la decisión viaja en un campo oculto */}
-              <div className="flex gap-2">
+              <div className={`${grupoBotones} sm:w-64`}>
                 <form action={responderSolicitud}>
                   <input type="hidden" name="id" value={a.id} />
                   <input type="hidden" name="decision" value="confirmar" />
-                  <button className={boton.exito}>Confirmar</button>
+                  <button className={`${boton.exito} ${enGrupo}`}>Confirmar</button>
                 </form>
                 <form action={responderSolicitud}>
                   <input type="hidden" name="id" value={a.id} />
                   <input type="hidden" name="decision" value="rechazar" />
-                  <button className={boton.peligro}>Rechazar</button>
+                  <button className={`${boton.peligro} ${enGrupo}`}>Rechazar</button>
                 </form>
               </div>
             </li>

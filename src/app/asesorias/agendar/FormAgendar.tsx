@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Campo, estiloInput } from "@/components/Campo";
 import { agendarAsesoria } from "./actions";
-import { boton, aviso } from "@/components/estilos";
+import { boton, aviso, enGrupo, grupoBotones } from "@/components/estilos";
 
 interface Props {
   bloqueId: string;
@@ -47,9 +47,9 @@ export function FormAgendar({ bloqueId, materiaId, resumen, fechas }: Props) {
         <p>Tema: {agendada.tema}</p>
         <p>{resumen.lugar}</p>
         <p>Tu asesoría queda <strong>pendiente</strong> hasta que el tutor la confirme. Puedes ver su estado en Mis asesorías.</p>
-        <div className="flex gap-4">
-          <Link href="/mis-asesorias" className={boton.claro}>Ir a Mis asesorías</Link>
-          <Link href="/asesorias" className="self-center font-medium text-white underline">Buscar otra</Link>
+        <div className={grupoBotones}>
+          <Link href="/mis-asesorias" className={`${boton.claro} ${enGrupo}`}>Ir a Mis asesorías</Link>
+          <Link href="/asesorias" className={`${boton.claro} ${enGrupo}`}>Buscar otra</Link>
         </div>
       </div>
     );

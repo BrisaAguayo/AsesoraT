@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Campo, estiloInput } from "@/components/Campo";
 import { dias } from "@/lib/formato";
 import { guardarBloque } from "./actions";
-import { boton, aviso } from "@/components/estilos";
+import { boton, aviso, enGrupo, grupoBotones } from "@/components/estilos";
 
 export interface ValoresBloque {
   id?: string;
@@ -72,11 +72,11 @@ export function FormBloque({ valores }: { valores?: ValoresBloque }) {
         <input name="lugar" defaultValue={v.lugar} placeholder="Edificio J, aula 5 o enlace de Google Meet" className={estiloInput} />
       </Campo>
       {error && <p role="alert" className={aviso.error}>{error}</p>}
-      <div className="flex items-center gap-3">
-        <button type="submit" disabled={pendiente} className={boton.primario}>
+      <div className={`${v.id ? grupoBotones : "flex"} sm:w-96`}>
+        <button type="submit" disabled={pendiente} className={`${boton.primario} ${enGrupo}`}>
           {pendiente ? "Guardando..." : v.id ? "Guardar cambios" : "Agregar bloque"}
         </button>
-        {v.id && <Link href="/tutor/disponibilidad" className="text-sm text-slate-500 underline">Cancelar edición</Link>}
+        {v.id && <Link href="/tutor/disponibilidad" className={`${boton.secundario} ${enGrupo}`}>Cancelar edición</Link>}
       </div>
     </form>
   );

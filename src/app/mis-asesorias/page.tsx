@@ -3,21 +3,13 @@ import { redirect } from "next/navigation";
 import type { Asesoria, Materia } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
-import { formatearFecha, nombreEstado, nombreModalidad } from "@/lib/formato";
-import { HORAS_MINIMAS_CANCELAR, inicioAsesoria, puedeCancelar } from "@/lib/horarios";
-import { cancelarAsesoria, completarAsesoria } from "./actions";
-import { aviso as estiloAviso, boton, colorEstado, etiqueta } from "@/components/estilos";
+import { formatearFecha, nombreEstado, nombreModalidad, nombreResultado } from "@/lib/formato";
+import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
+import { aviso as estiloAviso, boton, colorEstado, colorResultado, etiqueta } from "@/components/estilos";
+import { cancelarAsesoria } from "./actions";
+import { avisos } from "./avisos";
 
 export const dynamic = "force-dynamic";
-
-
-const avisos: Record<string, { texto: string; error?: boolean }> = {
-  cancelada: { texto: "Asesoría cancelada. El horario quedó libre." },
-  completada: { texto: "Asesoría marcada como completada." },
-  tarde: { texto: `Ya no se puede cancelar: solo se permite hasta ${HORAS_MINIMAS_CANCELAR} horas antes.`, error: true },
-  "no-cancelable": { texto: "Esa asesoría ya no se puede cancelar.", error: true },
-  "no-completable": { texto: "Solo se pueden completar asesorías confirmadas que ya ocurrieron.", error: true },
-};
 
 type Fila = Asesoria & { materia: Materia; tutor: { nombre: string }; estudiante: { nombre: string } };
 
@@ -46,28 +38,24 @@ export default async function MisAsesorias({ searchParams }: { searchParams: Pro
 
   function Tarjeta({ a }: { a: Fila }) {
     return (
-      <li className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="text-sm">
+      <li className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 hover:border-marca sm:flex-row sm:items-center sm:justify-between">
+        <Link href={`/mis-asesorias/${a.id}`} className="text-sm">
           <p className="text-base font-semibold">{a.materia.nombre}</p>
           <p className="text-slate-500">
             {esTutor ? a.estudiante.nombre : a.tutor.nombre} · {formatearFecha(a.fecha)} · {a.horaInicio} - {a.horaFin}
           </p>
           <p className="text-slate-500">{nombreModalidad[a.modalidad]}, {a.lugar} · Tema: {a.tema}</p>
-        </div>
+        </Link>
         <div className="flex flex-wrap items-center gap-3">
           <span className={`${etiqueta} ${colorEstado[a.estado]}`}>{nombreEstado[a.estado]}</span>
+          {a.resultado && <span className={`${etiqueta} ${colorResultado[a.resultado]}`}>{nombreResultado[a.resultado]}</span>}
           {activa(a) && puedeCancelar(a.fecha, a.horaInicio, ahora) && (
             <form action={cancelarAsesoria}>
               <input type="hidden" name="id" value={a.id} />
               <button className={boton.peligro}>Cancelar</button>
             </form>
           )}
-          {esTutor && a.estado === "CONFIRMADA" && yaEmpezo(a) && (
-            <form action={completarAsesoria}>
-              <input type="hidden" name="id" value={a.id} />
-              <button className={boton.exito}>Marcar como completada</button>
-            </form>
-          )}
+          <Link href={`/mis-asesorias/${a.id}`} className="text-sm font-medium text-marca">Ver detalle ›</Link>
         </div>
       </li>
     );

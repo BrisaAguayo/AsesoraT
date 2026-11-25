@@ -5,7 +5,7 @@ import { obtenerSesion } from "@/lib/sesion";
 import { dias, nombreModalidad } from "@/lib/formato";
 import { eliminarBloque } from "./actions";
 import { FormBloque } from "./FormBloque";
-import { boton, aviso } from "@/components/estilos";
+import { boton, aviso, enGrupo, grupoBotones } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -47,11 +47,11 @@ export default async function MiDisponibilidad({ searchParams }: { searchParams:
                 <p className="font-semibold">{dias[b.diaSemana]} · {b.horaInicio} - {b.horaFin}</p>
                 <p className="text-sm text-slate-500">{nombreModalidad[b.modalidad]}, {b.lugar}</p>
               </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Link href={`/tutor/disponibilidad?editar=${b.id}`} className={boton.primario}>Editar</Link>
+              <div className={`${grupoBotones} w-full sm:w-56`}>
+                <Link href={`/tutor/disponibilidad?editar=${b.id}`} className={`${boton.primario} ${enGrupo}`}>Editar</Link>
                 <form action={eliminarBloque}>
                   <input type="hidden" name="id" value={b.id} />
-                  <button type="submit" className={boton.peligro}>Borrar</button>
+                  <button type="submit" className={`${boton.peligro} ${enGrupo}`}>Borrar</button>
                 </form>
               </div>
             </li>

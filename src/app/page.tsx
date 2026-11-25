@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { boton } from "@/components/estilos";
+import { boton, enGrupo, grupoBotones } from "@/components/estilos";
 
 export default function Inicio() {
   return (
@@ -11,11 +11,11 @@ export default function Inicio() {
         AsesoraT reúne en un solo lugar los horarios de los tutores de semestres avanzados.
         Busca por materia, elige un horario disponible y agenda tu asesoría.
       </p>
-      <div className="flex flex-wrap gap-3">
-        <Link href="/asesorias" className="rounded bg-marca px-4 py-2 font-medium text-white">
+      <div className={`${grupoBotones} w-full sm:w-96`}>
+        <Link href="/asesorias" className={`${boton.primario} ${enGrupo}`}>
           Buscar asesorías
         </Link>
-        <Link href="/registro" className={boton.exito}>
+        <Link href="/registro" className={`${boton.exito} ${enGrupo}`}>
           Crear cuenta
         </Link>
       </div>
