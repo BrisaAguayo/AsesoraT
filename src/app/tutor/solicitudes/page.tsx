@@ -48,11 +48,19 @@ export default async function Solicitudes({ searchParams }: { searchParams: Prom
                 <p>{formatearFecha(a.fecha)} · {a.horaInicio} - {a.horaFin} · {nombreModalidad[a.modalidad]}, {a.lugar}</p>
                 <p className="text-slate-500">Tema: {a.tema}</p>
               </div>
-              <form action={responderSolicitud} className="flex gap-2">
-                <input type="hidden" name="id" value={a.id} />
-                <button name="decision" value="confirmar" className="rounded bg-marca-acento px-4 py-2 text-sm font-medium text-white">Confirmar</button>
-                <button name="decision" value="rechazar" className="rounded border border-red-300 px-4 py-2 text-sm font-medium text-red-700">Rechazar</button>
-              </form>
+              {/* Un formulario por botón: la decisión viaja en un campo oculto */}
+              <div className="flex gap-2">
+                <form action={responderSolicitud}>
+                  <input type="hidden" name="id" value={a.id} />
+                  <input type="hidden" name="decision" value="confirmar" />
+                  <button className="rounded bg-marca-acento px-4 py-2 text-sm font-medium text-white">Confirmar</button>
+                </form>
+                <form action={responderSolicitud}>
+                  <input type="hidden" name="id" value={a.id} />
+                  <input type="hidden" name="decision" value="rechazar" />
+                  <button className="rounded border border-red-300 px-4 py-2 text-sm font-medium text-red-700">Rechazar</button>
+                </form>
+              </div>
             </li>
           ))}
         </ul>
