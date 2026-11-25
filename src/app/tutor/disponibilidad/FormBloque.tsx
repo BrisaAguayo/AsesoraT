@@ -44,12 +44,14 @@ export function FormBloque({ valores }: { valores?: ValoresBloque }) {
     <form key={v.id ?? "nuevo"} onSubmit={enviar} className="flex flex-col gap-4 rounded-lg border border-slate-200 bg-white p-4" noValidate>
       <h2 className="font-semibold text-marca">{v.id ? "Editar bloque" : "Agregar bloque"}</h2>
       {v.id && <input type="hidden" name="id" value={v.id} />}
-      <div className="grid grid-cols-3 gap-3">
-        <Campo etiqueta="Día">
-          <select name="diaSemana" defaultValue={v.diaSemana} className={estiloInput}>
-            {[1, 2, 3, 4, 5].map((d) => <option key={d} value={d}>{dias[d]}</option>)}
-          </select>
-        </Campo>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="col-span-2 sm:col-span-1">
+          <Campo etiqueta="Día">
+            <select name="diaSemana" defaultValue={v.diaSemana} className={estiloInput}>
+              {[1, 2, 3, 4, 5].map((d) => <option key={d} value={d}>{dias[d]}</option>)}
+            </select>
+          </Campo>
+        </div>
         <Campo etiqueta="Inicio">
           <input name="horaInicio" type="time" step={1800} defaultValue={v.horaInicio} className={estiloInput} />
         </Campo>
