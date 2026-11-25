@@ -30,7 +30,9 @@ export default function Login() {
         setError("Correo o contraseña incorrectos.");
         return;
       }
-      router.push("/panel");
+      // Si venía de una pantalla protegida (por ejemplo, agendar), regresa a ella
+      const destino = new URLSearchParams(window.location.search).get("callbackUrl") ?? "";
+      router.push(destino.startsWith("/") && !destino.startsWith("//") ? destino : "/panel");
       router.refresh();
     });
   }
