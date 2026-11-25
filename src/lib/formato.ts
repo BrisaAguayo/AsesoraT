@@ -11,6 +11,8 @@ export const nombreEstado = {
   COMPLETADA: "Completada",
 } as const;
 
+export const nombreResultado = { APROBADA: "✓ Aprobada", NO_APROBADA: "✗ No aprobada" } as const;
+
 export function formatearFecha(fecha: Date) {
   return new Intl.DateTimeFormat("es-MX", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(fecha);
 }

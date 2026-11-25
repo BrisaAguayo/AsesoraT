@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { obtenerSesion } from "@/lib/sesion";
 import { consultarReporte, leerPeriodo } from "@/lib/consultaReporte";
-import { boton } from "@/components/estilos";
+import { boton, enGrupo, grupoBotones } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -33,11 +33,13 @@ export default async function Reporte({ searchParams }: { searchParams: Promise<
           <span className="font-medium text-slate-700">Hasta</span>
           <input type="date" name="hasta" defaultValue={periodo.hastaISO} className={estiloFiltro} />
         </label>
-        <button className={boton.primario}>Consultar</button>
-        <a href={`/coordinacion/reporte/csv?desde=${periodo.desdeISO}&hasta=${periodo.hastaISO}`}
-          className={boton.exito}>
-          Exportar CSV
-        </a>
+        <div className={`${grupoBotones} w-full sm:w-80`}>
+          <button className={`${boton.primario} ${enGrupo}`}>Consultar</button>
+          <a href={`/coordinacion/reporte/csv?desde=${periodo.desdeISO}&hasta=${periodo.hastaISO}`}
+            className={`${boton.exito} ${enGrupo}`}>
+            Exportar CSV
+          </a>
+        </div>
       </form>
 
       {filas.length === 0 ? (

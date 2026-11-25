@@ -112,13 +112,13 @@ async function main() {
   await prisma.asesoria.createMany({
     data: [
       { ...comun, tutorId: diego.id, materiaId: estructuras.id, fecha: new Date("2026-11-03"), horaInicio: "16:00", horaFin: "17:00",
-        modalidad: "VIRTUAL", lugar: "Google Meet", tema: "Listas enlazadas", estado: "COMPLETADA" },
+        modalidad: "VIRTUAL", lugar: "Google Meet", tema: "Listas enlazadas", estado: "COMPLETADA", resultado: "APROBADA" },
       { ...comun, tutorId: andrea.id, materiaId: diferencial.id, fecha: new Date("2026-11-04"), horaInicio: "12:00", horaFin: "13:00",
-        modalidad: "PRESENCIAL", lugar: "Biblioteca, cubículo 2", tema: "Límites y continuidad", estado: "COMPLETADA" },
+        modalidad: "PRESENCIAL", lugar: "Biblioteca, cubículo 2", tema: "Límites y continuidad", estado: "COMPLETADA", resultado: "APROBADA" },
       { ...comun, tutorId: mariana.id, materiaId: bd.id, fecha: new Date("2026-11-12"), horaInicio: "15:00", horaFin: "16:00",
-        modalidad: "VIRTUAL", lugar: "Microsoft Teams", tema: "Modelo entidad relación", estado: "COMPLETADA" },
+        modalidad: "VIRTUAL", lugar: "Microsoft Teams", tema: "Modelo entidad relación", estado: "COMPLETADA", resultado: "NO_APROBADA" },
       { ...comun, tutorId: andrea.id, materiaId: integral.id, fecha: new Date("2026-11-16"), horaInicio: "13:00", horaFin: "14:00",
-        modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5", tema: "Integración por partes", estado: "COMPLETADA" },
+        modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5", tema: "Integración por partes", estado: "COMPLETADA", resultado: "APROBADA" },
       { ...comun, tutorId: luis.id, materiaId: poo.id, fecha: new Date("2026-11-20"), horaInicio: "11:00", horaFin: "12:00",
         modalidad: "PRESENCIAL", lugar: "Laboratorio de cómputo 3", tema: "Herencia y polimorfismo", estado: "CANCELADA" },
       { ...comun, tutorId: andrea.id, materiaId: integral.id, fecha: new Date("2026-11-23"), horaInicio: "13:00", horaFin: "14:00",

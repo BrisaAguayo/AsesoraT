@@ -6,6 +6,11 @@ import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
 
+/** Regresa al detalle si la acción se hizo desde ahí; si no, a la lista. */
+function destino(formData: FormData, id: string, aviso: string) {
+  return formData.get("origen") === "detalle" ? `/mis-asesorias/${id}?aviso=${aviso}` : `/mis-asesorias?aviso=${aviso}`;
+}
+
 // HU-07 (RF-07): estudiante o tutor cancelan hasta 2 horas antes.
 // La asesoría queda registrada como cancelada y el horario vuelve a estar disponible.
 export async function cancelarAsesoria(formData: FormData) {
@@ -18,32 +23,36 @@ export async function cancelarAsesoria(formData: FormData) {
   });
 
   if (!asesoria || (asesoria.estado !== "PENDIENTE" && asesoria.estado !== "CONFIRMADA")) {
-    redirect("/mis-asesorias?aviso=no-cancelable");
+    redirect(destino(formData, id, "no-cancelable"));
   }
-  if (!puedeCancelar(asesoria.fecha, asesoria.horaInicio)) redirect("/mis-asesorias?aviso=tarde");
+  if (!puedeCancelar(asesoria.fecha, asesoria.horaInicio)) redirect(destino(formData, id, "tarde"));
 
   await prisma.asesoria.update({ where: { id }, data: { estado: "CANCELADA" } });
 
   revalidatePath("/mis-asesorias");
   revalidatePath("/tutor/solicitudes");
-  redirect("/mis-asesorias?aviso=cancelada");
+  redirect(destino(formData, id, "cancelada"));
 }
 
-// HU-09: el tutor marca como completada una asesoría confirmada que ya ocurrió.
+// HU-09 y CC-005: el tutor registra el resultado (aprobada o no aprobada) de una asesoría
+// confirmada que ya ocurrió, y la asesoría queda como completada.
 // Las completadas son las que cuenta el reporte de horas (HU-11).
-export async function completarAsesoria(formData: FormData) {
+export async function registrarResultado(formData: FormData) {
   const sesion = await obtenerSesion();
   if (!sesion || sesion.user.rol !== "TUTOR") redirect("/login");
 
   const id = String(formData.get("id"));
+  const resultado = String(formData.get("resultado"));
+  if (resultado !== "APROBADA" && resultado !== "NO_APROBADA") redirect(destino(formData, id, "no-completable"));
+
   const asesoria = await prisma.asesoria.findFirst({ where: { id, tutorId: sesion.user.id, estado: "CONFIRMADA" } });
   if (!asesoria || inicioAsesoria(asesoria.fecha, asesoria.horaInicio) > new Date()) {
-    redirect("/mis-asesorias?aviso=no-completable");
+    redirect(destino(formData, id, "no-completable"));
   }
 
-  await prisma.asesoria.update({ where: { id }, data: { estado: "COMPLETADA" } });
+  await prisma.asesoria.update({ where: { id }, data: { estado: "COMPLETADA", resultado } });
 
   revalidatePath("/mis-asesorias");
   revalidatePath("/coordinacion/reporte");
-  redirect("/mis-asesorias?aviso=completada");
+  redirect(destino(formData, id, "completada"));
 }
