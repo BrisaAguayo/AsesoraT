@@ -10,7 +10,7 @@
 | HU-06 | Como **tutor** quiero confirmar o rechazar solicitudes para controlar mi agenda. | Veo solicitudes pendientes · Al confirmar o rechazar cambia el estado · El alumno ve el nuevo estado | RF-07 | Alta | 3 |
 | HU-07 | Como **estudiante o tutor** quiero cancelar una asesoría para liberar el horario si no puedo asistir. | Solo hasta 2 horas antes · El horario vuelve a estar disponible · Queda registrado como cancelada | RF-07 | Media | 3 |
 | HU-08 | Como **usuario** quiero recibir un correo cuando se agenda, confirma o cancela una asesoría para no olvidarla. | Llega correo en menos de 5 minutos · Incluye materia, fecha, hora y lugar | RF-08 | Media | 5 |
-| HU-09 | Como **usuario** quiero ver mi historial de asesorías para llevar control de las que tomé o impartí. | Lista ordenada por fecha · Muestra estado de cada una | RF-09 | Media | 3 |
+| HU-09 | Como **usuario** quiero ver mi historial de asesorías para llevar control de las que tomé o impartí. | Lista ordenada por fecha · Muestra estado de cada una · Al abrir una asesoría veo su detalle; las completadas muestran si fue aprobada o no aprobada (CC-005) | RF-09 | Media | 3 |
 | HU-10 | Como **estudiante** quiero calificar la asesoría para que otros sepan qué tutores ayudan más. | Solo asesorías completadas · Calificación de 1 a 5 y comentario opcional · Una sola vez por asesoría | RF-10 | Baja | 3 |
 | HU-11 | Como **coordinación** quiero ver un reporte de horas por tutor para reconocer su servicio. | Filtro por periodo · Total de asesorías completadas y horas por tutor · Exportable a CSV | RF-11 | Media | 5 |
 
