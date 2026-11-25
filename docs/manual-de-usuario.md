@@ -2,11 +2,11 @@
 
 **Sistema para consultar y agendar asesorías académicas entre estudiantes**
 
-Instituto Tecnológico de Tijuana · Tecnológico Nacional de México
-Proyecto integrador: Gestión de Proyectos de Software
+Instituto Tecnológico de Tijuana · Tecnológico Nacional de México  
+Proyecto integrador: Gestión de Proyectos de Software  
 Mtra. Maria Guadalupe Rodríguez López
 
-**Elaboró:** Brisa Julianna Aguayo Virgen (22211514)
+**Elaboró:** Brisa Julianna Aguayo Virgen (22211514)  
 **Versión del sistema:** 1.0.0 · **Fecha:** 26 de noviembre de 2026
 
 ---
@@ -263,16 +263,16 @@ Capturas de la versión 1.0.0 con los datos de ejemplo.
 
 ## 12. Ejemplos de uso
 
-**Ejemplo 1: Carlos necesita ayuda con Cálculo Integral.**
+**Ejemplo 1: Carlos necesita ayuda con Cálculo Integral.**  
 Carlos entra con `estudiante.demo@tectijuana.edu.mx`, pulsa **Buscar**, elige la materia *Cálculo Integral* y ve el horario de Andrea López los lunes de 13:00 a 14:00 en el Edificio J, aula 5. Pulsa **Agendar**, elige el siguiente lunes libre, escribe "Integrales impropias" y pulsa **Confirmar solicitud**. Su asesoría queda Pendiente.
 
-**Ejemplo 2: Andrea confirma la solicitud.**
+**Ejemplo 2: Andrea confirma la solicitud.**  
 Andrea entra con `tutora.demo@tectijuana.edu.mx`, abre **Solicitudes**, ve la petición de Carlos y pulsa **Confirmar**. Carlos ve la asesoría como Confirmada en Mis asesorías. Después de impartirla, Andrea pulsa **Marcar como completada**.
 
-**Ejemplo 3: Carlos ya no puede asistir.**
+**Ejemplo 3: Carlos ya no puede asistir.**  
 Un día antes, Carlos entra a **Mis asesorías** y pulsa **Cancelar**. La asesoría queda como Cancelada en su historial y ese lunes vuelve a estar disponible para otro estudiante.
 
-**Ejemplo 4: La coordinación revisa las horas de noviembre.**
+**Ejemplo 4: La coordinación revisa las horas de noviembre.**  
 La coordinación entra con `coordinacion.demo@tectijuana.edu.mx`, abre **Reporte de horas**, elige del 1 al 30 de noviembre y ve que Andrea López impartió 3 asesorías (3 horas). Pulsa **Exportar CSV** para guardar el reporte.
 
 ## 13. Solución de problemas frecuentes

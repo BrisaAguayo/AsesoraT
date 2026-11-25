@@ -1,7 +1,7 @@
 # Bitácora individual de participación
 
-**Integrante:** Brisa Julianna Aguayo Virgen (22211514)
-**Rol:** líder de proyecto, desarrolladora y responsable de pruebas (equipo de una integrante)
+**Integrante:** Brisa Julianna Aguayo Virgen (22211514)  
+**Rol:** líder de proyecto, desarrolladora y responsable de pruebas (equipo de una integrante)  
 **Repositorio:** https://github.com/BrisaAguayo/AsesoraT
 
 | Fecha | Actividad realizada | Responsable | Evidencia | Tiempo empleado | Resultado |

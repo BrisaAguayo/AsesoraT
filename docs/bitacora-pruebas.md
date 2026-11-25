@@ -1,7 +1,7 @@
 # Bitácora de supervisión y pruebas
 
-**Proyecto:** AsesoraT, versión 1.0.0
-**Responsable:** Brisa Julianna Aguayo Virgen (22211514)
+**Proyecto:** AsesoraT, versión 1.0.0  
+**Responsable:** Brisa Julianna Aguayo Virgen (22211514)  
 **Ambiente:** aplicación compilada para producción (`npm run build` y `npm run start`), base de datos PostgreSQL en Neon con los datos de ejemplo (`npm run db:seed`), Google Chrome en escritorio (1280 px) y en celular (360 px).
 
 ## Cómo se probó
