@@ -5,7 +5,7 @@ import { TarjetaAsesoria, type BloqueDisponible } from "@/components/TarjetaAses
 
 export const dynamic = "force-dynamic";
 
-type Filtros = { materia?: string; modalidad?: string; dia?: string };
+type Filtros = { materia?: string; tutor?: string; modalidad?: string; dia?: string };
 
 export default async function BuscarAsesorias({ searchParams }: { searchParams: Promise<Filtros> }) {
   const filtros = await searchParams;
@@ -15,11 +15,18 @@ export default async function BuscarAsesorias({ searchParams }: { searchParams: 
   const where: Prisma.DisponibilidadWhereInput = {
     modalidad,
     diaSemana: dia,
+    tutorId: filtros.tutor || undefined,
     tutor: { rol: "TUTOR", materiasQueImparte: filtros.materia ? { some: { materiaId: filtros.materia } } : { some: {} } },
   };
 
-  const [materias, disponibilidad] = await Promise.all([
+  const [materias, tutores, disponibilidad] = await Promise.all([
     prisma.materia.findMany({ orderBy: { nombre: "asc" } }),
+    // RNF-07: para el filtro solo se consulta el nombre del tutor
+    prisma.usuario.findMany({
+      where: { rol: "TUTOR", materiasQueImparte: { some: {} }, disponibilidad: { some: {} } },
+      select: { id: true, nombre: true },
+      orderBy: { nombre: "asc" },
+    }),
     prisma.disponibilidad.findMany({
       where,
       orderBy: [{ diaSemana: "asc" }, { horaInicio: "asc" }],
@@ -51,12 +58,16 @@ export default async function BuscarAsesorias({ searchParams }: { searchParams: 
     <section className="flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-bold text-marca">Buscar asesorías</h1>
-        <p className="text-slate-500">Filtra por materia, día y modalidad, y elige un horario disponible.</p>
+        <p className="text-slate-500">Filtra por materia, tutor, día y modalidad, y elige un horario disponible.</p>
       </div>
       <form className="flex flex-wrap gap-3">
         <select name="materia" defaultValue={filtros.materia ?? ""} className={estiloFiltro}>
           <option value="">Todas las materias</option>
           {materias.map((m) => <option key={m.id} value={m.id}>{m.nombre}</option>)}
+        </select>
+        <select name="tutor" defaultValue={filtros.tutor ?? ""} className={estiloFiltro}>
+          <option value="">Todos los tutores</option>
+          {tutores.map((t) => <option key={t.id} value={t.id}>{t.nombre}</option>)}
         </select>
         <select name="dia" defaultValue={filtros.dia ?? ""} className={estiloFiltro}>
           <option value="">Cualquier día</option>
