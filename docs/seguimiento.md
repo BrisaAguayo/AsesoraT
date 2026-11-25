@@ -6,10 +6,10 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 
 | Concepto | Resultado |
 |---|---|
-| Actividades terminadas | 22 de 22 (100 %) |
+| Actividades terminadas | 23 de 23 (100 %) |
 | Historias de la versión 1.0.0 | 9 de 9 terminadas (40 de 40 puntos) |
 | Requerimientos funcionales de la versión 1.0.0 | 9 de 9 implementados (RF-01 a RF-07, RF-09 y RF-11) |
-| Casos de prueba aprobados | 37 de 37 (16 automatizados y 21 de punta a punta) |
+| Casos de prueba aprobados | 40 de 40 (16 automatizados y 24 de punta a punta) |
 | Defectos encontrados en la etapa final | 2, corregidos el mismo día |
 | Actividades pendientes | Ninguna de la versión 1.0.0. Las mejoras de la versión 1.1 se listan al final. |
 
@@ -33,19 +33,20 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 | A14 | HU-05 Agendar sin empalmes | 16 a 20 nov | 25 nov | Terminada | 100 % | La restricción única también contaba las asesorías canceladas y el horario nunca se liberaba. | Índice único parcial que ignora las canceladas (CC-004). |
 | A15 | HU-06 Confirmar o rechazar | 16 a 20 nov | 25 nov | Terminada | 100 % | Confirmar o rechazar no cambiaba el estado (defecto D-01). | Corregido el mismo día (commit `fb7e225`). |
 | A16 | HU-07 Cancelar | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguno | - |
-| A17 | HU-09 Historial | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguna historia marcaba las asesorías como completadas y el reporte no tenía datos. | El tutor marca como completada una asesoría confirmada que ya ocurrió. |
+| A17 | HU-09 Historial | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguna historia marcaba las asesorías como completadas y el reporte no tenía datos. | El tutor registra el resultado (Aprobada o No aprobada) de una asesoría confirmada que ya ocurrió y queda como completada (CC-005). |
 | A18 | HU-11 Reporte de horas | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguno | - |
 | A19 | Pruebas y correcciones | 30 nov a 2 dic | 25 nov | Terminada | 100 % | 2 defectos (D-01 y D-02). | Corregidos y verificados con una nueva ejecución de todas las pruebas. |
 | A20 | Despliegue en Vercel y Neon | 2 a 3 dic | 26 nov | Terminada | 100 % | - | - |
 | A21 | Manual de usuario y evidencias | 3 a 4 dic | 25 a 26 nov | Terminada | 100 % | - | - |
 | A22 | Presentación y entrega de la versión 1.0.0 | 4 dic | 26 nov | Terminada | 100 % | La consigna fija la entrega el 26 nov, antes del 4 dic planeado. | Sprint 6 reducido a 2 días (CC-004). |
+| A23 | Detalle de la asesoría, resultado y colores sólidos (CC-005) | No planeada | 25 nov | Terminada | 100 % | En la revisión de la interfaz se pidió ver el detalle de cada asesoría y su resultado, y botones más claros. | CC-005; 3 pruebas nuevas (P-22 a P-24). |
 
 ## Indicadores
 
 | Métrica | Meta | Resultado final | Lectura |
 |---|---|---|---|
 | M1 Requerimientos funcionales implementados (versión 1.0.0) | 100 % | 9 de 9 (100 %) | Cumple |
-| M2 Casos de prueba aprobados | ≥ 90 % | 37 de 37 (100 %) después de las correcciones | Cumple |
+| M2 Casos de prueba aprobados | ≥ 90 % | 40 de 40 (100 %) después de las correcciones | Cumple |
 | M3 Defectos críticos abiertos al entregar | 0 | 0 | Cumple |
 | M8 Historias completadas por sprint | ≥ 80 % | Sprints 3 a 5: 7 de 7 historias (100 %) | Cumple |
 | M9 Desviación del cronograma | ≤ 10 % | Los Sprints 3 y 4 no avanzaron en sus fechas; la versión 1.0.0 se entregó el 26 nov, 8 días antes de la línea base del 4 dic | Se controló con CC-004 |
@@ -73,6 +74,7 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 | CC-002 | 6 nov | PostgreSQL local en desarrollo y Neon en despliegue. | 0.2.0 |
 | CC-003 | 6 nov | Sprints de 1 semana; HU-08 y HU-10 a la versión 1.1. | 0.2.1 |
 | CC-004 | 25 nov | Cronograma ajustado a la entrega del 26 nov; las canceladas ya no ocupan el horario. | 1.0.0 |
+| CC-005 | 25 nov | Detalle de cada asesoría, resultado Aprobada o No aprobada y colores sólidos en la interfaz. | 1.0.0 |
 
 Detalle completo en [bitacora-cambios.md](bitacora-cambios.md).
 
@@ -83,7 +85,7 @@ Detalle completo en [bitacora-cambios.md](bitacora-cambios.md).
 | 0.1.0 | 11 oct 2026 | Estructura del proyecto, modelo de datos, pantallas iniciales y documentación. |
 | 0.2.0 | 6 nov 2026 | Base de datos, registro e inicio de sesión, panel por rol, materias del tutor y búsqueda desde la BD. |
 | 0.2.1 | 6 nov 2026 | Cronograma reprogramado (CC-003). |
-| 1.0.0 | 26 nov 2026 | Disponibilidad, agendar, confirmar, cancelar, historial y reporte de horas. Versión final del semestre. |
+| 1.0.0 | 26 nov 2026 | Disponibilidad, agendar, confirmar, cancelar, historial con detalle y resultado, y reporte de horas. Versión final del semestre. |
 
 Detalle en [CHANGELOG.md](../CHANGELOG.md). Cada versión tiene su etiqueta en GitHub (`v0.1.0`, `v0.2.0`, `v0.2.1` y `v1.0.0`).
 
@@ -91,7 +93,7 @@ Detalle en [CHANGELOG.md](../CHANGELOG.md). Cada versión tiene su etiqueta en G
 
 - **Repositorio:** https://github.com/BrisaAguayo/AsesoraT
 - **Commits:** historial con *Conventional Commits* (`feat:`, `fix:`, `docs:`, `chore:`), uno por cambio.
-- **Ramas:** una rama por historia (`feature/HU-03-disponibilidad` a `feature/HU-11-reporte`), una por defecto (`fix/HU-06-confirmar-solicitud`, `fix/HU-03-horas-en-celular`), una para el despliegue (`chore/despliegue-vercel`) y una de documentación (`docs/entrega-final`), integradas a `main` con un merge por rama (commits "Merge: ...").
+- **Ramas:** una rama por historia (`feature/HU-03-disponibilidad` a `feature/HU-11-reporte`), una por defecto (`fix/HU-06-confirmar-solicitud`, `fix/HU-03-horas-en-celular`), una para el despliegue (`chore/despliegue-vercel`), dos de la revisión de la interfaz (`feature/estilos-solidos`, `feature/HU-09-detalle-resultado`) y una de documentación (`docs/entrega-final`), integradas a `main` con un merge por rama (commits "Merge: ...").
 - **Tablero Kanban:** GitHub Projects con las columnas Por hacer, En progreso, En revisión y Terminado.
 - **Etiquetas de versión:** `v0.1.0`, `v0.2.0`, `v0.2.1` y `v1.0.0`.
 
