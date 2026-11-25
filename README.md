@@ -5,49 +5,79 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 > Proyecto integrador: Gestión de Proyectos de Software, semestre Ago-Dic 2026.
 > Integrante: Brisa Julianna Aguayo Virgen (22211514).
 
+**Sistema en línea:** {{URL_SISTEMA}}
+**Repositorio:** https://github.com/BrisaAguayo/AsesoraT
+
 ## Estado actual
 
-**Versión 0.2.1. Etapa II: planificación del proyecto (Sprint 2 terminado).** La aplicación ya está conectada a PostgreSQL: los usuarios se registran con su correo institucional, inician sesión, ven un panel según su rol, los tutores eligen sus materias y la búsqueda de asesorías lee de la base de datos.
+**Versión 1.0.0 (26 nov 2026). Entrega final del proyecto.** Todas las historias de la versión 1.0.0 están terminadas y probadas (37 de 37 pruebas aprobadas).
 
 | Módulo | Estado |
 |---|---|
-| Estructura del proyecto (Next.js + TS + Tailwind) | ✅ Listo |
-| Base de datos (Prisma + PostgreSQL) con migración inicial | ✅ Listo (Sprint 2) |
-| Registro e inicio de sesión con correo institucional (HU-01) | ✅ Listo (Sprint 2) |
-| Panel por rol y protección de rutas (HU-01, RNF-04) | ✅ Listo (Sprint 2) |
-| Materias del tutor (HU-02) | ✅ Listo (Sprint 2) |
-| Búsqueda de asesorías desde la base de datos (HU-04) | 🟡 Filtros listos; falta disponibilidad editable (Sprint 3) |
-| Disponibilidad del tutor (HU-03) | ⏳ Sprint 3 (9 a 13 nov) |
-| Agendar y confirmar asesorías (HU-05, HU-06) | ⏳ Sprint 4 (16 a 20 nov) |
-| Cancelar, historial y reporte para coordinación (HU-07, HU-09, HU-11) | ⏳ Sprint 5 (23 a 27 nov) |
-| Pruebas con usuarios, despliegue y entrega de la versión 1.0.0 | ⏳ Sprint 6 (30 nov a 4 dic) |
-| Avisos por correo (HU-08) y calificación (HU-10) | Versión 1.1, después del semestre |
+| Registro e inicio de sesión con correo institucional (HU-01) | ✅ Listo |
+| Panel por rol y protección de rutas (HU-01, RNF-04) | ✅ Listo |
+| Materias del tutor (HU-02) | ✅ Listo |
+| Disponibilidad del tutor (HU-03) | ✅ Listo |
+| Búsqueda por materia, tutor, día y modalidad (HU-04) | ✅ Listo |
+| Agendar en 3 pasos sin empalmes (HU-05) | ✅ Listo |
+| Confirmar o rechazar solicitudes (HU-06) | ✅ Listo |
+| Cancelar hasta 2 horas antes (HU-07) | ✅ Listo |
+| Historial de asesorías (HU-09) | ✅ Listo |
+| Reporte de horas para coordinación con exportación a CSV (HU-11) | ✅ Listo |
+| Avisos por correo (HU-08) y calificación (HU-10) | Mejoras futuras (versión 1.1) |
 
 ## Tecnologías
 
-- **Next.js 15** (App Router, Server Actions) + **React 19** + **TypeScript**
+- **Next.js 15** (App Router, Server Actions) + **React 19**
 - **Tailwind CSS** para estilos
-- **PostgreSQL 16** + **Prisma ORM** con adaptador `pg` (local en desarrollo, **Neon** en despliegue)
+- **PostgreSQL 16** + **Prisma ORM** con adaptador `pg` (**Neon** en la nube)
 - **NextAuth.js** (sesión JWT) y **bcrypt** para contraseñas
-- **Resend** para avisos por correo (versión 1.1)
-- **Vercel** para despliegue
-- **GitHub Projects** (tablero Kanban) e **Issues** para backlog y control de cambios
+- **Vercel** para el despliegue
+- **GitHub Projects** (tablero Kanban), ramas y pull requests para el seguimiento
 
-## Cómo correrlo
+## Lenguajes de programación
 
-Requisitos: Node.js 20 o superior y una base de datos PostgreSQL (local o en Neon).
+- **TypeScript** (lógica del servidor, componentes y pruebas)
+- **SQL** (migraciones de la base de datos en PostgreSQL)
+- **CSS** con clases de Tailwind y **JSX/TSX** para las interfaces
+
+## Instalación
+
+Requisitos: Node.js 20 o superior y una base de datos PostgreSQL (local o en [Neon](https://neon.tech)).
 
 ```bash
+git clone https://github.com/BrisaAguayo/AsesoraT.git
+cd AsesoraT
 npm install
 cp .env.example .env        # pon tu DATABASE_URL y un NEXTAUTH_SECRET
-npm run db:deploy           # crea las tablas con la migración
-npm run db:seed             # carga materias y cuentas de ejemplo
-npm run dev                 # http://localhost:3000
+npm run db:deploy           # crea las tablas con las migraciones
+npm run db:seed             # carga materias, cuentas y asesorías de ejemplo
 ```
 
-### Cuentas de ejemplo
+Variables del archivo `.env`:
 
-Todas usan la contraseña `Asesorat2026` (solo para desarrollo).
+| Variable | Ejemplo |
+|---|---|
+| `DATABASE_URL` | `postgresql://usuario:password@host/asesorat?sslmode=require` |
+| `NEXTAUTH_SECRET` | Resultado de `openssl rand -base64 32` |
+| `NEXTAUTH_URL` | `http://localhost:3000` |
+
+## Cómo ejecutarlo
+
+```bash
+npm run dev                 # modo desarrollo en http://localhost:3000
+```
+
+Versión de producción:
+
+```bash
+npm run build
+npm run start               # http://localhost:3000
+```
+
+## Credenciales de prueba
+
+Todas usan la contraseña `Asesorat2026`.
 
 | Rol | Correo |
 |---|---|
@@ -55,40 +85,48 @@ Todas usan la contraseña `Asesorat2026` (solo para desarrollo).
 | Tutor | tutora.demo@tectijuana.edu.mx |
 | Coordinación | coordinacion.demo@tectijuana.edu.mx |
 
-### Scripts
+Otros tutores de ejemplo: `diego.demo@`, `mariana.demo@` y `luis.demo@tectijuana.edu.mx`.
+
+## Scripts
 
 | Comando | Qué hace |
 |---|---|
 | `npm run dev` | Servidor de desarrollo |
-| `npm run build` | Compilación de producción |
-| `npm test` | Pruebas automatizadas de las reglas de registro |
+| `npm run build` / `npm run start` | Compilación y servidor de producción |
+| `npm test` | 16 pruebas automatizadas de las reglas de negocio |
 | `npm run lint` / `npm run typecheck` | Revisión de código y de tipos |
-| `npm run db:migrate` | Crea una migración nueva al cambiar el modelo |
 | `npm run db:deploy` | Aplica las migraciones a la base de datos |
 | `npm run db:seed` | Carga datos de ejemplo |
+
+## Documentación
+
+| Documento | Archivo |
+|---|---|
+| Manual de usuario | [docs/manual-de-usuario.md](docs/manual-de-usuario.md) |
+| Bitácora de supervisión y pruebas | [docs/bitacora-pruebas.md](docs/bitacora-pruebas.md) |
+| Seguimiento y control | [docs/seguimiento.md](docs/seguimiento.md) |
+| Bitácora individual de participación | [docs/bitacora-individual.md](docs/bitacora-individual.md) |
+| Backlog y cronograma | [docs/backlog.md](docs/backlog.md) |
+| Bitácora de cambios (CC-001 a CC-004) | [docs/bitacora-cambios.md](docs/bitacora-cambios.md) |
+| Requerimientos e historias de usuario | [docs/requerimientos.md](docs/requerimientos.md), [docs/historias-de-usuario.md](docs/historias-de-usuario.md) |
+| Plan de calidad y diagramas | [docs/plan-de-calidad.md](docs/plan-de-calidad.md), [docs/diagramas.md](docs/diagramas.md) |
+| Historial de versiones | [CHANGELOG.md](CHANGELOG.md) |
 
 ## Estructura de carpetas
 
 ```
-asesorat/
-├── docs/                      # Documentación del proyecto
-│   ├── plan-de-calidad.md     # Resumen del Plan de Calidad (Etapa I)
-│   ├── requerimientos.md      # RF y RNF con su identificador
-│   ├── historias-de-usuario.md
-│   ├── backlog.md             # Backlog y cronograma reprogramado
-│   ├── seguimiento.md         # Seguimiento y control por sprint
-│   ├── bitacora-cambios.md    # Solicitudes de cambio (CC-###)
-│   ├── capturas/              # Pantallas por sprint
-│   └── diagramas/             # Casos de uso, flujos, modelo de BD, arquitectura
+AsesoraT/
+├── docs/                      # Documentación, bitácoras, manual y capturas
 ├── prisma/
 │   ├── migrations/            # Migraciones de la base de datos
 │   ├── schema.prisma          # Modelo de datos
 │   └── seed.ts                # Datos de ejemplo
 ├── src/
-│   ├── app/                   # Rutas: inicio, registro, login, panel, asesorias,
-│   │                          # mis-asesorias, tutor/materias, api/auth
+│   ├── app/                   # Rutas: inicio, registro, login, panel, asesorias (buscar y agendar),
+│   │                          # mis-asesorias, tutor (materias, disponibilidad, solicitudes),
+│   │                          # coordinacion/reporte, api/auth
 │   ├── components/            # Encabezado, TarjetaAsesoria, Campo, BotonSalir
-│   ├── lib/                   # prisma, auth, sesion, validaciones (+ pruebas), formato
+│   ├── lib/                   # prisma, auth, sesion, validaciones, horarios, reporte (+ pruebas)
 │   ├── types/                 # Tipos de la sesión de NextAuth
 │   └── middleware.ts          # Protección de rutas por sesión y rol
 ├── .github/                   # Plantillas de issues y pull requests
@@ -98,4 +136,4 @@ asesorat/
 
 ## Flujo de trabajo
 
-Ver [CONTRIBUTING.md](CONTRIBUTING.md): ramas `feature/*`, commits con formato *Conventional Commits*, pull request hacia `main` y registro de cambios en [docs/bitacora-cambios.md](docs/bitacora-cambios.md).
+Ver [CONTRIBUTING.md](CONTRIBUTING.md): ramas `feature/*`, `fix/*` y `docs/*`, commits con formato *Conventional Commits*, pull request hacia `main` y registro de cambios en [docs/bitacora-cambios.md](docs/bitacora-cambios.md).

@@ -2,6 +2,32 @@
 
 Formato basado en *Keep a Changelog* y versionado semántico.
 
+## [1.0.0] - 2026-11-26
+
+Versión final del semestre: Sprints 3 a 6.
+
+### Agregado
+- Mi disponibilidad: el tutor registra, edita y borra sus bloques semanales con día, horario, modalidad y lugar; no se aceptan bloques empalmados (HU-03).
+- Filtro por tutor en la búsqueda de asesorías (HU-04, RF-04).
+- Agendar en 3 pasos: elegir horario, elegir una fecha libre de las próximas 4 semanas con el tema y ver la confirmación en pantalla. Se validan los empalmes del tutor y del estudiante antes de guardar (HU-05, RF-05, RF-06, RNF-01).
+- Solicitudes: el tutor confirma o rechaza las asesorías pendientes (HU-06).
+- Cancelar una asesoría hasta 2 horas antes, con la hora de Tijuana (HU-07, RF-07).
+- Mis asesorías con Próximas e Historial ordenados por fecha; el tutor marca como completada una asesoría confirmada que ya ocurrió (HU-09).
+- Reporte de asesorías completadas y horas por tutor con filtro por periodo y exportación a CSV, solo para coordinación (HU-11).
+- Migración `20261125120000_canceladas_no_bloquean`: las canceladas quedan como registro y ya no ocupan el horario (CC-004).
+- 9 pruebas automatizadas nuevas (16 en total) y bitácora de 21 pruebas de punta a punta.
+- Manual de usuario, bitácora de pruebas, bitácora individual y capturas de la versión 1.0.0.
+- Datos de ejemplo con asesorías en todos los estados.
+
+### Cambiado
+- Cronograma ajustado a la entrega final del 26 nov 2026 (CC-004).
+- Solo los estudiantes pueden agendar; el inicio de sesión regresa al horario elegido.
+- El panel de cada rol muestra todas sus opciones activas.
+
+### Corregido
+- Confirmar o rechazar una solicitud no cambiaba su estado (D-01).
+- Las horas de disponibilidad se cortaban en celular (D-02).
+
 ## [0.2.1] - 2026-11-06
 
 ### Cambiado
