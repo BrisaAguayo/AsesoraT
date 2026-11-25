@@ -91,7 +91,7 @@ Detalle en [CHANGELOG.md](../CHANGELOG.md). Cada versión tiene su etiqueta en G
 
 - **Repositorio:** https://github.com/BrisaAguayo/AsesoraT
 - **Commits:** historial con *Conventional Commits* (`feat:`, `fix:`, `docs:`, `chore:`), uno por cambio.
-- **Ramas y pull requests:** una rama por historia (`feature/HU-03-disponibilidad` a `feature/HU-11-reporte`), una por defecto (`fix/HU-06-confirmar-solicitud`, `fix/HU-03-horas-en-celular`) y una de documentación (`docs/entrega-final`), integradas a `main` por pull request.
+- **Ramas:** una rama por historia (`feature/HU-03-disponibilidad` a `feature/HU-11-reporte`), una por defecto (`fix/HU-06-confirmar-solicitud`, `fix/HU-03-horas-en-celular`), una para el despliegue (`chore/despliegue-vercel`) y una de documentación (`docs/entrega-final`), integradas a `main` con un merge por rama (commits "Merge: ...").
 - **Tablero Kanban:** GitHub Projects con las columnas Por hacer, En progreso, En revisión y Terminado.
 - **Etiquetas de versión:** `v0.1.0`, `v0.2.0`, `v0.2.1` y `v1.0.0`.
 
