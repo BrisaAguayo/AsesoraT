@@ -5,7 +5,7 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 > Proyecto integrador: Gestión de Proyectos de Software, semestre Ago-Dic 2026.
 > Integrante: Brisa Julianna Aguayo Virgen (22211514).
 
-**Sistema en línea:** {{URL_SISTEMA}}
+**Sistema en línea:** https://asesora-t.vercel.app
 **Repositorio:** https://github.com/BrisaAguayo/AsesoraT
 
 ## Estado actual

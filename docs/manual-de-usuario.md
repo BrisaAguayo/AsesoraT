@@ -79,7 +79,7 @@ Cada asesoría completada tiene un **resultado**:
 AsesoraT es una aplicación web: **no necesita instalarse**. Para usarla:
 
 1. Abre el navegador.
-2. Entra a la dirección del sistema: **{{URL_SISTEMA}}**
+2. Entra a la dirección del sistema: **https://asesora-t.vercel.app**
 3. Desde la página de inicio puedes buscar asesorías sin cuenta o pulsar **Crear cuenta**.
 
 Para instalar el sistema en una computadora (equipo técnico), consulta el archivo `README.md` del repositorio.

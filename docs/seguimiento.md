@@ -36,7 +36,7 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 | A17 | HU-09 Historial | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguna historia marcaba las asesorías como completadas y el reporte no tenía datos. | El tutor registra el resultado (Aprobada o No aprobada) de una asesoría confirmada que ya ocurrió y queda como completada (CC-005). |
 | A18 | HU-11 Reporte de horas | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguno | - |
 | A19 | Pruebas y correcciones | 30 nov a 2 dic | 25 nov | Terminada | 100 % | 2 defectos (D-01 y D-02). | Corregidos y verificados con una nueva ejecución de todas las pruebas. |
-| A20 | Despliegue en Vercel y Neon | 2 a 3 dic | 26 nov | Terminada | 100 % | - | - |
+| A20 | Despliegue en Vercel y Neon | 2 a 3 dic | 25 nov | Terminada | 100 % | El primer despliegue respondía error 500 porque no leía `NEXTAUTH_SECRET`. | Se agregaron las variables de entorno y se volvió a desplegar; sistema en https://asesora-t.vercel.app |
 | A21 | Manual de usuario y evidencias | 3 a 4 dic | 25 a 26 nov | Terminada | 100 % | - | - |
 | A22 | Presentación y entrega de la versión 1.0.0 | 4 dic | 26 nov | Terminada | 100 % | La consigna fija la entrega el 26 nov, antes del 4 dic planeado. | Sprint 6 reducido a 2 días (CC-004). |
 | A23 | Detalle de la asesoría, resultado y colores sólidos (CC-005) | No planeada | 25 nov | Terminada | 100 % | En la revisión de la interfaz se pidió ver el detalle de cada asesoría y su resultado, y botones más claros. | CC-005; 3 pruebas nuevas (P-22 a P-24). |
@@ -92,6 +92,7 @@ Detalle en [CHANGELOG.md](../CHANGELOG.md). Cada versión tiene su etiqueta en G
 ## Evidencias del seguimiento en GitHub
 
 - **Repositorio:** https://github.com/BrisaAguayo/AsesoraT
+- **Sistema en línea:** https://asesora-t.vercel.app
 - **Commits:** historial con *Conventional Commits* (`feat:`, `fix:`, `docs:`, `chore:`), uno por cambio.
 - **Ramas:** una rama por historia (`feature/HU-03-disponibilidad` a `feature/HU-11-reporte`), una por defecto (`fix/HU-06-confirmar-solicitud`, `fix/HU-03-horas-en-celular`), una para el despliegue (`chore/despliegue-vercel`), dos de la revisión de la interfaz (`feature/estilos-solidos`, `feature/HU-09-detalle-resultado`) y una de documentación (`docs/entrega-final`), integradas a `main` con un merge por rama (commits "Merge: ...").
 - **Tablero Kanban:** GitHub Projects con las columnas Por hacer, En progreso, En revisión y Terminado.
