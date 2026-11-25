@@ -4,12 +4,12 @@ import { obtenerSesion } from "@/lib/sesion";
 
 export const dynamic = "force-dynamic";
 
-type Opcion = { titulo: string; descripcion: string; href?: string; proximamente?: string };
+type Opcion = { titulo: string; descripcion: string; href: string };
 
 // HU-01: al entrar, cada usuario ve su panel según su rol
 const opcionesPorRol: Record<string, Opcion[]> = {
   ESTUDIANTE: [
-    { titulo: "Buscar asesorías", descripcion: "Encuentra tutores por materia, día y modalidad.", href: "/asesorias" },
+    { titulo: "Buscar asesorías", descripcion: "Encuentra tutores por materia, tutor, día y modalidad.", href: "/asesorias" },
     { titulo: "Mis asesorías", descripcion: "Consulta tus asesorías y su estado.", href: "/mis-asesorias" },
   ],
   TUTOR: [
@@ -19,7 +19,7 @@ const opcionesPorRol: Record<string, Opcion[]> = {
     { titulo: "Mis asesorías", descripcion: "Tu agenda e historial de asesorías.", href: "/mis-asesorias" },
   ],
   COORDINADOR: [
-    { titulo: "Reporte de horas", descripcion: "Asesorías y horas por tutor.", proximamente: "Sprint 5" },
+    { titulo: "Reporte de horas", descripcion: "Asesorías y horas por tutor.", href: "/coordinacion/reporte" },
   ],
 };
 
@@ -39,20 +39,12 @@ export default async function Panel() {
         <p className="text-slate-500">¿Qué quieres hacer hoy?</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {opcionesPorRol[rol].map((o) =>
-          o.href ? (
-            <Link key={o.titulo} href={o.href} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:border-marca">
-              <h2 className="font-semibold text-marca">{o.titulo}</h2>
-              <p className="mt-1 text-sm text-slate-500">{o.descripcion}</p>
-            </Link>
-          ) : (
-            <div key={o.titulo} className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-5">
-              <h2 className="font-semibold text-slate-500">{o.titulo}</h2>
-              <p className="mt-1 text-sm text-slate-400">{o.descripcion}</p>
-              <p className="mt-3 text-xs font-medium text-slate-400">Disponible en el {o.proximamente}</p>
-            </div>
-          ),
-        )}
+        {opcionesPorRol[rol].map((o) => (
+          <Link key={o.titulo} href={o.href} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:border-marca">
+            <h2 className="font-semibold text-marca">{o.titulo}</h2>
+            <p className="mt-1 text-sm text-slate-500">{o.descripcion}</p>
+          </Link>
+        ))}
       </div>
     </section>
   );

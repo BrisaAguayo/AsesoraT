@@ -7,6 +7,7 @@ export default withAuth({
       if (!token) return false;
       const ruta = req.nextUrl.pathname;
       if (ruta.startsWith("/tutor")) return token.rol === "TUTOR";
+      if (ruta.startsWith("/coordinacion")) return token.rol === "COORDINADOR";
       if (ruta.startsWith("/asesorias/agendar")) return token.rol === "ESTUDIANTE";
       return true;
     },
@@ -14,5 +15,5 @@ export default withAuth({
 });
 
 export const config = {
-  matcher: ["/panel/:path*", "/tutor/:path*", "/mis-asesorias/:path*", "/asesorias/agendar/:path*"],
+  matcher: ["/panel/:path*", "/tutor/:path*", "/mis-asesorias/:path*", "/asesorias/agendar/:path*", "/coordinacion/:path*"],
 };
