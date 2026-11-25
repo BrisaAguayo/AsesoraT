@@ -1,5 +1,6 @@
 import type { Modalidad, Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { obtenerSesion } from "@/lib/sesion";
 import { dias } from "@/lib/formato";
 import { TarjetaAsesoria, type BloqueDisponible } from "@/components/TarjetaAsesoria";
 
@@ -8,7 +9,9 @@ export const dynamic = "force-dynamic";
 type Filtros = { materia?: string; tutor?: string; modalidad?: string; dia?: string };
 
 export default async function BuscarAsesorias({ searchParams }: { searchParams: Promise<Filtros> }) {
-  const filtros = await searchParams;
+  const [filtros, sesion] = await Promise.all([searchParams, obtenerSesion()]);
+  // Solo los estudiantes agendan; quien no ha iniciado sesión entra al login al agendar
+  const puedeAgendar = !sesion || sesion.user.rol === "ESTUDIANTE";
   const modalidad = filtros.modalidad === "PRESENCIAL" || filtros.modalidad === "VIRTUAL" ? (filtros.modalidad as Modalidad) : undefined;
   const dia = Number(filtros.dia) || undefined;
 
@@ -41,6 +44,8 @@ export default async function BuscarAsesorias({ searchParams }: { searchParams: 
       .filter((tm) => !filtros.materia || tm.materiaId === filtros.materia)
       .map((tm) => ({
         id: `${d.id}-${tm.materiaId}`,
+        disponibilidadId: d.id,
+        materiaId: tm.materiaId,
         tutor: d.tutor.nombre,
         semestreTutor: d.tutor.semestre,
         materia: tm.materia.nombre,
@@ -89,7 +94,7 @@ export default async function BuscarAsesorias({ searchParams }: { searchParams: 
         </p>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {bloques.map((b) => <TarjetaAsesoria key={b.id} bloque={b} />)}
+          {bloques.map((b) => <TarjetaAsesoria key={b.id} bloque={b} puedeAgendar={puedeAgendar} />)}
         </div>
       )}
     </section>

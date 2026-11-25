@@ -5,12 +5,14 @@ export default withAuth({
   callbacks: {
     authorized({ req, token }) {
       if (!token) return false;
-      if (req.nextUrl.pathname.startsWith("/tutor")) return token.rol === "TUTOR";
+      const ruta = req.nextUrl.pathname;
+      if (ruta.startsWith("/tutor")) return token.rol === "TUTOR";
+      if (ruta.startsWith("/asesorias/agendar")) return token.rol === "ESTUDIANTE";
       return true;
     },
   },
 });
 
 export const config = {
-  matcher: ["/panel/:path*", "/tutor/:path*", "/mis-asesorias/:path*"],
+  matcher: ["/panel/:path*", "/tutor/:path*", "/mis-asesorias/:path*", "/asesorias/agendar/:path*"],
 };
