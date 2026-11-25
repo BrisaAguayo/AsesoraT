@@ -14,7 +14,7 @@ const opcionesPorRol: Record<string, Opcion[]> = {
   ],
   TUTOR: [
     { titulo: "Mis materias", descripcion: "Elige las materias que puedes asesorar.", href: "/tutor/materias" },
-    { titulo: "Mi disponibilidad", descripcion: "Registra tus horarios semanales.", proximamente: "Sprint 3" },
+    { titulo: "Mi disponibilidad", descripcion: "Registra tus horarios semanales.", href: "/tutor/disponibilidad" },
     { titulo: "Solicitudes", descripcion: "Confirma o rechaza asesorías.", proximamente: "Sprint 4" },
   ],
   COORDINADOR: [
