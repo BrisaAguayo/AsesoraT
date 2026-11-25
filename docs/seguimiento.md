@@ -65,6 +65,7 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 | I-06 | 25 nov | Las asesorías canceladas seguían ocupando el horario. | Medio | Migración `20261125120000_canceladas_no_bloquean` (CC-004). |
 | I-07 | 25 nov | Defecto D-01: confirmar o rechazar no cambiaba el estado. | Alto | Commit `fb7e225`. |
 | I-08 | 25 nov | Defecto D-02: las horas de disponibilidad se cortaban en celular. | Bajo | Commit `638c03c`. |
+| I-09 | 25 nov | El primer despliegue en Vercel respondía error 500: no leía la variable `NEXTAUTH_SECRET`. | Alto | Variables de entorno revisadas y nuevo despliegue. |
 
 ## Cambios realizados durante el desarrollo
 
