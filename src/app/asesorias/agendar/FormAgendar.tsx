@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Campo, estiloInput } from "@/components/Campo";
 import { agendarAsesoria } from "./actions";
+import { boton, aviso } from "@/components/estilos";
 
 interface Props {
   bloqueId: string;
@@ -38,7 +39,7 @@ export function FormAgendar({ bloqueId, materiaId, resumen, fechas }: Props) {
   // HU-05, paso 3: confirmación en pantalla
   if (agendada) {
     return (
-      <div role="status" className="flex flex-col gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-5 text-sm text-emerald-900">
+      <div role="status" className="flex flex-col gap-3 rounded-md bg-marca-acento p-5 text-sm text-white">
         <p className="text-lg font-semibold">Solicitud enviada</p>
         <p>
           Agendaste <strong>{resumen.materia}</strong> con {resumen.tutor} el <strong>{agendada.fecha}</strong> ({resumen.horario.split(" · ")[1]}).
@@ -47,8 +48,8 @@ export function FormAgendar({ bloqueId, materiaId, resumen, fechas }: Props) {
         <p>{resumen.lugar}</p>
         <p>Tu asesoría queda <strong>pendiente</strong> hasta que el tutor la confirme. Puedes ver su estado en Mis asesorías.</p>
         <div className="flex gap-4">
-          <Link href="/mis-asesorias" className="font-medium text-marca underline">Ir a Mis asesorías</Link>
-          <Link href="/asesorias" className="text-slate-600 underline">Buscar otra</Link>
+          <Link href="/mis-asesorias" className={boton.claro}>Ir a Mis asesorías</Link>
+          <Link href="/asesorias" className="self-center font-medium text-white underline">Buscar otra</Link>
         </div>
       </div>
     );
@@ -71,8 +72,8 @@ export function FormAgendar({ bloqueId, materiaId, resumen, fechas }: Props) {
       <Campo etiqueta="Tema a revisar">
         <textarea name="tema" rows={3} maxLength={200} placeholder="Ej. Integración por partes" className={estiloInput} />
       </Campo>
-      {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
-      <button type="submit" disabled={pendiente} className="rounded bg-marca py-2 font-medium text-white disabled:opacity-60">
+      {error && <p role="alert" className={aviso.error}>{error}</p>}
+      <button type="submit" disabled={pendiente} className={boton.primario}>
         {pendiente ? "Agendando..." : "Confirmar solicitud"}
       </button>
     </form>

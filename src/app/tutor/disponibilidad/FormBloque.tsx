@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Campo, estiloInput } from "@/components/Campo";
 import { dias } from "@/lib/formato";
 import { guardarBloque } from "./actions";
+import { boton, aviso } from "@/components/estilos";
 
 export interface ValoresBloque {
   id?: string;
@@ -70,9 +71,9 @@ export function FormBloque({ valores }: { valores?: ValoresBloque }) {
       <Campo etiqueta="Lugar o enlace">
         <input name="lugar" defaultValue={v.lugar} placeholder="Edificio J, aula 5 o enlace de Google Meet" className={estiloInput} />
       </Campo>
-      {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
+      {error && <p role="alert" className={aviso.error}>{error}</p>}
       <div className="flex items-center gap-3">
-        <button type="submit" disabled={pendiente} className="rounded bg-marca px-5 py-2 font-medium text-white disabled:opacity-60">
+        <button type="submit" disabled={pendiente} className={boton.primario}>
           {pendiente ? "Guardando..." : v.id ? "Guardar cambios" : "Agregar bloque"}
         </button>
         {v.id && <Link href="/tutor/disponibilidad" className="text-sm text-slate-500 underline">Cancelar edición</Link>}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Modalidad } from "@prisma/client";
 import { dias, nombreModalidad } from "@/lib/formato";
+import { boton } from "@/components/estilos";
 
 export interface BloqueDisponible {
   id: string;
@@ -27,7 +28,7 @@ export function TarjetaAsesoria({ bloque, puedeAgendar }: { bloque: BloqueDispon
       {/* HU-05, paso 1: el estudiante elige el horario */}
       {puedeAgendar ? (
         <Link href={`/asesorias/agendar?bloque=${bloque.disponibilidadId}&materia=${bloque.materiaId}`}
-          className="mt-2 rounded bg-marca px-3 py-2 text-center text-sm font-medium text-white hover:bg-marca/90">
+          className={`mt-2 ${boton.primario}`}>
           Agendar
         </Link>
       ) : (

@@ -5,6 +5,7 @@ import { obtenerSesion } from "@/lib/sesion";
 import { dias, nombreModalidad } from "@/lib/formato";
 import { eliminarBloque } from "./actions";
 import { FormBloque } from "./FormBloque";
+import { boton, aviso } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +28,7 @@ export default async function MiDisponibilidad({ searchParams }: { searchParams:
       </div>
 
       {guardado && (
-        <p role="status" className="rounded border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm text-emerald-800">
+        <p role="status" className={aviso.exito}>
           Cambios guardados.
         </p>
       )}
@@ -47,10 +48,10 @@ export default async function MiDisponibilidad({ searchParams }: { searchParams:
                 <p className="text-sm text-slate-500">{nombreModalidad[b.modalidad]}, {b.lugar}</p>
               </div>
               <div className="flex items-center gap-3 text-sm">
-                <Link href={`/tutor/disponibilidad?editar=${b.id}`} className="font-medium text-marca underline">Editar</Link>
+                <Link href={`/tutor/disponibilidad?editar=${b.id}`} className={boton.primario}>Editar</Link>
                 <form action={eliminarBloque}>
                   <input type="hidden" name="id" value={b.id} />
-                  <button type="submit" className="font-medium text-red-700 underline">Borrar</button>
+                  <button type="submit" className={boton.peligro}>Borrar</button>
                 </form>
               </div>
             </li>

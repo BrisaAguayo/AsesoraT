@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Campo, estiloInput } from "@/components/Campo";
 import { registrarUsuario, type EstadoRegistro } from "./actions";
+import { boton, aviso } from "@/components/estilos";
 
 const carreras = [
   "Ingeniería en Sistemas Computacionales",
@@ -86,9 +87,9 @@ export default function Registro() {
           <input name="password" type="password" autoComplete="new-password" className={estiloInput} />
         </Campo>
 
-        {estado && !estado.ok && estado.mensaje && <p className="text-sm text-red-700">{estado.mensaje}</p>}
+        {estado && !estado.ok && estado.mensaje && <p role="alert" className={aviso.error}>{estado.mensaje}</p>}
 
-        <button type="submit" disabled={pendiente} className="rounded bg-marca py-2 font-medium text-white disabled:opacity-60">
+        <button type="submit" disabled={pendiente} className={boton.primario}>
           {pendiente ? "Creando cuenta..." : "Crear cuenta"}
         </button>
       </form>

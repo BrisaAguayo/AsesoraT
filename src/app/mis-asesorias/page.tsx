@@ -6,15 +6,10 @@ import { obtenerSesion } from "@/lib/sesion";
 import { formatearFecha, nombreEstado, nombreModalidad } from "@/lib/formato";
 import { HORAS_MINIMAS_CANCELAR, inicioAsesoria, puedeCancelar } from "@/lib/horarios";
 import { cancelarAsesoria, completarAsesoria } from "./actions";
+import { aviso as estiloAviso, boton, colorEstado, etiqueta } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
-const colorEstado: Record<string, string> = {
-  CONFIRMADA: "bg-emerald-100 text-emerald-800",
-  PENDIENTE: "bg-amber-100 text-amber-800",
-  COMPLETADA: "bg-slate-200 text-slate-700",
-  CANCELADA: "bg-red-100 text-red-800",
-};
 
 const avisos: Record<string, { texto: string; error?: boolean }> = {
   cancelada: { texto: "Asesoría cancelada. El horario quedó libre." },
@@ -60,17 +55,17 @@ export default async function MisAsesorias({ searchParams }: { searchParams: Pro
           <p className="text-slate-500">{nombreModalidad[a.modalidad]}, {a.lugar} · Tema: {a.tema}</p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <span className={`rounded-full px-3 py-1 text-xs font-medium ${colorEstado[a.estado]}`}>{nombreEstado[a.estado]}</span>
+          <span className={`${etiqueta} ${colorEstado[a.estado]}`}>{nombreEstado[a.estado]}</span>
           {activa(a) && puedeCancelar(a.fecha, a.horaInicio, ahora) && (
             <form action={cancelarAsesoria}>
               <input type="hidden" name="id" value={a.id} />
-              <button className="text-sm font-medium text-red-700 underline">Cancelar</button>
+              <button className={boton.peligro}>Cancelar</button>
             </form>
           )}
           {esTutor && a.estado === "CONFIRMADA" && yaEmpezo(a) && (
             <form action={completarAsesoria}>
               <input type="hidden" name="id" value={a.id} />
-              <button className="text-sm font-medium text-marca-acento underline">Marcar como completada</button>
+              <button className={boton.exito}>Marcar como completada</button>
             </form>
           )}
         </div>
@@ -83,7 +78,7 @@ export default async function MisAsesorias({ searchParams }: { searchParams: Pro
       <h1 className="text-2xl font-bold text-marca">Mis asesorías</h1>
 
       {mensaje && (
-        <p role="status" className={`rounded border px-4 py-2 text-sm ${mensaje.error ? "border-red-200 bg-red-50 text-red-800" : "border-emerald-200 bg-emerald-50 text-emerald-800"}`}>
+        <p role="status" className={mensaje.error ? estiloAviso.error : estiloAviso.exito}>
           {mensaje.texto}
         </p>
       )}

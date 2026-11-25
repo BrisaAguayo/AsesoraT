@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { obtenerSesion } from "@/lib/sesion";
 import { consultarReporte, leerPeriodo } from "@/lib/consultaReporte";
+import { boton } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -32,9 +33,9 @@ export default async function Reporte({ searchParams }: { searchParams: Promise<
           <span className="font-medium text-slate-700">Hasta</span>
           <input type="date" name="hasta" defaultValue={periodo.hastaISO} className={estiloFiltro} />
         </label>
-        <button className="rounded bg-marca px-4 py-2 text-sm font-medium text-white">Consultar</button>
+        <button className={boton.primario}>Consultar</button>
         <a href={`/coordinacion/reporte/csv?desde=${periodo.desdeISO}&hasta=${periodo.hastaISO}`}
-          className="rounded border border-marca px-4 py-2 text-sm font-medium text-marca">
+          className={boton.exito}>
           Exportar CSV
         </a>
       </form>

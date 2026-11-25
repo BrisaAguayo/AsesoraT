@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Campo, estiloInput } from "@/components/Campo";
 import { esCorreoInstitucional } from "@/lib/validaciones";
+import { boton, aviso } from "@/components/estilos";
 
 export default function Login() {
   const router = useRouter();
@@ -48,8 +49,8 @@ export default function Login() {
         <Campo etiqueta="Contraseña">
           <input name="password" type="password" autoComplete="current-password" className={estiloInput} />
         </Campo>
-        {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
-        <button type="submit" disabled={pendiente} className="rounded bg-marca py-2 font-medium text-white disabled:opacity-60">
+        {error && <p role="alert" className={aviso.error}>{error}</p>}
+        <button type="submit" disabled={pendiente} className={boton.primario}>
           {pendiente ? "Entrando..." : "Entrar"}
         </button>
       </form>

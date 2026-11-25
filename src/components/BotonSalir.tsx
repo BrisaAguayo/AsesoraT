@@ -1,10 +1,11 @@
 "use client";
 
 import { signOut } from "next-auth/react";
+import { boton } from "@/components/estilos";
 
 export function BotonSalir() {
   return (
-    <button onClick={() => signOut({ callbackUrl: "/" })} className="rounded bg-white/15 px-3 py-1 hover:bg-white/25">
+    <button onClick={() => signOut({ callbackUrl: "/" })} className={boton.claro}>
       Salir
     </button>
   );
