@@ -97,8 +97,11 @@ model Asesoria {
   materia    Materia     @relation(fields: [materiaId], references: [id])
   evaluacion Evaluacion?
 
-  // Un tutor no puede tener dos asesorías en el mismo horario (RF-06)
-  @@unique([tutorId, fecha, horaInicio])
+  // Un tutor no puede tener dos asesorías activas en el mismo horario (RF-06).
+  // Índice único parcial creado en la migración 20261125120000_canceladas_no_bloquean:
+  // UNIQUE (tutorId, fecha, horaInicio) WHERE estado <> 'CANCELADA'.
+  // Las canceladas quedan como registro y no ocupan el horario (CC-004).
+  @@index([tutorId, fecha])
 }
 
 model Evaluacion {
