@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { guardarMaterias } from "./actions";
+import { boton, aviso } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +25,7 @@ export default async function MisMaterias({ searchParams }: { searchParams: Prom
       </div>
 
       {guardado && (
-        <p role="status" className="rounded border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm text-emerald-800">
+        <p role="status" className={aviso.exito}>
           Cambios guardados.
         </p>
       )}
@@ -41,7 +42,7 @@ export default async function MisMaterias({ searchParams }: { searchParams: Prom
             </label>
           ))}
         </div>
-        <button type="submit" className="self-start rounded bg-marca px-5 py-2 font-medium text-white">Guardar materias</button>
+        <button type="submit" className={`self-start ${boton.primario}`}>Guardar materias</button>
       </form>
 
       <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { obtenerSesion } from "@/lib/sesion";
+import { etiqueta } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -34,7 +35,7 @@ export default async function Panel() {
   return (
     <section className="flex flex-col gap-6">
       <div>
-        <span className="rounded-full bg-marca-claro px-3 py-1 text-xs font-semibold text-marca">{nombreRol[rol]}</span>
+        <span className={`${etiqueta} bg-marca text-white`}>{nombreRol[rol]}</span>
         <h1 className="mt-3 text-2xl font-bold text-marca">Hola, {name?.split(" ")[0]}</h1>
         <p className="text-slate-500">¿Qué quieres hacer hoy?</p>
       </div>

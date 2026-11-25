@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { dias } from "@/lib/formato";
 import { TarjetaAsesoria, type BloqueDisponible } from "@/components/TarjetaAsesoria";
+import { boton } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -83,7 +84,7 @@ export default async function BuscarAsesorias({ searchParams }: { searchParams: 
           <option value="PRESENCIAL">Presencial</option>
           <option value="VIRTUAL">Virtual</option>
         </select>
-        <button className="rounded bg-marca px-4 py-2 text-sm font-medium text-white">Buscar</button>
+        <button className={boton.primario}>Buscar</button>
       </form>
 
       <p className="text-sm text-slate-500">{bloques.length} horario{bloques.length === 1 ? "" : "s"} disponible{bloques.length === 1 ? "" : "s"}</p>

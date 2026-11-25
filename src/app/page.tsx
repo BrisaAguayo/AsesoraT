@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { boton } from "@/components/estilos";
 
 export default function Inicio() {
   return (
@@ -14,7 +15,7 @@ export default function Inicio() {
         <Link href="/asesorias" className="rounded bg-marca px-4 py-2 font-medium text-white">
           Buscar asesorías
         </Link>
-        <Link href="/registro" className="rounded border border-marca px-4 py-2 font-medium text-marca">
+        <Link href="/registro" className={boton.exito}>
           Crear cuenta
         </Link>
       </div>

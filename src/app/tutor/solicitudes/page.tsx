@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { formatearFecha, nombreModalidad } from "@/lib/formato";
 import { responderSolicitud } from "./actions";
+import { boton, aviso } from "@/components/estilos";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,7 @@ export default async function Solicitudes({ searchParams }: { searchParams: Prom
       </div>
 
       {respuesta && (
-        <p role="status" className="rounded border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm text-emerald-800">
+        <p role="status" className={aviso.exito}>
           Solicitud {respuesta === "confirmada" ? "confirmada" : "rechazada"}.
         </p>
       )}
@@ -53,12 +54,12 @@ export default async function Solicitudes({ searchParams }: { searchParams: Prom
                 <form action={responderSolicitud}>
                   <input type="hidden" name="id" value={a.id} />
                   <input type="hidden" name="decision" value="confirmar" />
-                  <button className="rounded bg-marca-acento px-4 py-2 text-sm font-medium text-white">Confirmar</button>
+                  <button className={boton.exito}>Confirmar</button>
                 </form>
                 <form action={responderSolicitud}>
                   <input type="hidden" name="id" value={a.id} />
                   <input type="hidden" name="decision" value="rechazar" />
-                  <button className="rounded border border-red-300 px-4 py-2 text-sm font-medium text-red-700">Rechazar</button>
+                  <button className={boton.peligro}>Rechazar</button>
                 </form>
               </div>
             </li>

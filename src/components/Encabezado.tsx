@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { obtenerSesion } from "@/lib/sesion";
 import { BotonSalir } from "@/components/BotonSalir";
+import { boton } from "@/components/estilos";
 
 export async function Encabezado() {
   const sesion = await obtenerSesion();
@@ -21,7 +22,7 @@ export async function Encabezado() {
               <BotonSalir />
             </>
           ) : (
-            <Link href="/login" className="rounded bg-white/15 px-3 py-1 hover:bg-white/25">Entrar</Link>
+            <Link href="/login" className={boton.claro}>Entrar</Link>
           )}
         </div>
       </nav>
