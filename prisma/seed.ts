@@ -2,6 +2,7 @@ import { PrismaClient, type Modalidad } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
 import "dotenv/config";
+import { proximasFechas } from "../src/lib/horarios";
 
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
@@ -92,24 +93,40 @@ async function main() {
     },
   });
 
-  // Asesorías de ejemplo para la pantalla "Mis asesorías"
-  const andrea = await prisma.usuario.findUniqueOrThrow({ where: { correo: "tutora.demo@tectijuana.edu.mx" } });
-  const diego = await prisma.usuario.findUniqueOrThrow({ where: { correo: "diego.demo@tectijuana.edu.mx" } });
-  const integral = await prisma.materia.findUniqueOrThrow({ where: { clave: "ACF-0902" } });
-  const estructuras = await prisma.materia.findUniqueOrThrow({ where: { clave: "AED-1026" } });
+  // Asesorías de ejemplo en todos los estados: "Mis asesorías", solicitudes del tutor y reporte de horas
+  const tutor = (correo: string) => prisma.usuario.findUniqueOrThrow({ where: { correo } });
+  const materia = (clave: string) => prisma.materia.findUniqueOrThrow({ where: { clave } });
+  const [andrea, diego, mariana, luis] = await Promise.all([
+    tutor("tutora.demo@tectijuana.edu.mx"), tutor("diego.demo@tectijuana.edu.mx"),
+    tutor("mariana.demo@tectijuana.edu.mx"), tutor("luis.demo@tectijuana.edu.mx"),
+  ]);
+  const [diferencial, integral, estructuras, bd, poo] = await Promise.all([
+    materia("ACF-0901"), materia("ACF-0902"), materia("AED-1026"), materia("AEF-1031"), materia("SCD-1020"),
+  ]);
+  // Las próximas se calculan desde el día en que se corre el seed
+  const [proximoLunes] = proximasFechas(1, "13:00", 1);
+  const [proximoMiercoles] = proximasFechas(3, "12:00", 1);
+
+  const comun = { estudianteId: estudiante.id };
   await prisma.asesoria.deleteMany({ where: { estudianteId: estudiante.id } });
   await prisma.asesoria.createMany({
     data: [
-      {
-        estudianteId: estudiante.id, tutorId: andrea.id, materiaId: integral.id, fecha: new Date("2026-11-09"),
-        horaInicio: "13:00", horaFin: "14:00", modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5",
-        tema: "Integración por partes", estado: "CONFIRMADA",
-      },
-      {
-        estudianteId: estudiante.id, tutorId: diego.id, materiaId: estructuras.id, fecha: new Date("2026-11-03"),
-        horaInicio: "16:00", horaFin: "17:00", modalidad: "VIRTUAL", lugar: "Google Meet",
-        tema: "Listas enlazadas", estado: "COMPLETADA",
-      },
+      { ...comun, tutorId: diego.id, materiaId: estructuras.id, fecha: new Date("2026-11-03"), horaInicio: "16:00", horaFin: "17:00",
+        modalidad: "VIRTUAL", lugar: "Google Meet", tema: "Listas enlazadas", estado: "COMPLETADA" },
+      { ...comun, tutorId: andrea.id, materiaId: diferencial.id, fecha: new Date("2026-11-04"), horaInicio: "12:00", horaFin: "13:00",
+        modalidad: "PRESENCIAL", lugar: "Biblioteca, cubículo 2", tema: "Límites y continuidad", estado: "COMPLETADA" },
+      { ...comun, tutorId: mariana.id, materiaId: bd.id, fecha: new Date("2026-11-12"), horaInicio: "15:00", horaFin: "16:00",
+        modalidad: "VIRTUAL", lugar: "Microsoft Teams", tema: "Modelo entidad relación", estado: "COMPLETADA" },
+      { ...comun, tutorId: andrea.id, materiaId: integral.id, fecha: new Date("2026-11-16"), horaInicio: "13:00", horaFin: "14:00",
+        modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5", tema: "Integración por partes", estado: "COMPLETADA" },
+      { ...comun, tutorId: luis.id, materiaId: poo.id, fecha: new Date("2026-11-20"), horaInicio: "11:00", horaFin: "12:00",
+        modalidad: "PRESENCIAL", lugar: "Laboratorio de cómputo 3", tema: "Herencia y polimorfismo", estado: "CANCELADA" },
+      { ...comun, tutorId: andrea.id, materiaId: integral.id, fecha: new Date("2026-11-23"), horaInicio: "13:00", horaFin: "14:00",
+        modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5", tema: "Sustitución trigonométrica", estado: "CONFIRMADA" },
+      { ...comun, tutorId: andrea.id, materiaId: integral.id, fecha: proximoLunes, horaInicio: "13:00", horaFin: "14:00",
+        modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5", tema: "Fracciones parciales", estado: "PENDIENTE" },
+      { ...comun, tutorId: andrea.id, materiaId: diferencial.id, fecha: proximoMiercoles, horaInicio: "12:00", horaFin: "13:00",
+        modalidad: "PRESENCIAL", lugar: "Biblioteca, cubículo 2", tema: "Regla de la cadena", estado: "CONFIRMADA" },
     ],
   });
 
@@ -122,7 +139,7 @@ async function main() {
     },
   });
 
-  console.log(`Seed listo: ${materias.length} materias, ${tutores.length} tutores, 1 estudiante, 2 asesorías y 1 coordinación.`);
+  console.log(`Seed listo: ${materias.length} materias, ${tutores.length} tutores, 1 estudiante, 8 asesorías y 1 coordinación.`);
 }
 
 main()
