@@ -14,9 +14,10 @@ Versión final del semestre: Sprints 3 a 6.
 - Cancelar una asesoría hasta 2 horas antes, con la hora de Tijuana (HU-07, RF-07).
 - Mis asesorías con Próximas e Historial ordenados por fecha (HU-09).
 - Detalle de cada asesoría al hacer clic en ella; desde ahí el tutor marca como completada una asesoría confirmada que ya ocurrió (HU-09, CC-005).
+- Calendario mensual con las asesorías del estudiante o del tutor; al elegir un día se abre un modal con su información y, si no hay asesorías agendadas, el pie lo indica (CC-006).
 - Reporte de asesorías completadas y horas por tutor con filtro por periodo y exportación a CSV, solo para coordinación (HU-11).
 - Migración `20261125120000_canceladas_no_bloquean`: las canceladas quedan como registro y ya no ocupan el horario (CC-004).
-- 9 pruebas automatizadas nuevas (16 en total) y bitácora de 24 pruebas de punta a punta.
+- 11 pruebas automatizadas nuevas (18 en total) y bitácora de 28 pruebas de punta a punta.
 - Manual de usuario, bitácora de pruebas, bitácora individual y capturas de la versión 1.0.0.
 - Datos de ejemplo con asesorías en todos los estados.
 
@@ -25,6 +26,8 @@ Versión final del semestre: Sprints 3 a 6.
 - Solo los estudiantes pueden agendar; el inicio de sesión regresa al horario elegido.
 - El panel de cada rol muestra todas sus opciones activas.
 - Botones, estados y avisos con colores sólidos, esquinas redondeadas y texto blanco o negro; los botones que comparten un área tienen el mismo ancho (CC-005).
+- Al registrarse como tutor, el selector de semestre deshabilita del 1.º al 5.º.
+- La flecha de los selectores queda dentro del recuadro.
 
 ### Corregido
 - Confirmar o rechazar una solicitud no cambiaba su estado (D-01).

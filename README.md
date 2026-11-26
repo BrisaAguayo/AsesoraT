@@ -10,7 +10,7 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 
 ## Estado actual
 
-**Versión 1.0.0 (26 nov 2026). Entrega final del proyecto.** Todas las historias de la versión 1.0.0 están terminadas y probadas (40 de 40 pruebas aprobadas).
+**Versión 1.0.0 (26 nov 2026). Entrega final del proyecto.** Todas las historias de la versión 1.0.0 están terminadas y probadas (46 de 46 pruebas aprobadas).
 
 | Módulo | Estado |
 |---|---|
@@ -23,6 +23,7 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 | Confirmar o rechazar solicitudes (HU-06) | ✅ Listo |
 | Cancelar hasta 2 horas antes (HU-07) | ✅ Listo |
 | Historial de asesorías con detalle de cada una (HU-09) | ✅ Listo |
+| Calendario mensual de asesorías (CC-006) | ✅ Listo |
 | Reporte de horas para coordinación con exportación a CSV (HU-11) | ✅ Listo |
 | Avisos por correo (HU-08) y calificación (HU-10) | Mejoras futuras (versión 1.1) |
 
@@ -93,7 +94,7 @@ Otros tutores de ejemplo: `diego.demo@`, `mariana.demo@` y `luis.demo@tectijuana
 |---|---|
 | `npm run dev` | Servidor de desarrollo |
 | `npm run build` / `npm run start` | Compilación y servidor de producción |
-| `npm test` | 16 pruebas automatizadas de las reglas de negocio |
+| `npm test` | 18 pruebas automatizadas de las reglas de negocio |
 | `npm run lint` / `npm run typecheck` | Revisión de código y de tipos |
 | `npm run db:deploy` | Aplica las migraciones a la base de datos |
 | `npm run db:seed` | Carga datos de ejemplo |

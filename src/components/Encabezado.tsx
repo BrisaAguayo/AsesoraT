@@ -16,6 +16,9 @@ export async function Encabezado() {
           <Link href="/asesorias" className="hover:underline">Buscar</Link>
           {sesion ? (
             <>
+              {(sesion.user.rol === "ESTUDIANTE" || sesion.user.rol === "TUTOR") && (
+                <Link href="/calendario" className="hover:underline">Calendario</Link>
+              )}
               <Link href="/panel" className="hidden hover:underline sm:inline">
                 {sesion.user.name?.split(" ")[0]}
               </Link>

@@ -31,8 +31,9 @@
 | 25 nov 2026 | Corrección de los defectos D-01 y D-02 y nueva ejecución de las pruebas | Brisa Aguayo | Commits `fb7e225`, `638c03c` | 1 h | 37 de 37 aprobadas; 40 de 40 después de CC-005 |
 | 25 nov 2026 | Revisión de la interfaz: detalle de la asesoría, colores sólidos y botones uniformes (CC-005) | Brisa Aguayo | Guía de estilos; ramas `feature/estilos-solidos` y `feature/HU-09-detalle-resultado`; pruebas P-22 a P-24 | 3 h | Interfaz aprobada |
 | 25 a 26 nov 2026 | Seguimiento, bitácoras, CC-004, cronograma y manual de usuario | Brisa Aguayo | `docs/seguimiento.md`, `docs/bitacora-cambios.md`, `docs/backlog.md`, `docs/manual-de-usuario.md` | 3 h | Evidencias 1 a 5 |
+| 26 nov 2026 | Calendario de asesorías (CC-006), semestre mínimo del tutor en el registro y flecha de los selectores | Brisa Aguayo | Ramas `feature/calendario`, `fix/semestre-minimo-tutor` y `fix/flecha-selectores`; pruebas CP-17, CP-18 y P-25 a P-28 | 2.5 h | Calendario terminado y probado |
 | 26 nov 2026 | Despliegue en Vercel, versión 1.0.0, carpeta de entrega y presentación | Brisa Aguayo | Etiqueta `v1.0.0`; carpeta `PROYECTO_FINAL_AsesoraT` | 2 h | Sistema entregado |
 
-**Tiempo total registrado:** 71.5 h.
+**Tiempo total registrado:** 74 h.
 
 El historial completo de commits está en https://github.com/BrisaAguayo/AsesoraT/commits/main.
