@@ -34,23 +34,19 @@ export async function cancelarAsesoria(formData: FormData) {
   redirect(destino(formData, id, "cancelada"));
 }
 
-// HU-09 y CC-005: el tutor registra el resultado (aprobada o no aprobada) de una asesoría
-// confirmada que ya ocurrió, y la asesoría queda como completada.
+// HU-09: el tutor marca como completada una asesoría confirmada que ya ocurrió.
 // Las completadas son las que cuenta el reporte de horas (HU-11).
-export async function registrarResultado(formData: FormData) {
+export async function marcarCompletada(formData: FormData) {
   const sesion = await obtenerSesion();
   if (!sesion || sesion.user.rol !== "TUTOR") redirect("/login");
 
   const id = String(formData.get("id"));
-  const resultado = String(formData.get("resultado"));
-  if (resultado !== "APROBADA" && resultado !== "NO_APROBADA") redirect(destino(formData, id, "no-completable"));
-
   const asesoria = await prisma.asesoria.findFirst({ where: { id, tutorId: sesion.user.id, estado: "CONFIRMADA" } });
   if (!asesoria || inicioAsesoria(asesoria.fecha, asesoria.horaInicio) > new Date()) {
     redirect(destino(formData, id, "no-completable"));
   }
 
-  await prisma.asesoria.update({ where: { id }, data: { estado: "COMPLETADA", resultado } });
+  await prisma.asesoria.update({ where: { id }, data: { estado: "COMPLETADA" } });
 
   revalidatePath("/mis-asesorias");
   revalidatePath("/coordinacion/reporte");

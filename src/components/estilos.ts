@@ -27,12 +27,6 @@ export const aviso = {
   error: "rounded-md bg-red-700 px-4 py-2 text-sm font-medium text-white",
 };
 
-// Resultado de una asesoría completada (CC-005)
-export const colorResultado: Record<string, string> = {
-  APROBADA: "bg-emerald-700 text-white",
-  NO_APROBADA: "bg-orange-700 text-white",
-};
-
 // Botones que comparten un área: todos del mismo ancho
 export const grupoBotones = "grid grid-flow-col auto-cols-fr gap-2";
 export const enGrupo = "w-full whitespace-nowrap";

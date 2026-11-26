@@ -22,7 +22,7 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 | Agendar en 3 pasos sin empalmes (HU-05) | ✅ Listo |
 | Confirmar o rechazar solicitudes (HU-06) | ✅ Listo |
 | Cancelar hasta 2 horas antes (HU-07) | ✅ Listo |
-| Historial de asesorías con detalle y resultado aprobada o no aprobada (HU-09) | ✅ Listo |
+| Historial de asesorías con detalle de cada una (HU-09) | ✅ Listo |
 | Reporte de horas para coordinación con exportación a CSV (HU-11) | ✅ Listo |
 | Avisos por correo (HU-08) y calificación (HU-10) | Mejoras futuras (versión 1.1) |
 

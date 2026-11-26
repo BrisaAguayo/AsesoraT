@@ -3,9 +3,9 @@ import { redirect } from "next/navigation";
 import type { Asesoria, Materia } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
-import { formatearFecha, nombreEstado, nombreModalidad, nombreResultado } from "@/lib/formato";
+import { formatearFecha, nombreEstado, nombreModalidad } from "@/lib/formato";
 import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
-import { aviso as estiloAviso, boton, colorEstado, colorResultado, etiqueta } from "@/components/estilos";
+import { aviso as estiloAviso, boton, colorEstado, etiqueta } from "@/components/estilos";
 import { cancelarAsesoria } from "./actions";
 import { avisos } from "./avisos";
 
@@ -48,7 +48,6 @@ export default async function MisAsesorias({ searchParams }: { searchParams: Pro
         </Link>
         <div className="flex flex-wrap items-center gap-3">
           <span className={`${etiqueta} ${colorEstado[a.estado]}`}>{nombreEstado[a.estado]}</span>
-          {a.resultado && <span className={`${etiqueta} ${colorResultado[a.resultado]}`}>{nombreResultado[a.resultado]}</span>}
           {activa(a) && puedeCancelar(a.fecha, a.horaInicio, ahora) && (
             <form action={cancelarAsesoria}>
               <input type="hidden" name="id" value={a.id} />

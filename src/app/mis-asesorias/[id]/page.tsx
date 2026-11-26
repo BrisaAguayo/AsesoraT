@@ -2,15 +2,15 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
-import { formatearFecha, nombreEstado, nombreModalidad, nombreResultado } from "@/lib/formato";
+import { formatearFecha, nombreEstado, nombreModalidad } from "@/lib/formato";
 import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
-import { aviso as estiloAviso, boton, colorEstado, colorResultado, enGrupo, etiqueta, grupoBotones } from "@/components/estilos";
-import { cancelarAsesoria, registrarResultado } from "../actions";
+import { aviso as estiloAviso, boton, colorEstado, etiqueta } from "@/components/estilos";
+import { cancelarAsesoria, marcarCompletada } from "../actions";
 import { avisos } from "../avisos";
 
 export const dynamic = "force-dynamic";
 
-// Detalle de una asesoría (HU-09, CC-005): datos, estado y resultado si ya se completó
+// Detalle de una asesoría (HU-09, CC-005): datos y estado
 export default async function DetalleAsesoria({
   params,
   searchParams,
@@ -67,38 +67,12 @@ export default async function DetalleAsesoria({
           ))}
         </dl>
 
-        {a.estado === "COMPLETADA" && (
-          a.resultado ? (
-            <div className={`flex items-center justify-between rounded-md px-4 py-3 ${colorResultado[a.resultado]}`}>
-              <span className="text-sm font-medium">Resultado</span>
-              <span className="text-base font-bold">{nombreResultado[a.resultado]}</span>
-            </div>
-          ) : (
-            <div className="flex items-center justify-between rounded-md bg-slate-300 px-4 py-3 text-slate-900">
-              <span className="text-sm font-medium">Resultado</span>
-              <span className="text-base font-bold">Sin resultado</span>
-            </div>
-          )
-        )}
-
         {esTutor && a.estado === "CONFIRMADA" && yaEmpezo && (
-          <div className="flex flex-col gap-3 rounded-md border border-slate-200 bg-slate-50 p-4">
-            <p className="text-sm font-medium text-slate-700">Registrar resultado y marcar como completada</p>
-            <div className={grupoBotones}>
-              <form action={registrarResultado}>
-                <input type="hidden" name="id" value={a.id} />
-                <input type="hidden" name="origen" value="detalle" />
-                <input type="hidden" name="resultado" value="APROBADA" />
-                <button className={`${boton.base} ${enGrupo} bg-emerald-700 text-white hover:bg-emerald-800`}>✓ Aprobada</button>
-              </form>
-              <form action={registrarResultado}>
-                <input type="hidden" name="id" value={a.id} />
-                <input type="hidden" name="origen" value="detalle" />
-                <input type="hidden" name="resultado" value="NO_APROBADA" />
-                <button className={`${boton.base} ${enGrupo} bg-orange-700 text-white hover:bg-orange-800`}>✗ No aprobada</button>
-              </form>
-            </div>
-          </div>
+          <form action={marcarCompletada}>
+            <input type="hidden" name="id" value={a.id} />
+            <input type="hidden" name="origen" value="detalle" />
+            <button className={`${boton.exito} w-full`}>Marcar como completada</button>
+          </form>
         )}
 
         {activa && puedeCancelar(a.fecha, a.horaInicio, ahora) && (
