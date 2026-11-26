@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
-import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
+import { puedeCancelar } from "@/lib/horarios";
 import { esEnlaceValido } from "@/lib/validaciones";
 
 /** Regresa al detalle si la acción se hizo desde ahí; si no, a la lista. */
@@ -35,7 +35,8 @@ export async function cancelarAsesoria(formData: FormData) {
   redirect(destino(formData, id, "cancelada"));
 }
 
-// HU-09: el tutor marca como completada una asesoría confirmada que ya ocurrió.
+// HU-09 y CC-009: el tutor marca como completada una asesoría confirmada en cualquier momento
+// (pudo darse antes de la fecha, fuera del sistema).
 // Las completadas son las que cuenta el reporte de horas (HU-11).
 export async function marcarCompletada(formData: FormData) {
   const sesion = await obtenerSesion();
@@ -43,14 +44,13 @@ export async function marcarCompletada(formData: FormData) {
 
   const id = String(formData.get("id"));
   const asesoria = await prisma.asesoria.findFirst({ where: { id, tutorId: sesion.user.id, estado: "CONFIRMADA" } });
-  if (!asesoria || inicioAsesoria(asesoria.fecha, asesoria.horaInicio) > new Date()) {
-    redirect(destino(formData, id, "no-completable"));
-  }
+  if (!asesoria) redirect(destino(formData, id, "no-completable"));
 
   await prisma.asesoria.update({ where: { id }, data: { estado: "COMPLETADA" } });
 
   revalidatePath("/mis-asesorias");
   revalidatePath("/coordinacion/reporte");
+  revalidatePath("/calendario");
   redirect(destino(formData, id, "completada"));
 }
 

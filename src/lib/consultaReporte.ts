@@ -1,13 +1,13 @@
 import { prisma } from "@/lib/prisma";
-import { fechaISO, hoyEnZona, leerFechaISO } from "@/lib/horarios";
+import { FIN_DE_SEMESTRE, fechaISO, hoyEnZona, leerFechaISO } from "@/lib/horarios";
 import { resumirPorTutor } from "@/lib/reporte";
 
-/** Periodo del reporte: por defecto del día 1 del mes actual a hoy. */
+/** Periodo del reporte: por defecto del día 1 del mes actual al fin del semestre (CC-009). */
 export function leerPeriodo(desdeTexto?: string, hastaTexto?: string) {
   const hoy = hoyEnZona();
   const inicioMes = new Date(Date.UTC(hoy.getUTCFullYear(), hoy.getUTCMonth(), 1));
   let desde = leerFechaISO(desdeTexto ?? "") ?? inicioMes;
-  let hasta = leerFechaISO(hastaTexto ?? "") ?? hoy;
+  let hasta = leerFechaISO(hastaTexto ?? "") ?? FIN_DE_SEMESTRE;
   if (desde > hasta) [desde, hasta] = [hasta, desde];
   return { desde, hasta, desdeISO: fechaISO(desde), hastaISO: fechaISO(hasta) };
 }

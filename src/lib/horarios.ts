@@ -3,6 +3,8 @@
 
 export const ZONA_HORARIA = "America/Tijuana";
 export const HORAS_MINIMAS_CANCELAR = 2;
+/** Último día del semestre Ago-Dic 2026. */
+export const FIN_DE_SEMESTRE = new Date(Date.UTC(2026, 11, 11));
 
 export interface Bloque {
   id?: string;
