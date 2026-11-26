@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { obtenerSesion } from "@/lib/sesion";
+import { nombreDelUsuario, obtenerSesion } from "@/lib/sesion";
 import { BotonSalir } from "@/components/BotonSalir";
 import { boton } from "@/components/estilos";
 
 export async function Encabezado() {
   const sesion = await obtenerSesion();
+  const nombre = sesion ? await nombreDelUsuario(sesion.user.id) : "";
 
   return (
     <header className="bg-marca text-white">
@@ -20,7 +21,7 @@ export async function Encabezado() {
                 <Link href="/calendario" className="hover:underline">Calendario</Link>
               )}
               <Link href="/panel" className="hidden hover:underline sm:inline">
-                {sesion.user.name?.split(" ")[0]}
+                {nombre.split(" ")[0]}
               </Link>
               <BotonSalir />
             </>

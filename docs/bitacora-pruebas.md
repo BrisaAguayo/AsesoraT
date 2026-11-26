@@ -6,8 +6,8 @@
 
 ## Cómo se probó
 
-1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (19 casos, CP-01 a CP-19).
-2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (32 casos, P-01 a P-32). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
+1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (20 casos, CP-01 a CP-20).
+2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (34 casos, P-01 a P-34). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
 3. **Revisión de código** antes de integrar cada rama: `npm run build`, `npm run typecheck` y `npm run lint` sin errores.
 4. Si una prueba falla, se registra el defecto, se corrige en una rama `fix/` y se vuelven a correr **todas** las pruebas.
 
@@ -47,6 +47,8 @@
 | P-30 | El tutor publica el link de la reunión con el lápiz (CC-007) | 26 nov 2026 | Brisa Aguayo | En la fila "Link de la reunión" el tutor ve la caja solo de lectura con el lápiz; al pulsarlo puede escribir. Un texto que no es link se rechaza; un link válido se guarda y la caja vuelve a quedar con el lápiz. El estudiante ve el link en esa fila y no en el calendario. | En la primera ejecución el lápiz enviaba el formulario en lugar de dejar escribir y el ícono se veía de 6 px. Después de corregirlo: "mi reunion" se rechaza, el link de Google Meet se guarda y el estudiante lo ve como enlace que abre en otra pestaña. | **D-04:** el lápiz y la palomita compartían el mismo botón y al cambiar de uno a otro se enviaba el formulario; el relleno del botón dejaba el ícono sin espacio. | Media | Botones separados para editar y guardar, y relleno 0 en los botones de ícono. | Corregido |
 | P-31 | Las asesorías presenciales no llevan link (CC-007) | 26 nov 2026 | Brisa Aguayo | En una asesoría presencial confirmada ni el tutor ni el estudiante ven el link. | No aparece la caja ni el aviso en el detalle de ninguno de los dos. | Ninguno | Baja | No aplica | No aplica |
 | P-32 | Guardar el link vacío lo elimina (CC-007) | 26 nov 2026 | Brisa Aguayo | Si el tutor borra el texto y guarda, el link se elimina y el estudiante vuelve a ver "El tutor no ha adjuntado ningún link." | Mensaje "Link de la reunión eliminado."; la caja queda vacía y el estudiante ve el aviso en cursiva. | Ninguno | Media | No aplica | No aplica |
+| P-33 | Cambiar nombre desde el panel (CC-008) | 26 nov 2026 | Brisa Aguayo | La tarjeta cerrada muestra solo título y descripción; al seleccionarla crece solo ella y muestra la caja con el nombre actual y el lápiz. Con un clic fuera se guarda el nombre nuevo, aparece "El nombre ha sido cambiado con éxito." y el tutor ve el nombre nuevo. | Las demás tarjetas conservan su alto; "Carlos Iván Méndez" se guardó con el clic fuera, apareció el aviso, la tarjeta se cerró y el tutor lo ve en Mis asesorías. | Ninguno | Media | No aplica | No aplica |
+| P-34 | Nombre vacío y acceso por rol (CC-008) | 26 nov 2026 | Brisa Aguayo | Un nombre vacío no se guarda; el tutor tiene la tarjeta y la coordinación no. | Aparece "Escribe tu nombre completo." y el nombre no cambia; el panel del tutor tiene la tarjeta y el de coordinación no. | Ninguno | Media | No aplica | No aplica |
 
 ## Pruebas automatizadas (`npm test`)
 
@@ -64,16 +66,17 @@
 | CP-17 | Mes del calendario y cambio de mes con las flechas (CC-006) | Aprobado |
 | CP-18 | Rejilla del calendario de lunes a domingo en semanas completas (CC-006) | Aprobado |
 | CP-19 | Link de la reunión válido: http o https y un dominio (CC-007) | Aprobado |
+| CP-20 | Nombre nuevo sin espacios de más y sin quedar vacío (CC-008) | Aprobado |
 
-Resultado: **19 de 19 aprobadas**.
+Resultado: **20 de 20 aprobadas**.
 
 ## Resumen
 
 | Concepto | Resultado |
 |---|---|
-| Pruebas ejecutadas | 51 (19 automatizadas y 32 de punta a punta) |
-| Aprobadas en la primera ejecución | 35 de 37; las pruebas agregadas después (CC-005, CC-006, CC-007 y P-28) pasaron a la primera, salvo P-30 (D-04) |
+| Pruebas ejecutadas | 54 (20 automatizadas y 34 de punta a punta) |
+| Aprobadas en la primera ejecución | 35 de 37; las pruebas agregadas después (CC-005 a CC-008 y P-28) pasaron a la primera, salvo P-30 (D-04); en P-33 se ajustó el script de la prueba, no el sistema |
 | Defectos encontrados | 4 (D-01 alta, D-02 baja, D-03 media y D-04 media) |
 | Defectos corregidos y verificados | 4 de 4, el mismo día |
-| Aprobadas en la ejecución final | **51 de 51 (100 %)** |
+| Aprobadas en la ejecución final | **54 de 54 (100 %)** |
 | Defectos abiertos al entregar | 0 |

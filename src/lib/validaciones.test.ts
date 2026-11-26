@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { esCorreoInstitucional, esEnlaceValido, esNumeroControlValido, esPasswordSegura, validarRegistro } from "./validaciones";
+import { esCorreoInstitucional, esEnlaceValido, esNombreValido, esNumeroControlValido, esPasswordSegura, normalizarNombre, validarRegistro } from "./validaciones";
 
 const base = {
   nombre: "Carlos Méndez",
@@ -60,4 +60,11 @@ test("CP-19 el link de la reunión debe ser una dirección web válida", () => {
   assert.equal(esEnlaceValido("meet.google.com/abc"), false);
   assert.equal(esEnlaceValido("javascript:alert(1)"), false);
   assert.equal(esEnlaceValido("https://localhost"), false);
+});
+
+test("CP-20 el nombre nuevo se guarda sin espacios de más y no puede quedar vacío", () => {
+  assert.equal(normalizarNombre("  Carlos   Iván  Méndez "), "Carlos Iván Méndez");
+  assert.equal(esNombreValido("Carlos Méndez"), true);
+  assert.equal(esNombreValido("   "), false);
+  assert.equal(esNombreValido("Al"), false);
 });

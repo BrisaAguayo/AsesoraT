@@ -52,6 +52,15 @@ export function esEnlaceValido(enlace: string): boolean {
   }
 }
 
+/** Nombre completo: sin espacios de más y con al menos 3 letras (registro y cambio de nombre). */
+export function normalizarNombre(nombre: string): string {
+  return nombre.trim().replace(/\s+/g, " ");
+}
+
+export function esNombreValido(nombre: string): boolean {
+  return normalizarNombre(nombre).length >= 3;
+}
+
 export function validarRegistro(entrada: Record<string, unknown>): ResultadoValidacion {
   const texto = (v: unknown) => (typeof v === "string" ? v.trim() : "");
   const nombre = texto(entrada.nombre);

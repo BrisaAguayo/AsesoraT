@@ -115,7 +115,7 @@ Para cerrar sesión pulsa **Salir** en la barra superior.
 |---|---|---|
 | Inicio | Todos | Presenta el sistema y lleva a buscar asesorías o crear cuenta. |
 | Registro e inicio de sesión | Todos | Acceso con correo institucional y contraseña cifrada. |
-| Panel | Todos | Muestra las opciones disponibles según el rol. |
+| Panel | Todos | Muestra las opciones disponibles según el rol; el estudiante y el tutor también pueden cambiar su nombre. |
 | Buscar asesorías | Todos | Lista los horarios disponibles con filtros por materia, tutor, día y modalidad. |
 | Agendar | Estudiante | Elegir fecha libre, escribir el tema y enviar la solicitud. |
 | Mis asesorías | Estudiante y tutor | Próximas asesorías e historial con su estado; permite cancelar. |
@@ -223,6 +223,14 @@ Si no tienes asesorías agendadas, el calendario se ve vacío y abajo aparece "N
 
 El link solo aparece en el detalle de la asesoría, no en el calendario.
 
+### 10.12 Estudiante o tutor: cambiar el nombre
+
+1. En tu panel haz clic en la tarjeta **Cambiar nombre**. Aparecen tu nombre completo y un lápiz.
+2. Pulsa el **lápiz** y escribe tu nombre completo corregido.
+3. Haz clic fuera de la tarjeta (o pulsa la palomita). Verás el mensaje **El nombre ha sido cambiado con éxito.** y el saludo del panel se actualiza.
+
+Los tutores y estudiantes con los que tienes asesorías verán tu nombre nuevo. El nombre no puede quedar vacío.
+
 ## 11. Capturas de pantalla del sistema
 
 Capturas de la versión 1.0.0 con los datos de ejemplo.
@@ -299,6 +307,12 @@ Capturas de la versión 1.0.0 con los datos de ejemplo.
 **El estudiante con el link publicado**
 ![Con link](capturas/v1.0.0/40-detalle-con-link.png)
 
+**Cambiar nombre desde el panel**
+![Editar nombre](capturas/v1.0.0/44-panel-editar-nombre.png)
+
+**Nombre cambiado con éxito**
+![Nombre cambiado](capturas/v1.0.0/45-panel-nombre-cambiado.png)
+
 **Calendario del estudiante**
 ![Calendario](capturas/v1.0.0/33-calendario-estudiante.png)
 
@@ -359,6 +373,7 @@ La coordinación entra con `coordinacion.demo@tectijuana.edu.mx`, abre **Reporte
 | No aparezco en las búsquedas como tutor. | Faltan materias o horarios. | Registra al menos una materia en **Mis materias** y un bloque en **Mi disponibilidad**. |
 | El reporte dice "No hay asesorías completadas". | No hay asesorías completadas en esas fechas. | Amplía el periodo o pide a los tutores marcar como completadas sus asesorías. |
 | Aparece "El tutor no ha adjuntado ningún link." | El tutor todavía no publica el link de la reunión. | Espera a que lo publique o avísale al tutor. |
+| Aparece "Escribe tu nombre completo." al cambiar el nombre. | La caja quedó vacía o con menos de 3 letras. | Escribe tu nombre completo y vuelve a guardarlo. |
 | Aparece "Escribe un link válido que empiece con https://". | Lo que se escribió no es un link. | Copia el link completo desde Google Meet o Teams y pégalo. |
 | No aparece el botón **Marcar como completada**. | La asesoría no está confirmada o todavía no ocurre. | Se puede marcar después de la hora de inicio de una asesoría confirmada. |
 | "No se encontró la página" al abrir una asesoría. | La asesoría no es tuya. | Cada usuario solo ve el detalle de sus propias asesorías. |

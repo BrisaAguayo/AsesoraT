@@ -33,8 +33,9 @@
 | 25 a 26 nov 2026 | Seguimiento, bitácoras, CC-004, cronograma y manual de usuario | Brisa Aguayo | `docs/seguimiento.md`, `docs/bitacora-cambios.md`, `docs/backlog.md`, `docs/manual-de-usuario.md` | 3 h | Evidencias 1 a 5 |
 | 26 nov 2026 | Calendario de asesorías (CC-006), semestre mínimo del tutor en el registro y flecha de los selectores | Brisa Aguayo | Ramas `feature/calendario`, `fix/semestre-minimo-tutor` y `fix/flecha-selectores`; pruebas CP-17, CP-18 y P-25 a P-28 | 2.5 h | Calendario terminado y probado |
 | 26 nov 2026 | Link de la reunión en asesorías virtuales (CC-007), corrección de D-03 y D-04 y base local para pruebas | Brisa Aguayo | Ramas `feature/link-reunion` y `fix/detalle-calendario-y-link`; pruebas CP-19 y P-29 a P-32 | 1.5 h | Link de la reunión terminado y probado |
+| 26 nov 2026 | Cambiar nombre desde el panel (CC-008) | Brisa Aguayo | Rama `feature/cambiar-nombre`; pruebas CP-20, P-33 y P-34 | 1 h | Tarjeta "Cambiar nombre" terminada |
 | 26 nov 2026 | Despliegue en Vercel, versión 1.0.0, carpeta de entrega y presentación | Brisa Aguayo | Etiqueta `v1.0.0`; carpeta `PROYECTO_FINAL_AsesoraT` | 2 h | Sistema entregado |
 
-**Tiempo total registrado:** 75.5 h.
+**Tiempo total registrado:** 76.5 h.
 
 El historial completo de commits está en https://github.com/BrisaAguayo/AsesoraT/commits/main.
