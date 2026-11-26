@@ -7,6 +7,7 @@ import { signIn } from "next-auth/react";
 import { Campo, estiloInput } from "@/components/Campo";
 import { registrarUsuario, type EstadoRegistro } from "./actions";
 import { boton, aviso } from "@/components/estilos";
+import { SEMESTRE_MINIMO_TUTOR } from "@/lib/validaciones";
 
 const carreras = [
   "Ingeniería en Sistemas Computacionales",
@@ -22,6 +23,15 @@ export default function Registro() {
   const [estado, setEstado] = useState<EstadoRegistro | null>(null);
   const [pendiente, iniciar] = useTransition();
   const errores = estado && !estado.ok ? estado.errores ?? {} : {};
+  const [esTutor, setEsTutor] = useState(false);
+  const [semestre, setSemestre] = useState(1);
+
+  // El mismo selector sirve a los dos roles: con Tutor se deshabilitan los semestres menores al mínimo
+  function cambiarRol(evento: React.ChangeEvent<HTMLInputElement>) {
+    const tutor = evento.target.value === "TUTOR";
+    setEsTutor(tutor);
+    if (tutor && semestre < SEMESTRE_MINIMO_TUTOR) setSemestre(SEMESTRE_MINIMO_TUTOR);
+  }
 
   function enviar(evento: React.FormEvent<HTMLFormElement>) {
     // Se usa onSubmit (y no action) para que el formulario no se borre si hay errores
@@ -52,10 +62,10 @@ export default function Registro() {
         <fieldset className="flex gap-3">
           <legend className="mb-1 text-sm font-medium text-slate-700">Me registro como</legend>
           <label className="flex flex-1 cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm has-[:checked]:border-marca has-[:checked]:bg-marca-claro">
-            <input type="radio" name="rol" value="ESTUDIANTE" defaultChecked /> Estudiante
+            <input type="radio" name="rol" value="ESTUDIANTE" defaultChecked onChange={cambiarRol} /> Estudiante
           </label>
           <label className="flex flex-1 cursor-pointer items-center gap-2 rounded border border-slate-300 px-3 py-2 text-sm has-[:checked]:border-marca has-[:checked]:bg-marca-claro">
-            <input type="radio" name="rol" value="TUTOR" /> Tutor (6.º semestre o más)
+            <input type="radio" name="rol" value="TUTOR" onChange={cambiarRol} /> Tutor (6.º semestre o más)
           </label>
         </fieldset>
         {errores.rol && <p className="text-xs text-red-700">{errores.rol}</p>}
@@ -71,11 +81,12 @@ export default function Registro() {
             <input name="numeroControl" inputMode="numeric" placeholder="00000000" className={estiloInput} />
           </Campo>
           <Campo etiqueta="Semestre" error={errores.semestre}>
-            <select name="semestre" defaultValue="1" className={estiloInput}>
+            <select name="semestre" value={semestre} onChange={(e) => setSemestre(Number(e.target.value))} className={estiloInput}>
               {Array.from({ length: 12 }, (_, i) => i + 1).map((s) => (
-                <option key={s} value={s}>{s}.º</option>
+                <option key={s} value={s} disabled={esTutor && s < SEMESTRE_MINIMO_TUTOR}>{s}.º</option>
               ))}
             </select>
+            {esTutor && <span className="text-xs text-slate-500">Los tutores deben cursar {SEMESTRE_MINIMO_TUTOR}.º semestre o más.</span>}
           </Campo>
         </div>
         <Campo etiqueta="Carrera" error={errores.carrera}>
