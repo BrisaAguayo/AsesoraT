@@ -40,6 +40,18 @@ export function esPasswordSegura(password: string): boolean {
   return password.length >= 8 && /[A-Za-z]/.test(password) && /\d/.test(password);
 }
 
+/** CC-007: link de la videollamada; debe empezar con http:// o https:// */
+export function esEnlaceValido(enlace: string): boolean {
+  const texto = enlace.trim();
+  if (texto.length === 0 || texto.length > 500) return false;
+  try {
+    const url = new URL(texto);
+    return (url.protocol === "https:" || url.protocol === "http:") && url.hostname.includes(".");
+  } catch {
+    return false;
+  }
+}
+
 export function validarRegistro(entrada: Record<string, unknown>): ResultadoValidacion {
   const texto = (v: unknown) => (typeof v === "string" ? v.trim() : "");
   const nombre = texto(entrada.nombre);

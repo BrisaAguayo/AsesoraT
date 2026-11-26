@@ -119,7 +119,7 @@ Para cerrar sesión pulsa **Salir** en la barra superior.
 | Buscar asesorías | Todos | Lista los horarios disponibles con filtros por materia, tutor, día y modalidad. |
 | Agendar | Estudiante | Elegir fecha libre, escribir el tema y enviar la solicitud. |
 | Mis asesorías | Estudiante y tutor | Próximas asesorías e historial con su estado; permite cancelar. |
-| Detalle de una asesoría | Estudiante y tutor | Todos los datos de la asesoría y su estado; el tutor la marca como completada. |
+| Detalle de una asesoría | Estudiante y tutor | Todos los datos de la asesoría y su estado; en las virtuales confirmadas, el link de la reunión. El tutor publica el link y marca la asesoría como completada. |
 | Calendario | Estudiante y tutor | Calendario mensual con sus asesorías; al elegir un día se abre un modal con su información. |
 | Mis materias | Tutor | Elegir las materias del catálogo que puede asesorar. |
 | Mi disponibilidad | Tutor | Registrar, editar y borrar sus horarios semanales. |
@@ -205,6 +205,22 @@ Las asesorías completadas son las que cuenta el reporte de horas.
 
 Si no tienes asesorías agendadas, el calendario se ve vacío y abajo aparece "No tienes asesorías agendadas por el momento."
 
+### 10.11 Tutor y estudiante: link de la reunión en asesorías virtuales
+
+**Tutor**
+
+1. Cuando confirmes una asesoría virtual, entra a **Mis asesorías** y abre su detalle con **Ver detalle ›**.
+2. En **Ingresa el link de la reunión**, pega el link de la videollamada (por ejemplo, de Google Meet o Microsoft Teams). Debe empezar con `https://`.
+3. Pulsa **Guardar link**. Verás el mensaje **Link de la reunión guardado.** Si necesitas cambiarlo, escribe el nuevo y vuelve a guardarlo.
+
+**Estudiante**
+
+1. Abre el detalle de tu asesoría virtual confirmada.
+2. En **Link de la reunión** aparece el link que publicó el tutor; al pulsarlo se abre en otra pestaña.
+3. Si el tutor todavía no lo publica, verás en cursiva *El tutor no ha adjuntado ningún link.*
+
+El link solo aparece en el detalle de la asesoría, no en el calendario.
+
 ## 11. Capturas de pantalla del sistema
 
 Capturas de la versión 1.0.0 con los datos de ejemplo.
@@ -269,6 +285,15 @@ Capturas de la versión 1.0.0 con los datos de ejemplo.
 **Detalle que ve el estudiante**
 ![Detalle del estudiante](capturas/v1.0.0/32-detalle-estudiante.png)
 
+**El tutor ingresa el link de la reunión**
+![Ingresar link](capturas/v1.0.0/39-tutor-ingresa-link.png)
+
+**El estudiante sin link publicado**
+![Sin link](capturas/v1.0.0/38-detalle-sin-link.png)
+
+**El estudiante con el link publicado**
+![Con link](capturas/v1.0.0/40-detalle-con-link.png)
+
 **Calendario del estudiante**
 ![Calendario](capturas/v1.0.0/33-calendario-estudiante.png)
 
@@ -328,6 +353,8 @@ La coordinación entra con `coordinacion.demo@tectijuana.edu.mx`, abre **Reporte
 | "Se empalma con tu bloque de..." | El bloque choca con otro del mismo día. | Cambia las horas o edita el bloque existente. |
 | No aparezco en las búsquedas como tutor. | Faltan materias o horarios. | Registra al menos una materia en **Mis materias** y un bloque en **Mi disponibilidad**. |
 | El reporte dice "No hay asesorías completadas". | No hay asesorías completadas en esas fechas. | Amplía el periodo o pide a los tutores marcar como completadas sus asesorías. |
+| Aparece "El tutor no ha adjuntado ningún link." | El tutor todavía no publica el link de la reunión. | Espera a que lo publique o avísale al tutor. |
+| Aparece "Escribe un link válido que empiece con https://". | Lo que se escribió no es un link. | Copia el link completo desde Google Meet o Teams y pégalo. |
 | No aparece el botón **Marcar como completada**. | La asesoría no está confirmada o todavía no ocurre. | Se puede marcar después de la hora de inicio de una asesoría confirmada. |
 | "No se encontró la página" al abrir una asesoría. | La asesoría no es tuya. | Cada usuario solo ve el detalle de sus propias asesorías. |
 

@@ -6,5 +6,8 @@ export const avisos: Record<string, { texto: string; error?: boolean }> = {
   completada: { texto: "La asesoría quedó como completada." },
   tarde: { texto: `Ya no se puede cancelar: solo se permite hasta ${HORAS_MINIMAS_CANCELAR} horas antes.`, error: true },
   "no-cancelable": { texto: "Esa asesoría ya no se puede cancelar.", error: true },
+  "enlace-guardado": { texto: "Link de la reunión guardado." },
+  "enlace-invalido": { texto: "Escribe un link válido que empiece con https://", error: true },
+  "enlace-no-permitido": { texto: "Solo se puede agregar el link a asesorías virtuales confirmadas.", error: true },
   "no-completable": { texto: "Solo se pueden completar asesorías confirmadas que ya ocurrieron.", error: true },
 };

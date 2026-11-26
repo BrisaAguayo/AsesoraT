@@ -15,11 +15,13 @@ Versión final del semestre: Sprints 3 a 6.
 - Mis asesorías con Próximas e Historial ordenados por fecha (HU-09).
 - Detalle de cada asesoría al hacer clic en ella; desde ahí el tutor marca como completada una asesoría confirmada que ya ocurrió (HU-09, CC-005).
 - Calendario mensual con las asesorías del estudiante o del tutor; al elegir un día se abre un modal con su información y, si no hay asesorías agendadas, el pie lo indica (CC-006).
+- Link de la reunión: en una asesoría virtual confirmada el tutor publica el link desde el detalle y el estudiante lo ve ahí; mientras no lo publique, el estudiante ve "El tutor no ha adjuntado ningún link." (CC-007).
 - Reporte de asesorías completadas y horas por tutor con filtro por periodo y exportación a CSV, solo para coordinación (HU-11).
 - Migración `20261125120000_canceladas_no_bloquean`: las canceladas quedan como registro y ya no ocupan el horario (CC-004).
-- 11 pruebas automatizadas nuevas (18 en total) y bitácora de 28 pruebas de punta a punta.
+- Migración `20261126180000_enlace_reunion`: campo `enlaceReunion` de las asesorías (CC-007).
+- 12 pruebas automatizadas nuevas (19 en total) y bitácora de 31 pruebas de punta a punta.
 - Manual de usuario, bitácora de pruebas, bitácora individual y capturas de la versión 1.0.0.
-- Datos de ejemplo con asesorías en todos los estados.
+- Datos de ejemplo con asesorías en todos los estados, incluida una virtual confirmada sin link.
 
 ### Cambiado
 - Cronograma ajustado a la entrega final del 26 nov 2026 (CC-004).

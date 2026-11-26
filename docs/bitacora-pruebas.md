@@ -2,12 +2,12 @@
 
 **Proyecto:** AsesoraT, versión 1.0.0  
 **Responsable:** Brisa Julianna Aguayo Virgen (22211514)  
-**Ambiente:** aplicación compilada para producción (`npm run build` y `npm run start`), base de datos PostgreSQL en Neon con los datos de ejemplo (`npm run db:seed`), Google Chrome en escritorio (1280 px) y en celular (360 px).
+**Ambiente:** aplicación compilada para producción (`npm run build` y `npm run start`), base de datos PostgreSQL con los datos de ejemplo (`npm run db:seed`): en Neon hasta P-27 y, en la ejecución final, una base local (`prisma dev`) para no modificar los datos del sistema en línea, Google Chrome en escritorio (1280 px) y en celular (360 px).
 
 ## Cómo se probó
 
-1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (18 casos, CP-01 a CP-18).
-2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (28 casos, P-01 a P-28). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
+1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (19 casos, CP-01 a CP-19).
+2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (31 casos, P-01 a P-31). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
 3. **Revisión de código** antes de integrar cada rama: `npm run build`, `npm run typecheck` y `npm run lint` sin errores.
 4. Si una prueba falla, se registra el defecto, se corrige en una rama `fix/` y se vuelven a correr **todas** las pruebas.
 
@@ -43,6 +43,9 @@
 | P-26 | Calendario del tutor en celular (CC-006, RNF-03) | 26 nov 2026 | Brisa Aguayo | A 360 px el calendario no se desborda; al tocar un día con asesorías se abre el modal con el nombre del estudiante y se cierra con un clic fuera. | El calendario mide 360 px; el modal muestra a Carlos Méndez y se cierra con el clic fuera. | Ninguno | Media | No aplica | No aplica |
 | P-27 | Calendario vacío y acceso por rol (CC-006, RNF-04) | 26 nov 2026 | Brisa Aguayo | Un estudiante sin asesorías ve el calendario vacío y, en el pie, "No tienes asesorías agendadas por el momento."; la coordinación no puede entrar. | Calendario sin días marcados y con el aviso en el pie; coordinación es enviada a `/login`. | Ninguno | Baja | No aplica | No aplica |
 | P-28 | Semestre mínimo al registrarse como tutor (HU-01) | 26 nov 2026 | Brisa Aguayo | Con el rol Tutor, el selector deshabilita del 1.º al 5.º y pasa a 6.º; al volver a Estudiante se habilitan todos. | Con 3.º elegido, al cambiar a Tutor pasa a 6.º y los semestres 1 a 5 quedan deshabilitados; con Estudiante vuelven a estar disponibles. | Ninguno | Media | No aplica | No aplica |
+| P-29 | Asesoría virtual confirmada sin link (CC-007) | 26 nov 2026 | Brisa Aguayo | El estudiante no ve la caja de texto; en su lugar aparece en cursiva "El tutor no ha adjuntado ningún link." | El detalle muestra el aviso en cursiva y no muestra la caja. | Ninguno | Media | No aplica | No aplica |
+| P-30 | El tutor publica el link de la reunión (CC-007) | 26 nov 2026 | Brisa Aguayo | El tutor ve "Ingresa el link de la reunión"; un texto que no es link se rechaza; un link válido se guarda y el estudiante lo ve en el detalle, no en el calendario. | "mi reunion" se rechaza con "Escribe un link válido…"; el link de Google Meet se guarda, el estudiante lo ve como enlace que abre en otra pestaña y el calendario no lo incluye. | Ninguno | Alta | No aplica | No aplica |
+| P-31 | Las asesorías presenciales no llevan link (CC-007) | 26 nov 2026 | Brisa Aguayo | En una asesoría presencial confirmada ni el tutor ni el estudiante ven el link. | No aparece la caja ni el aviso en el detalle de ninguno de los dos. | Ninguno | Baja | No aplica | No aplica |
 
 ## Pruebas automatizadas (`npm test`)
 
@@ -59,16 +62,17 @@
 | CP-16 | Exportación a CSV (HU-11) | Aprobado |
 | CP-17 | Mes del calendario y cambio de mes con las flechas (CC-006) | Aprobado |
 | CP-18 | Rejilla del calendario de lunes a domingo en semanas completas (CC-006) | Aprobado |
+| CP-19 | Link de la reunión válido: http o https y un dominio (CC-007) | Aprobado |
 
-Resultado: **18 de 18 aprobadas**.
+Resultado: **19 de 19 aprobadas**.
 
 ## Resumen
 
 | Concepto | Resultado |
 |---|---|
-| Pruebas ejecutadas | 46 (18 automatizadas y 28 de punta a punta) |
-| Aprobadas en la primera ejecución | 35 de 37; las pruebas agregadas después (CC-005, CC-006 y P-28) pasaron a la primera |
+| Pruebas ejecutadas | 50 (19 automatizadas y 31 de punta a punta) |
+| Aprobadas en la primera ejecución | 35 de 37; las pruebas agregadas después (CC-005, CC-006, CC-007 y P-28) pasaron a la primera; en P-30 se ajustó el script de la prueba, no el sistema |
 | Defectos encontrados | 2 (D-01 prioridad alta, D-02 prioridad baja) |
 | Defectos corregidos y verificados | 2 de 2, el mismo día |
-| Aprobadas en la ejecución final | **46 de 46 (100 %)** |
+| Aprobadas en la ejecución final | **50 de 50 (100 %)** |
 | Defectos abiertos al entregar | 0 |

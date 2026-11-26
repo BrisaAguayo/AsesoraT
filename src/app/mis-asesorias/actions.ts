@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
+import { esEnlaceValido } from "@/lib/validaciones";
 
 /** Regresa al detalle si la acción se hizo desde ahí; si no, a la lista. */
 function destino(formData: FormData, id: string, aviso: string) {
@@ -51,4 +52,23 @@ export async function marcarCompletada(formData: FormData) {
   revalidatePath("/mis-asesorias");
   revalidatePath("/coordinacion/reporte");
   redirect(destino(formData, id, "completada"));
+}
+
+// CC-007: el tutor publica el link de la videollamada de una asesoría virtual confirmada
+export async function guardarEnlace(formData: FormData) {
+  const sesion = await obtenerSesion();
+  if (!sesion || sesion.user.rol !== "TUTOR") redirect("/login");
+
+  const id = String(formData.get("id"));
+  const enlace = String(formData.get("enlaceReunion") ?? "").trim();
+  const asesoria = await prisma.asesoria.findFirst({
+    where: { id, tutorId: sesion.user.id, modalidad: "VIRTUAL", estado: "CONFIRMADA" },
+  });
+  if (!asesoria) redirect(`/mis-asesorias/${id}?aviso=enlace-no-permitido`);
+  if (!esEnlaceValido(enlace)) redirect(`/mis-asesorias/${id}?aviso=enlace-invalido`);
+
+  await prisma.asesoria.update({ where: { id }, data: { enlaceReunion: enlace } });
+
+  revalidatePath(`/mis-asesorias/${id}`);
+  redirect(`/mis-asesorias/${id}?aviso=enlace-guardado`);
 }

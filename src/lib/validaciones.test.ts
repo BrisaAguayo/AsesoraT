@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { esCorreoInstitucional, esNumeroControlValido, esPasswordSegura, validarRegistro } from "./validaciones";
+import { esCorreoInstitucional, esEnlaceValido, esNumeroControlValido, esPasswordSegura, validarRegistro } from "./validaciones";
 
 const base = {
   nombre: "Carlos Méndez",
@@ -51,4 +51,13 @@ test("CP-06 un tutor debe ser de 6.º semestre o más", () => {
 test("CP-07 no se permite registrarse como coordinación", () => {
   const r = validarRegistro({ ...base, rol: "COORDINADOR" });
   assert.equal(r.ok, false);
+});
+
+test("CP-19 el link de la reunión debe ser una dirección web válida", () => {
+  assert.equal(esEnlaceValido("https://meet.google.com/abc-defg-hij"), true);
+  assert.equal(esEnlaceValido("  https://teams.microsoft.com/l/meetup-join/123  "), true);
+  assert.equal(esEnlaceValido(""), false);
+  assert.equal(esEnlaceValido("meet.google.com/abc"), false);
+  assert.equal(esEnlaceValido("javascript:alert(1)"), false);
+  assert.equal(esEnlaceValido("https://localhost"), false);
 });

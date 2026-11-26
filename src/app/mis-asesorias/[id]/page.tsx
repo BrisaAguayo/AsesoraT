@@ -4,8 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { formatearFecha, nombreEstado, nombreModalidad } from "@/lib/formato";
 import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
+import { estiloInput } from "@/components/Campo";
 import { aviso as estiloAviso, boton, colorEstado, etiqueta } from "@/components/estilos";
-import { cancelarAsesoria, marcarCompletada } from "../actions";
+import { cancelarAsesoria, guardarEnlace, marcarCompletada } from "../actions";
 import { avisos } from "../avisos";
 
 export const dynamic = "force-dynamic";
@@ -35,6 +36,8 @@ export default async function DetalleAsesoria({
   const yaEmpezo = inicioAsesoria(a.fecha, a.horaInicio) <= ahora;
   const activa = a.estado === "PENDIENTE" || a.estado === "CONFIRMADA";
   const mensaje = aviso ? avisos[aviso] : undefined;
+  // CC-007: link de la videollamada en las asesorías virtuales confirmadas
+  const llevaEnlace = a.modalidad === "VIRTUAL" && a.estado === "CONFIRMADA";
 
   const datos: [string, string][] = [
     [esTutor ? "Estudiante" : "Tutor", esTutor ? a.estudiante.nombre : a.tutor.nombre],
@@ -66,6 +69,29 @@ export default async function DetalleAsesoria({
             </div>
           ))}
         </dl>
+
+        {llevaEnlace && esTutor && (
+          <form action={guardarEnlace} className="flex flex-col gap-2 rounded-md border border-slate-200 bg-slate-50 p-4">
+            <input type="hidden" name="id" value={a.id} />
+            <label htmlFor="enlaceReunion" className="text-sm font-medium text-slate-700">Ingresa el link de la reunión</label>
+            <input id="enlaceReunion" name="enlaceReunion" type="url" inputMode="url" defaultValue={a.enlaceReunion ?? ""}
+              placeholder="https://meet.google.com/..." className={estiloInput} />
+            <button className={`${boton.primario} w-full`}>Guardar link</button>
+          </form>
+        )}
+
+        {llevaEnlace && !esTutor && (
+          <div className="flex flex-col gap-1 text-sm">
+            <span className="text-slate-500">Link de la reunión</span>
+            {a.enlaceReunion ? (
+              <a href={a.enlaceReunion} target="_blank" rel="noopener noreferrer" className="break-all font-medium text-marca underline">
+                {a.enlaceReunion}
+              </a>
+            ) : (
+              <p className="italic text-slate-500">El tutor no ha adjuntado ningún link.</p>
+            )}
+          </div>
+        )}
 
         {esTutor && a.estado === "CONFIRMADA" && yaEmpezo && (
           <form action={marcarCompletada}>
