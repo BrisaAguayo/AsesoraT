@@ -4,7 +4,7 @@ import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
-import { inicioAsesoria, leerFechaISO, seEmpalman } from "@/lib/horarios";
+import { FIN_DE_SEMESTRE, inicioAsesoria, leerFechaISO, seEmpalman } from "@/lib/horarios";
 
 export type EstadoAgendar = { ok: true; id: string } | { ok: false; error: string };
 
@@ -23,6 +23,7 @@ export async function agendarAsesoria(formData: FormData): Promise<EstadoAgendar
   if (tema.length < 3) return { ok: false, error: "Escribe el tema que quieres revisar." };
   if (tema.length > 200) return { ok: false, error: "El tema debe tener máximo 200 caracteres." };
   if (!fecha) return { ok: false, error: "Elige una fecha." };
+  if (fecha > FIN_DE_SEMESTRE) return { ok: false, error: "Solo se puede agendar hasta el fin del semestre (11 de diciembre)." };
 
   const bloque = await prisma.disponibilidad.findUnique({
     where: { id: texto("bloque") },

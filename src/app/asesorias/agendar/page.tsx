@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { dias, formatearFecha, nombreModalidad } from "@/lib/formato";
-import { fechaISO, proximasFechas, seEmpalman } from "@/lib/horarios";
+import { FIN_DE_SEMESTRE, fechaISO, proximasFechas, seEmpalman } from "@/lib/horarios";
 import { FormAgendar } from "./FormAgendar";
 
 export const dynamic = "force-dynamic";
@@ -39,7 +39,8 @@ export default async function Agendar({ searchParams }: { searchParams: Promise<
   }
 
   // Fechas de las próximas semanas sin las que ya están ocupadas (las canceladas no ocupan)
-  const candidatas = proximasFechas(bloque.diaSemana, bloque.horaInicio, SEMANAS_A_MOSTRAR);
+  // Solo hasta el fin del semestre (11 dic 2026)
+  const candidatas = proximasFechas(bloque.diaSemana, bloque.horaInicio, SEMANAS_A_MOSTRAR).filter((f) => f <= FIN_DE_SEMESTRE);
   const ocupadas = await prisma.asesoria.findMany({
     where: { tutorId: bloque.tutorId, fecha: { in: candidatas }, estado: { not: "CANCELADA" } },
     select: { fecha: true, horaInicio: true, horaFin: true },
@@ -71,18 +72,16 @@ export default async function Agendar({ searchParams }: { searchParams: Promise<
         <p className="text-slate-500">{resumen.lugar}</p>
       </div>
 
-      {libres.length === 0 ? (
-        <p className="rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center text-slate-500">
-          Este horario está ocupado las próximas {SEMANAS_A_MOSTRAR} semanas. <Link href="/asesorias" className="font-medium text-marca underline">Buscar otro</Link>
-        </p>
-      ) : (
-        <FormAgendar
-          bloqueId={bloque.id}
-          materiaId={materia.id}
-          resumen={resumen}
-          fechas={libres.map((f) => ({ valor: fechaISO(f), texto: formatearFecha(f) }))}
-        />
-      )}
+      {/* El formulario siempre se monta: así la confirmación no se pierde si al agendar se ocupa la última fecha */}
+      <FormAgendar
+        bloqueId={bloque.id}
+        materiaId={materia.id}
+        resumen={resumen}
+        fechas={libres.map((f) => ({ valor: fechaISO(f), texto: formatearFecha(f) }))}
+        sinFechas={candidatas.length === 0
+          ? "No hay fechas disponibles antes del fin del semestre."
+          : `Este horario está ocupado las próximas ${SEMANAS_A_MOSTRAR} semanas.`}
+      />
     </section>
   );
 }

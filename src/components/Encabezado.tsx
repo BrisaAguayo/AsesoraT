@@ -14,7 +14,8 @@ export async function Encabezado() {
           Asesora<span className="text-emerald-300">T</span>
         </Link>
         <div className="flex items-center gap-3 whitespace-nowrap text-sm">
-          <Link href="/asesorias" className="hover:underline">Buscar</Link>
+          {/* La coordinación no busca asesorías */}
+          {sesion?.user.rol !== "COORDINADOR" && <Link href="/asesorias" className="hover:underline">Buscar</Link>}
           {sesion ? (
             <>
               {(sesion.user.rol === "ESTUDIANTE" || sesion.user.rol === "TUTOR") && (

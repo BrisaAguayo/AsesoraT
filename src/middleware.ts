@@ -12,9 +12,15 @@ const pantallasPorRol: [string, string[]][] = [
 // Protege las pantallas que requieren sesión y las limita según el rol.
 // Sin sesión: al inicio de sesión, con la dirección de regreso.
 // Con sesión pero de otro rol: al panel con el aviso "No tienes acceso a esa pantalla."
+// Con sesión en /login o /registro: al panel.
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   const ruta = req.nextUrl.pathname;
+
+  // Inicio de sesión y registro: solo sin sesión; con sesión llevan al panel
+  if (ruta === "/login" || ruta === "/registro") {
+    return token ? NextResponse.redirect(new URL("/panel", req.url)) : NextResponse.next();
+  }
 
   if (!token) {
     const login = new URL("/login", req.url);
@@ -31,5 +37,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/panel/:path*", "/tutor/:path*", "/mis-asesorias/:path*", "/asesorias/agendar/:path*", "/coordinacion/:path*", "/calendario/:path*"],
+  matcher: ["/login", "/registro", "/panel/:path*", "/tutor/:path*", "/mis-asesorias/:path*", "/asesorias/agendar/:path*", "/coordinacion/:path*", "/calendario/:path*"],
 };
