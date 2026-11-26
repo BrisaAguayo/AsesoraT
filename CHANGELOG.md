@@ -19,7 +19,7 @@ Versión final del semestre: Sprints 3 a 6.
 - Reporte de asesorías completadas y horas por tutor con filtro por periodo y exportación a CSV, solo para coordinación (HU-11).
 - Migración `20261125120000_canceladas_no_bloquean`: las canceladas quedan como registro y ya no ocupan el horario (CC-004).
 - Migración `20261126180000_enlace_reunion`: campo `enlaceReunion` de las asesorías (CC-007).
-- 12 pruebas automatizadas nuevas (19 en total) y bitácora de 32 pruebas de punta a punta.
+- 13 pruebas automatizadas nuevas (20 en total) y bitácora de 32 pruebas de punta a punta.
 - Manual de usuario, bitácora de pruebas, bitácora individual y capturas de la versión 1.0.0.
 - Datos de ejemplo con asesorías en todos los estados, incluida una virtual confirmada sin link.
 
@@ -30,6 +30,7 @@ Versión final del semestre: Sprints 3 a 6.
 - Botones, estados y avisos con colores sólidos, esquinas redondeadas y texto blanco o negro; los botones que comparten un área tienen el mismo ancho (CC-005).
 - Al registrarse como tutor, el selector de semestre deshabilita del 1.º al 5.º.
 - La flecha de los selectores queda dentro del recuadro.
+- En el registro, el nombre y los apellidos se escriben en campos separados; se guardan juntos como nombre completo.
 
 ### Corregido
 - Confirmar o rechazar una solicitud no cambiaba su estado (D-01).

@@ -10,7 +10,7 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 
 ## Estado actual
 
-**Versión 1.0.0 (26 nov 2026). Entrega final del proyecto.** Todas las historias de la versión 1.0.0 están terminadas y probadas (51 de 51 pruebas aprobadas).
+**Versión 1.0.0 (26 nov 2026). Entrega final del proyecto.** Todas las historias de la versión 1.0.0 están terminadas y probadas (52 de 52 pruebas aprobadas).
 
 | Módulo | Estado |
 |---|---|
@@ -95,7 +95,7 @@ Otros tutores de ejemplo: `diego.demo@`, `mariana.demo@` y `luis.demo@tectijuana
 |---|---|
 | `npm run dev` | Servidor de desarrollo |
 | `npm run build` / `npm run start` | Compilación y servidor de producción |
-| `npm test` | 19 pruebas automatizadas de las reglas de negocio |
+| `npm test` | 20 pruebas automatizadas de las reglas de negocio |
 | `npm run lint` / `npm run typecheck` | Revisión de código y de tipos |
 | `npm run db:deploy` | Aplica las migraciones a la base de datos |
 | `npm run db:seed` | Carga datos de ejemplo |

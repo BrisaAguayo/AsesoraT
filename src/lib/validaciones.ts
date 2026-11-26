@@ -15,9 +15,12 @@ export interface DatosRegistro {
   password: string;
 }
 
+// En el formulario el nombre y los apellidos van en campos separados
+export type ErroresRegistro = Partial<Record<keyof DatosRegistro | "apellidos", string>>;
+
 export type ResultadoValidacion =
   | { ok: true; datos: DatosRegistro }
-  | { ok: false; errores: Partial<Record<keyof DatosRegistro, string>> };
+  | { ok: false; errores: ErroresRegistro };
 
 /** Normaliza el correo: sin espacios y en minúsculas. */
 export function normalizarCorreo(correo: string): string {
@@ -53,8 +56,11 @@ export function esEnlaceValido(enlace: string): boolean {
 }
 
 export function validarRegistro(entrada: Record<string, unknown>): ResultadoValidacion {
-  const texto = (v: unknown) => (typeof v === "string" ? v.trim() : "");
-  const nombre = texto(entrada.nombre);
+  const texto = (v: unknown) => (typeof v === "string" ? v.trim().replace(/\s+/g, " ") : "");
+  const nombres = texto(entrada.nombre);
+  const apellidos = texto(entrada.apellidos);
+  // Se guardan juntos como nombre completo
+  const nombre = `${nombres} ${apellidos}`;
   const correo = normalizarCorreo(texto(entrada.correo));
   const numeroControl = texto(entrada.numeroControl).toUpperCase();
   const carrera = texto(entrada.carrera);
@@ -62,9 +68,10 @@ export function validarRegistro(entrada: Record<string, unknown>): ResultadoVali
   const rol = texto(entrada.rol);
   const password = typeof entrada.password === "string" ? entrada.password : "";
 
-  const errores: Partial<Record<keyof DatosRegistro, string>> = {};
+  const errores: ErroresRegistro = {};
 
-  if (nombre.length < 3) errores.nombre = "Escribe tu nombre completo.";
+  if (nombres.length < 2) errores.nombre = "Escribe tu nombre.";
+  if (apellidos.length < 2) errores.apellidos = "Escribe tus apellidos.";
   if (!esCorreoInstitucional(correo)) errores.correo = `Usa tu correo institucional @${DOMINIO_INSTITUCIONAL}.`;
   if (!esNumeroControlValido(numeroControl)) errores.numeroControl = "El número de control debe tener 8 dígitos.";
   if (carrera.length === 0) errores.carrera = "Selecciona tu carrera.";
