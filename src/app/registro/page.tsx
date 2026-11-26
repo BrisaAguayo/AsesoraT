@@ -70,9 +70,14 @@ export default function Registro() {
         </fieldset>
         {errores.rol && <p className="text-xs text-red-700">{errores.rol}</p>}
 
-        <Campo etiqueta="Nombre completo" error={errores.nombre}>
-          <input name="nombre" autoComplete="name" className={estiloInput} />
-        </Campo>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Campo etiqueta="Nombre" error={errores.nombre}>
+            <input name="nombre" autoComplete="given-name" className={estiloInput} />
+          </Campo>
+          <Campo etiqueta="Apellidos" error={errores.apellidos}>
+            <input name="apellidos" autoComplete="family-name" className={estiloInput} />
+          </Campo>
+        </div>
         <Campo etiqueta="Correo institucional" error={errores.correo}>
           <input name="correo" type="email" placeholder="l00000000@tectijuana.edu.mx" className={estiloInput} />
         </Campo>
