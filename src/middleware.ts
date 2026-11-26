@@ -9,11 +9,12 @@ export default withAuth({
       if (ruta.startsWith("/tutor")) return token.rol === "TUTOR";
       if (ruta.startsWith("/coordinacion")) return token.rol === "COORDINADOR";
       if (ruta.startsWith("/asesorias/agendar")) return token.rol === "ESTUDIANTE";
+      if (ruta.startsWith("/calendario")) return token.rol === "ESTUDIANTE" || token.rol === "TUTOR";
       return true;
     },
   },
 });
 
 export const config = {
-  matcher: ["/panel/:path*", "/tutor/:path*", "/mis-asesorias/:path*", "/asesorias/agendar/:path*", "/coordinacion/:path*"],
+  matcher: ["/panel/:path*", "/tutor/:path*", "/mis-asesorias/:path*", "/asesorias/agendar/:path*", "/coordinacion/:path*", "/calendario/:path*"],
 };

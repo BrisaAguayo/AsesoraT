@@ -12,12 +12,14 @@ const opcionesPorRol: Record<string, Opcion[]> = {
   ESTUDIANTE: [
     { titulo: "Buscar asesorías", descripcion: "Encuentra tutores por materia, tutor, día y modalidad.", href: "/asesorias" },
     { titulo: "Mis asesorías", descripcion: "Consulta tus asesorías y su estado.", href: "/mis-asesorias" },
+    { titulo: "Calendario", descripcion: "Tus asesorías del mes en un calendario.", href: "/calendario" },
   ],
   TUTOR: [
     { titulo: "Mis materias", descripcion: "Elige las materias que puedes asesorar.", href: "/tutor/materias" },
     { titulo: "Mi disponibilidad", descripcion: "Registra tus horarios semanales.", href: "/tutor/disponibilidad" },
     { titulo: "Solicitudes", descripcion: "Confirma o rechaza asesorías.", href: "/tutor/solicitudes" },
     { titulo: "Mis asesorías", descripcion: "Tu agenda e historial de asesorías.", href: "/mis-asesorias" },
+    { titulo: "Calendario", descripcion: "Tus asesorías del mes en un calendario.", href: "/calendario" },
   ],
   COORDINADOR: [
     { titulo: "Reporte de horas", descripcion: "Asesorías y horas por tutor.", href: "/coordinacion/reporte" },

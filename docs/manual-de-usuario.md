@@ -120,6 +120,7 @@ Para cerrar sesión pulsa **Salir** en la barra superior.
 | Agendar | Estudiante | Elegir fecha libre, escribir el tema y enviar la solicitud. |
 | Mis asesorías | Estudiante y tutor | Próximas asesorías e historial con su estado; permite cancelar. |
 | Detalle de una asesoría | Estudiante y tutor | Todos los datos de la asesoría y su estado; el tutor la marca como completada. |
+| Calendario | Estudiante y tutor | Calendario mensual con sus asesorías; al elegir un día se abre un modal con su información. |
 | Mis materias | Tutor | Elegir las materias del catálogo que puede asesorar. |
 | Mi disponibilidad | Tutor | Registrar, editar y borrar sus horarios semanales. |
 | Solicitudes | Tutor | Confirmar o rechazar las asesorías pendientes. |
@@ -194,6 +195,16 @@ Las asesorías completadas son las que cuenta el reporte de horas.
 3. La tabla muestra cada tutor con sus asesorías completadas, sus horas y el total.
 4. Pulsa **Exportar CSV** para descargar el reporte y abrirlo en Excel.
 
+### 10.10 Estudiante o tutor: consultar el calendario
+
+1. Pulsa **Calendario** en la barra superior o en tu panel.
+2. Verás el mes actual de lunes a domingo, con el día de hoy marcado en azul. Cada asesoría pendiente, confirmada o completada aparece en su día con un punto del color de su estado (amarillo, verde o azul). Las canceladas no aparecen.
+3. Usa las flechas **‹** y **›** para cambiar de mes y **Hoy** para regresar al mes actual.
+4. Haz clic en un día con asesorías para abrir un modal con la materia, el estado, el horario, el tutor o estudiante, el lugar y el tema. Pulsa **Ver detalle** para abrir la asesoría.
+5. Cierra el modal con la **×**, con un clic fuera de él o con la tecla Esc.
+
+Si no tienes asesorías agendadas, el calendario se ve vacío y abajo aparece "No tienes asesorías agendadas por el momento."
+
 ## 11. Capturas de pantalla del sistema
 
 Capturas de la versión 1.0.0 con los datos de ejemplo.
@@ -258,6 +269,15 @@ Capturas de la versión 1.0.0 con los datos de ejemplo.
 **Detalle que ve el estudiante**
 ![Detalle del estudiante](capturas/v1.0.0/32-detalle-estudiante.png)
 
+**Calendario del estudiante**
+![Calendario](capturas/v1.0.0/33-calendario-estudiante.png)
+
+**Modal con las asesorías del día**
+![Modal del calendario](capturas/v1.0.0/34-calendario-modal.png)
+
+**Calendario sin asesorías agendadas**
+![Calendario vacío](capturas/v1.0.0/37-calendario-vacio.png)
+
 **Panel de coordinación**
 ![Panel de coordinación](capturas/v1.0.0/18-panel-coordinacion.png)
 
@@ -273,6 +293,10 @@ Capturas de la versión 1.0.0 con los datos de ejemplo.
 | Disponibilidad | Solicitudes | Reporte |
 |---|---|---|
 | ![](capturas/v1.0.0/24-movil-disponibilidad.png) | ![](capturas/v1.0.0/25-movil-solicitudes.png) | ![](capturas/v1.0.0/26-movil-reporte.png) |
+
+| Calendario del tutor | Modal del día |
+|---|---|
+| ![](capturas/v1.0.0/35-movil-calendario-tutor.png) | ![](capturas/v1.0.0/36-movil-calendario-modal.png) |
 
 ## 12. Ejemplos de uso
 

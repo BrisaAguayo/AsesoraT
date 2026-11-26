@@ -6,8 +6,8 @@
 
 ## Cómo se probó
 
-1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (16 casos, CP-01 a CP-16).
-2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (24 casos, P-01 a P-24). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
+1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (18 casos, CP-01 a CP-18).
+2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (28 casos, P-01 a P-28). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
 3. **Revisión de código** antes de integrar cada rama: `npm run build`, `npm run typecheck` y `npm run lint` sin errores.
 4. Si una prueba falla, se registra el defecto, se corrige en una rama `fix/` y se vuelven a correr **todas** las pruebas.
 
@@ -39,6 +39,10 @@
 | P-22 | Detalle para el estudiante (HU-09, CC-005) | 25 nov 2026 | Brisa Aguayo | Al abrir una asesoría completada, el estudiante ve todos sus datos y su estado, sin los botones del tutor. | El detalle muestra tutor, fecha, horario, lugar, tema y el estado Completada. | Ninguno | Media | No aplica | No aplica |
 | P-23 | Detalle de una asesoría ajena (RNF-04, RNF-07) | 25 nov 2026 | Brisa Aguayo | Un usuario que no es el estudiante ni el tutor de la asesoría no puede ver su detalle. | Respuesta 404 sin datos de la asesoría. | Ninguno | Alta | No aplica | No aplica |
 | P-24 | Botones del mismo tamaño (CC-005) | 25 nov 2026 | Brisa Aguayo | Los botones que comparten un área miden lo mismo: Confirmar y Rechazar, Editar y Borrar, y los dos botones de la página de inicio. | Cada par mide lo mismo (por ejemplo 124 y 124 px en Solicitudes). | Ninguno | Baja | No aplica | No aplica |
+| P-25 | Calendario del estudiante y modal del día (CC-006) | 26 nov 2026 | Brisa Aguayo | Noviembre se ve de lunes a domingo en semanas completas, sin la asesoría cancelada. Al elegir el 12 se abre un modal con la asesoría; se cierra con Esc y "Ver detalle" abre su detalle. | Rejilla de 42 días; el modal muestra "Jueves 12 de noviembre", Mariana Soto y el tema; Esc lo cierra y "Ver detalle" abre `/mis-asesorias/…`. | Ninguno | Media | No aplica | No aplica |
+| P-26 | Calendario del tutor en celular (CC-006, RNF-03) | 26 nov 2026 | Brisa Aguayo | A 360 px el calendario no se desborda; al tocar un día con asesorías se abre el modal con el nombre del estudiante y se cierra con un clic fuera. | El calendario mide 360 px; el modal muestra a Carlos Méndez y se cierra con el clic fuera. | Ninguno | Media | No aplica | No aplica |
+| P-27 | Calendario vacío y acceso por rol (CC-006, RNF-04) | 26 nov 2026 | Brisa Aguayo | Un estudiante sin asesorías ve el calendario vacío y, en el pie, "No tienes asesorías agendadas por el momento."; la coordinación no puede entrar. | Calendario sin días marcados y con el aviso en el pie; coordinación es enviada a `/login`. | Ninguno | Baja | No aplica | No aplica |
+| P-28 | Semestre mínimo al registrarse como tutor (HU-01) | 26 nov 2026 | Brisa Aguayo | Con el rol Tutor, el selector deshabilita del 1.º al 5.º y pasa a 6.º; al volver a Estudiante se habilitan todos. | Con 3.º elegido, al cambiar a Tutor pasa a 6.º y los semestres 1 a 5 quedan deshabilitados; con Estudiante vuelven a estar disponibles. | Ninguno | Media | No aplica | No aplica |
 
 ## Pruebas automatizadas (`npm test`)
 
@@ -53,16 +57,18 @@
 | CP-14 | Lectura de fechas y duración en horas | Aprobado |
 | CP-15 | Suma de asesorías y horas por tutor (HU-11) | Aprobado |
 | CP-16 | Exportación a CSV (HU-11) | Aprobado |
+| CP-17 | Mes del calendario y cambio de mes con las flechas (CC-006) | Aprobado |
+| CP-18 | Rejilla del calendario de lunes a domingo en semanas completas (CC-006) | Aprobado |
 
-Resultado: **16 de 16 aprobadas**.
+Resultado: **18 de 18 aprobadas**.
 
 ## Resumen
 
 | Concepto | Resultado |
 |---|---|
-| Pruebas ejecutadas | 40 (16 automatizadas y 24 de punta a punta) |
-| Aprobadas en la primera ejecución | 35 de 37; las 3 pruebas de CC-005 pasaron a la primera |
+| Pruebas ejecutadas | 46 (18 automatizadas y 28 de punta a punta) |
+| Aprobadas en la primera ejecución | 35 de 37; las pruebas agregadas después (CC-005, CC-006 y P-28) pasaron a la primera |
 | Defectos encontrados | 2 (D-01 prioridad alta, D-02 prioridad baja) |
 | Defectos corregidos y verificados | 2 de 2, el mismo día |
-| Aprobadas en la ejecución final | **40 de 40 (100 %)** |
+| Aprobadas en la ejecución final | **46 de 46 (100 %)** |
 | Defectos abiertos al entregar | 0 |
