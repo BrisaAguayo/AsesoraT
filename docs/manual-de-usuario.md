@@ -58,14 +58,7 @@ Una asesoría pasa por estos estados:
 | Pendiente | El estudiante la solicitó y espera respuesta del tutor. |
 | Confirmada | El tutor la aceptó. |
 | Cancelada | El estudiante o el tutor la canceló, o el tutor la rechazó. El horario vuelve a estar libre. |
-| Completada | La asesoría ya ocurrió y el tutor registró su resultado. |
-
-Cada asesoría completada tiene un **resultado**:
-
-| Resultado | Significado |
-|---|---|
-| ✓ Aprobada | El tutor considera que el estudiante cumplió el objetivo de la asesoría. |
-| ✗ No aprobada | El tutor considera que el estudiante no cumplió el objetivo de la asesoría. |
+| Completada | La asesoría ya ocurrió y el tutor la marcó como completada. |
 
 ## 6. Requisitos para utilizar el sistema
 
@@ -125,8 +118,8 @@ Para cerrar sesión pulsa **Salir** en la barra superior.
 | Panel | Todos | Muestra las opciones disponibles según el rol. |
 | Buscar asesorías | Todos | Lista los horarios disponibles con filtros por materia, tutor, día y modalidad. |
 | Agendar | Estudiante | Elegir fecha libre, escribir el tema y enviar la solicitud. |
-| Mis asesorías | Estudiante y tutor | Próximas asesorías e historial con su estado y resultado; permite cancelar. |
-| Detalle de una asesoría | Estudiante y tutor | Todos los datos de la asesoría, su estado y su resultado; el tutor registra el resultado. |
+| Mis asesorías | Estudiante y tutor | Próximas asesorías e historial con su estado; permite cancelar. |
+| Detalle de una asesoría | Estudiante y tutor | Todos los datos de la asesoría y su estado; el tutor la marca como completada. |
 | Mis materias | Tutor | Elegir las materias del catálogo que puede asesorar. |
 | Mi disponibilidad | Tutor | Registrar, editar y borrar sus horarios semanales. |
 | Solicitudes | Tutor | Confirmar o rechazar las asesorías pendientes. |
@@ -161,8 +154,8 @@ Solo se puede cancelar **hasta 2 horas antes** del inicio. Después de ese lími
 
 1. Entra a **Mis asesorías**.
 2. En **Próximas** están las asesorías por venir, de la más cercana a la más lejana.
-3. En **Historial** están las pasadas y canceladas, de la más reciente a la más antigua, con su estado y, si ya se completó, su resultado.
-4. Haz clic en una asesoría o en **Ver detalle ›** para abrir su detalle: tutor o estudiante, fecha, horario, lugar, tema, estado y resultado.
+3. En **Historial** están las pasadas y canceladas, de la más reciente a la más antigua, con su estado.
+4. Haz clic en una asesoría o en **Ver detalle ›** para abrir su detalle: tutor o estudiante, fecha, horario, lugar, tema y estado.
 
 ### 10.5 Tutor: elegir materias
 
@@ -185,12 +178,12 @@ El sistema no acepta bloques que se empalmen con otro del mismo día ni con hora
 2. Revisa el estudiante, la materia, la fecha, el horario y el tema.
 3. Pulsa **Confirmar** para aceptar o **Rechazar** para declinar. El estudiante verá el nuevo estado en Mis asesorías.
 
-### 10.8 Tutor: registrar el resultado de una asesoría
+### 10.8 Tutor: marcar una asesoría como completada
 
 1. Después de impartir una asesoría confirmada, entra a **Mis asesorías**.
 2. En el **Historial**, abre la asesoría con **Ver detalle ›**.
-3. En **Registrar resultado y marcar como completada**, pulsa **✓ Aprobada** o **✗ No aprobada**.
-4. Verás el mensaje **Resultado registrado. La asesoría quedó como completada.** El estudiante verá el resultado en su detalle.
+3. Pulsa **Marcar como completada**.
+4. Verás el mensaje **La asesoría quedó como completada.** El estudiante la verá como Completada en su historial.
 
 Las asesorías completadas son las que cuenta el reporte de horas.
 
@@ -256,14 +249,14 @@ Capturas de la versión 1.0.0 con los datos de ejemplo.
 **Mis asesorías del tutor**
 ![Mis asesorías del tutor](capturas/v1.0.0/17-mis-asesorias-tutor.png)
 
-**Detalle: el tutor registra el resultado**
-![Registrar resultado](capturas/v1.0.0/30-detalle-tutor-registrar.png)
+**Detalle: el tutor marca la asesoría como completada**
+![Marcar como completada](capturas/v1.0.0/30-detalle-tutor-completar.png)
 
-**Detalle con el resultado registrado**
-![Resultado registrado](capturas/v1.0.0/31-detalle-resultado-registrado.png)
+**Detalle de una asesoría completada**
+![Asesoría completada](capturas/v1.0.0/31-detalle-completada.png)
 
 **Detalle que ve el estudiante**
-![Detalle del estudiante](capturas/v1.0.0/32-detalle-estudiante-resultado.png)
+![Detalle del estudiante](capturas/v1.0.0/32-detalle-estudiante.png)
 
 **Panel de coordinación**
 ![Panel de coordinación](capturas/v1.0.0/18-panel-coordinacion.png)
@@ -287,7 +280,7 @@ Capturas de la versión 1.0.0 con los datos de ejemplo.
 Carlos entra con `estudiante.demo@tectijuana.edu.mx`, pulsa **Buscar**, elige la materia *Cálculo Integral* y ve el horario de Andrea López los lunes de 13:00 a 14:00 en el Edificio J, aula 5. Pulsa **Agendar**, elige el siguiente lunes libre, escribe "Integrales impropias" y pulsa **Confirmar solicitud**. Su asesoría queda Pendiente.
 
 **Ejemplo 2: Andrea confirma la solicitud.**  
-Andrea entra con `tutora.demo@tectijuana.edu.mx`, abre **Solicitudes**, ve la petición de Carlos y pulsa **Confirmar**. Carlos ve la asesoría como Confirmada en Mis asesorías. Después de impartirla, Andrea abre su detalle y pulsa **✓ Aprobada**; Carlos ve el resultado en el detalle de su asesoría.
+Andrea entra con `tutora.demo@tectijuana.edu.mx`, abre **Solicitudes**, ve la petición de Carlos y pulsa **Confirmar**. Carlos ve la asesoría como Confirmada en Mis asesorías. Después de impartirla, Andrea abre su detalle y pulsa **Marcar como completada**; Carlos la ve como Completada en su historial.
 
 **Ejemplo 3: Carlos ya no puede asistir.**  
 Un día antes, Carlos entra a **Mis asesorías** y pulsa **Cancelar**. La asesoría queda como Cancelada en su historial y ese lunes vuelve a estar disponible para otro estudiante.
@@ -310,8 +303,8 @@ La coordinación entra con `coordinacion.demo@tectijuana.edu.mx`, abre **Reporte
 | No aparece el botón **Cancelar**. | Faltan menos de 2 horas, ya pasó o ya está cancelada. | Avisa directamente al tutor o al estudiante. |
 | "Se empalma con tu bloque de..." | El bloque choca con otro del mismo día. | Cambia las horas o edita el bloque existente. |
 | No aparezco en las búsquedas como tutor. | Faltan materias o horarios. | Registra al menos una materia en **Mis materias** y un bloque en **Mi disponibilidad**. |
-| El reporte dice "No hay asesorías completadas". | No hay asesorías completadas en esas fechas. | Amplía el periodo o pide a los tutores registrar el resultado de sus asesorías. |
-| No aparecen los botones **Aprobada** y **No aprobada**. | La asesoría no está confirmada o todavía no ocurre. | El resultado se registra después de la hora de inicio de una asesoría confirmada. |
+| El reporte dice "No hay asesorías completadas". | No hay asesorías completadas en esas fechas. | Amplía el periodo o pide a los tutores marcar como completadas sus asesorías. |
+| No aparece el botón **Marcar como completada**. | La asesoría no está confirmada o todavía no ocurre. | Se puede marcar después de la hora de inicio de una asesoría confirmada. |
 | "No se encontró la página" al abrir una asesoría. | La asesoría no es tuya. | Cada usuario solo ve el detalle de sus propias asesorías. |
 
 ## 14. Conclusiones

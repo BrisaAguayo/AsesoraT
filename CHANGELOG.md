@@ -13,10 +13,9 @@ Versión final del semestre: Sprints 3 a 6.
 - Solicitudes: el tutor confirma o rechaza las asesorías pendientes (HU-06).
 - Cancelar una asesoría hasta 2 horas antes, con la hora de Tijuana (HU-07, RF-07).
 - Mis asesorías con Próximas e Historial ordenados por fecha (HU-09).
-- Detalle de cada asesoría al hacer clic en ella; el tutor registra el resultado, Aprobada o No aprobada, de una asesoría confirmada que ya ocurrió y queda como completada (HU-09, CC-005).
+- Detalle de cada asesoría al hacer clic en ella; desde ahí el tutor marca como completada una asesoría confirmada que ya ocurrió (HU-09, CC-005).
 - Reporte de asesorías completadas y horas por tutor con filtro por periodo y exportación a CSV, solo para coordinación (HU-11).
 - Migración `20261125120000_canceladas_no_bloquean`: las canceladas quedan como registro y ya no ocupan el horario (CC-004).
-- Migración `20261125200000_resultado_asesoria`: campo `resultado` de las asesorías completadas (CC-005).
 - 9 pruebas automatizadas nuevas (16 en total) y bitácora de 24 pruebas de punta a punta.
 - Manual de usuario, bitácora de pruebas, bitácora individual y capturas de la versión 1.0.0.
 - Datos de ejemplo con asesorías en todos los estados.

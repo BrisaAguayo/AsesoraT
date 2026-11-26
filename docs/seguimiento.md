@@ -33,13 +33,13 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 | A14 | HU-05 Agendar sin empalmes | 16 a 20 nov | 25 nov | Terminada | 100 % | La restricción única también contaba las asesorías canceladas y el horario nunca se liberaba. | Índice único parcial que ignora las canceladas (CC-004). |
 | A15 | HU-06 Confirmar o rechazar | 16 a 20 nov | 25 nov | Terminada | 100 % | Confirmar o rechazar no cambiaba el estado (defecto D-01). | Corregido el mismo día (commit `fb7e225`). |
 | A16 | HU-07 Cancelar | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguno | - |
-| A17 | HU-09 Historial | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguna historia marcaba las asesorías como completadas y el reporte no tenía datos. | El tutor registra el resultado (Aprobada o No aprobada) de una asesoría confirmada que ya ocurrió y queda como completada (CC-005). |
+| A17 | HU-09 Historial | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguna historia marcaba las asesorías como completadas y el reporte no tenía datos. | El tutor marca como completada una asesoría confirmada que ya ocurrió, desde su detalle (CC-005). |
 | A18 | HU-11 Reporte de horas | 23 a 27 nov | 25 nov | Terminada | 100 % | Ninguno | - |
 | A19 | Pruebas y correcciones | 30 nov a 2 dic | 25 nov | Terminada | 100 % | 2 defectos (D-01 y D-02). | Corregidos y verificados con una nueva ejecución de todas las pruebas. |
 | A20 | Despliegue en Vercel y Neon | 2 a 3 dic | 25 nov | Terminada | 100 % | El primer despliegue respondía error 500 porque no leía `NEXTAUTH_SECRET`. | Se agregaron las variables de entorno y se volvió a desplegar; sistema en https://asesora-t.vercel.app |
 | A21 | Manual de usuario y evidencias | 3 a 4 dic | 25 a 26 nov | Terminada | 100 % | - | - |
 | A22 | Presentación y entrega de la versión 1.0.0 | 4 dic | 26 nov | Terminada | 100 % | La consigna fija la entrega el 26 nov, antes del 4 dic planeado. | Sprint 6 reducido a 2 días (CC-004). |
-| A23 | Detalle de la asesoría, resultado y colores sólidos (CC-005) | No planeada | 25 nov | Terminada | 100 % | En la revisión de la interfaz se pidió ver el detalle de cada asesoría y su resultado, y botones más claros. | CC-005; 3 pruebas nuevas (P-22 a P-24). |
+| A23 | Detalle de la asesoría y colores sólidos (CC-005) | No planeada | 25 nov | Terminada | 100 % | En la revisión de la interfaz se pidió ver el detalle de cada asesoría y botones más claros. | CC-005; 3 pruebas nuevas (P-22 a P-24). |
 
 ## Indicadores
 
@@ -75,7 +75,7 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 | CC-002 | 6 nov | PostgreSQL local en desarrollo y Neon en despliegue. | 0.2.0 |
 | CC-003 | 6 nov | Sprints de 1 semana; HU-08 y HU-10 a la versión 1.1. | 0.2.1 |
 | CC-004 | 25 nov | Cronograma ajustado a la entrega del 26 nov; las canceladas ya no ocupan el horario. | 1.0.0 |
-| CC-005 | 25 nov | Detalle de cada asesoría, resultado Aprobada o No aprobada y colores sólidos en la interfaz. | 1.0.0 |
+| CC-005 | 25 nov | Detalle de cada asesoría y colores sólidos en la interfaz. | 1.0.0 |
 
 Detalle completo en [bitacora-cambios.md](bitacora-cambios.md).
 
@@ -86,7 +86,7 @@ Detalle completo en [bitacora-cambios.md](bitacora-cambios.md).
 | 0.1.0 | 11 oct 2026 | Estructura del proyecto, modelo de datos, pantallas iniciales y documentación. |
 | 0.2.0 | 6 nov 2026 | Base de datos, registro e inicio de sesión, panel por rol, materias del tutor y búsqueda desde la BD. |
 | 0.2.1 | 6 nov 2026 | Cronograma reprogramado (CC-003). |
-| 1.0.0 | 26 nov 2026 | Disponibilidad, agendar, confirmar, cancelar, historial con detalle y resultado, y reporte de horas. Versión final del semestre. |
+| 1.0.0 | 26 nov 2026 | Disponibilidad, agendar, confirmar, cancelar, historial con detalle, y reporte de horas. Versión final del semestre. |
 
 Detalle en [CHANGELOG.md](../CHANGELOG.md). Cada versión tiene su etiqueta en GitHub (`v0.1.0`, `v0.2.0`, `v0.2.1` y `v1.0.0`).
 

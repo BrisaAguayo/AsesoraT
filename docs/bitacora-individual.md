@@ -29,7 +29,7 @@
 | 25 nov 2026 | Datos de ejemplo para la demostración | Brisa Aguayo | Commit `3660e9e` | 0.5 h | 8 asesorías en todos los estados |
 | 25 nov 2026 | Pruebas de punta a punta de los 3 roles en escritorio y celular | Brisa Aguayo | `docs/bitacora-pruebas.md`; capturas en `docs/capturas/v1.0.0/` | 2 h | 37 pruebas, 2 defectos encontrados |
 | 25 nov 2026 | Corrección de los defectos D-01 y D-02 y nueva ejecución de las pruebas | Brisa Aguayo | Commits `fb7e225`, `638c03c` | 1 h | 37 de 37 aprobadas; 40 de 40 después de CC-005 |
-| 25 nov 2026 | Revisión de la interfaz: detalle de la asesoría, resultado aprobada o no aprobada, colores sólidos y botones uniformes (CC-005) | Brisa Aguayo | Guía de estilos; ramas `feature/estilos-solidos` y `feature/HU-09-detalle-resultado`; pruebas P-22 a P-24 | 3 h | Interfaz aprobada |
+| 25 nov 2026 | Revisión de la interfaz: detalle de la asesoría, colores sólidos y botones uniformes (CC-005) | Brisa Aguayo | Guía de estilos; ramas `feature/estilos-solidos` y `feature/HU-09-detalle-resultado`; pruebas P-22 a P-24 | 3 h | Interfaz aprobada |
 | 25 a 26 nov 2026 | Seguimiento, bitácoras, CC-004, cronograma y manual de usuario | Brisa Aguayo | `docs/seguimiento.md`, `docs/bitacora-cambios.md`, `docs/backlog.md`, `docs/manual-de-usuario.md` | 3 h | Evidencias 1 a 5 |
 | 26 nov 2026 | Despliegue en Vercel, versión 1.0.0, carpeta de entrega y presentación | Brisa Aguayo | Etiqueta `v1.0.0`; carpeta `PROYECTO_FINAL_AsesoraT` | 2 h | Sistema entregado |
 
