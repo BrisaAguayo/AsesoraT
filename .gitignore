@@ -6,3 +6,9 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# Documentos de la entrega: se organizan aparte y no se suben
+PROYECTO_FINAL*/
+*.pdf
+*.docx
+*.pptx
