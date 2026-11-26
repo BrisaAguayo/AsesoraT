@@ -5,8 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { formatearFecha, nombreEstado, nombreModalidad } from "@/lib/formato";
 import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
-import { aviso as estiloAviso, boton, colorEstado, etiqueta } from "@/components/estilos";
-import { cancelarAsesoria } from "./actions";
+import { aviso as estiloAviso, boton, colorEstado, enGrupo, etiqueta, grupoBotones } from "@/components/estilos";
+import { cancelarAsesoria, marcarCompletada } from "./actions";
 import { avisos } from "./avisos";
 
 export const dynamic = "force-dynamic";
@@ -32,6 +32,8 @@ export default async function MisAsesorias({ searchParams }: { searchParams: Pro
   const ahora = new Date();
   const yaEmpezo = (a: Fila) => inicioAsesoria(a.fecha, a.horaInicio) <= ahora;
   const activa = (a: Fila) => a.estado === "PENDIENTE" || a.estado === "CONFIRMADA";
+  const cancelable = (a: Fila) => activa(a) && puedeCancelar(a.fecha, a.horaInicio, ahora);
+  const completable = (a: Fila) => esTutor && a.estado === "CONFIRMADA";
   // Próximas: de la más cercana a la más lejana. Historial: de la más reciente a la más antigua.
   const proximas = asesorias.filter((a) => activa(a) && !yaEmpezo(a)).reverse();
   const historial = asesorias.filter((a) => !activa(a) || yaEmpezo(a));
@@ -46,13 +48,24 @@ export default async function MisAsesorias({ searchParams }: { searchParams: Pro
           </p>
           <p className="text-slate-500">{nombreModalidad[a.modalidad]}, {a.lugar} · Tema: {a.tema}</p>
         </Link>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3 sm:flex-none sm:flex-nowrap">
           <span className={`${etiqueta} ${colorEstado[a.estado]}`}>{nombreEstado[a.estado]}</span>
-          {activa(a) && puedeCancelar(a.fecha, a.horaInicio, ahora) && (
-            <form action={cancelarAsesoria}>
-              <input type="hidden" name="id" value={a.id} />
-              <button className={boton.peligro}>Cancelar</button>
-            </form>
+          {(completable(a) || cancelable(a)) && (
+            // CC-009: el tutor completa una confirmada en cualquier momento; mismo ancho que Cancelar
+            <div className={grupoBotones}>
+              {completable(a) && (
+                <form action={marcarCompletada}>
+                  <input type="hidden" name="id" value={a.id} />
+                  <button className={`${boton.exito} ${enGrupo}`}>Marcar como completada</button>
+                </form>
+              )}
+              {cancelable(a) && (
+                <form action={cancelarAsesoria}>
+                  <input type="hidden" name="id" value={a.id} />
+                  <button className={`${boton.peligro} ${enGrupo}`}>Cancelar</button>
+                </form>
+              )}
+            </div>
           )}
           <Link href={`/mis-asesorias/${a.id}`} className="text-sm font-medium text-marca">Ver detalle ›</Link>
         </div>

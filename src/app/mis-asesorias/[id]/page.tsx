@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { obtenerSesion } from "@/lib/sesion";
 import { formatearFecha, nombreEstado, nombreModalidad } from "@/lib/formato";
-import { inicioAsesoria, puedeCancelar } from "@/lib/horarios";
+import { puedeCancelar } from "@/lib/horarios";
 import { CampoEnlace } from "./CampoEnlace";
 import { aviso as estiloAviso, boton, colorEstado, etiqueta } from "@/components/estilos";
 import { cancelarAsesoria, marcarCompletada } from "../actions";
@@ -33,7 +33,6 @@ export default async function DetalleAsesoria({
 
   const esTutor = a.tutorId === sesion.user.id;
   const ahora = new Date();
-  const yaEmpezo = inicioAsesoria(a.fecha, a.horaInicio) <= ahora;
   const activa = a.estado === "PENDIENTE" || a.estado === "CONFIRMADA";
   const mensaje = aviso ? avisos[aviso] : undefined;
   // CC-007: link de la videollamada en las asesorías virtuales confirmadas
@@ -86,7 +85,7 @@ export default async function DetalleAsesoria({
           )}
         </dl>
 
-        {esTutor && a.estado === "CONFIRMADA" && yaEmpezo && (
+        {esTutor && a.estado === "CONFIRMADA" && (
           <form action={marcarCompletada}>
             <input type="hidden" name="id" value={a.id} />
             <input type="hidden" name="origen" value="detalle" />

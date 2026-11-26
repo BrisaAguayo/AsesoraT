@@ -375,7 +375,7 @@ La coordinación entra con `coordinacion.demo@tectijuana.edu.mx`, abre **Reporte
 | Aparece "El tutor no ha adjuntado ningún link." | El tutor todavía no publica el link de la reunión. | Espera a que lo publique o avísale al tutor. |
 | Aparece "Escribe tu nombre completo." al cambiar el nombre. | La caja quedó vacía o con menos de 3 letras. | Escribe tu nombre completo y vuelve a guardarlo. |
 | Aparece "Escribe un link válido que empiece con https://". | Lo que se escribió no es un link. | Copia el link completo desde Google Meet o Teams y pégalo. |
-| No aparece el botón **Marcar como completada**. | La asesoría no está confirmada o todavía no ocurre. | Se puede marcar después de la hora de inicio de una asesoría confirmada. |
+| No aparece el botón **Marcar como completada**. | La asesoría no está confirmada. | Se puede marcar en cualquier momento una asesoría confirmada. |
 | "No se encontró la página" al abrir una asesoría. | La asesoría no es tuya. | Cada usuario solo ve el detalle de sus propias asesorías. |
 
 ## 14. Conclusiones
