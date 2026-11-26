@@ -7,7 +7,7 @@
 ## Cómo se probó
 
 1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (19 casos, CP-01 a CP-19).
-2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (31 casos, P-01 a P-31). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
+2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (32 casos, P-01 a P-32). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
 3. **Revisión de código** antes de integrar cada rama: `npm run build`, `npm run typecheck` y `npm run lint` sin errores.
 4. Si una prueba falla, se registra el defecto, se corrige en una rama `fix/` y se vuelven a correr **todas** las pruebas.
 
@@ -39,13 +39,14 @@
 | P-22 | Detalle para el estudiante (HU-09, CC-005) | 25 nov 2026 | Brisa Aguayo | Al abrir una asesoría completada, el estudiante ve todos sus datos y su estado, sin los botones del tutor. | El detalle muestra tutor, fecha, horario, lugar, tema y el estado Completada. | Ninguno | Media | No aplica | No aplica |
 | P-23 | Detalle de una asesoría ajena (RNF-04, RNF-07) | 25 nov 2026 | Brisa Aguayo | Un usuario que no es el estudiante ni el tutor de la asesoría no puede ver su detalle. | Respuesta 404 sin datos de la asesoría. | Ninguno | Alta | No aplica | No aplica |
 | P-24 | Botones del mismo tamaño (CC-005) | 25 nov 2026 | Brisa Aguayo | Los botones que comparten un área miden lo mismo: Confirmar y Rechazar, Editar y Borrar, y los dos botones de la página de inicio. | Cada par mide lo mismo (por ejemplo 124 y 124 px en Solicitudes). | Ninguno | Baja | No aplica | No aplica |
-| P-25 | Calendario del estudiante y modal del día (CC-006) | 26 nov 2026 | Brisa Aguayo | Noviembre se ve de lunes a domingo en semanas completas, sin la asesoría cancelada. Al elegir el 12 se abre un modal con la asesoría; se cierra con Esc y "Ver detalle" abre su detalle. | Rejilla de 42 días; el modal muestra "Jueves 12 de noviembre", Mariana Soto y el tema; Esc lo cierra y "Ver detalle" abre `/mis-asesorias/…`. | Ninguno | Media | No aplica | No aplica |
+| P-25 | Calendario del estudiante y modal del día (CC-006) | 26 nov 2026 | Brisa Aguayo | Noviembre se ve de lunes a domingo en semanas completas, sin la asesoría cancelada. Al elegir el 12 se abre un modal con la asesoría; se cierra con Esc y "Ver detalle" abre su detalle. | Rejilla de 42 días; el modal muestra "Jueves 12 de noviembre", Mariana Soto y el tema; Esc lo cierra y "Ver detalle" abre `/mis-asesorias/…`. En la revisión de la líder, "Ver detalle" parecía no responder. | **D-03:** no se reprodujo en Chrome (los 8 días abrieron en menos de 1 s); la causa probable es la demora de la base de datos en reposo, sin ninguna señal en pantalla. | Media | El botón cambia a "Abriendo..." mientras carga el detalle. | Corregido |
 | P-26 | Calendario del tutor en celular (CC-006, RNF-03) | 26 nov 2026 | Brisa Aguayo | A 360 px el calendario no se desborda; al tocar un día con asesorías se abre el modal con el nombre del estudiante y se cierra con un clic fuera. | El calendario mide 360 px; el modal muestra a Carlos Méndez y se cierra con el clic fuera. | Ninguno | Media | No aplica | No aplica |
 | P-27 | Calendario vacío y acceso por rol (CC-006, RNF-04) | 26 nov 2026 | Brisa Aguayo | Un estudiante sin asesorías ve el calendario vacío y, en el pie, "No tienes asesorías agendadas por el momento."; la coordinación no puede entrar. | Calendario sin días marcados y con el aviso en el pie; coordinación es enviada a `/login`. | Ninguno | Baja | No aplica | No aplica |
 | P-28 | Semestre mínimo al registrarse como tutor (HU-01) | 26 nov 2026 | Brisa Aguayo | Con el rol Tutor, el selector deshabilita del 1.º al 5.º y pasa a 6.º; al volver a Estudiante se habilitan todos. | Con 3.º elegido, al cambiar a Tutor pasa a 6.º y los semestres 1 a 5 quedan deshabilitados; con Estudiante vuelven a estar disponibles. | Ninguno | Media | No aplica | No aplica |
 | P-29 | Asesoría virtual confirmada sin link (CC-007) | 26 nov 2026 | Brisa Aguayo | El estudiante no ve la caja de texto; en su lugar aparece en cursiva "El tutor no ha adjuntado ningún link." | El detalle muestra el aviso en cursiva y no muestra la caja. | Ninguno | Media | No aplica | No aplica |
-| P-30 | El tutor publica el link de la reunión (CC-007) | 26 nov 2026 | Brisa Aguayo | El tutor ve "Ingresa el link de la reunión"; un texto que no es link se rechaza; un link válido se guarda y el estudiante lo ve en el detalle, no en el calendario. | "mi reunion" se rechaza con "Escribe un link válido…"; el link de Google Meet se guarda, el estudiante lo ve como enlace que abre en otra pestaña y el calendario no lo incluye. | Ninguno | Alta | No aplica | No aplica |
+| P-30 | El tutor publica el link de la reunión con el lápiz (CC-007) | 26 nov 2026 | Brisa Aguayo | En la fila "Link de la reunión" el tutor ve la caja solo de lectura con el lápiz; al pulsarlo puede escribir. Un texto que no es link se rechaza; un link válido se guarda y la caja vuelve a quedar con el lápiz. El estudiante ve el link en esa fila y no en el calendario. | En la primera ejecución el lápiz enviaba el formulario en lugar de dejar escribir y el ícono se veía de 6 px. Después de corregirlo: "mi reunion" se rechaza, el link de Google Meet se guarda y el estudiante lo ve como enlace que abre en otra pestaña. | **D-04:** el lápiz y la palomita compartían el mismo botón y al cambiar de uno a otro se enviaba el formulario; el relleno del botón dejaba el ícono sin espacio. | Media | Botones separados para editar y guardar, y relleno 0 en los botones de ícono. | Corregido |
 | P-31 | Las asesorías presenciales no llevan link (CC-007) | 26 nov 2026 | Brisa Aguayo | En una asesoría presencial confirmada ni el tutor ni el estudiante ven el link. | No aparece la caja ni el aviso en el detalle de ninguno de los dos. | Ninguno | Baja | No aplica | No aplica |
+| P-32 | Guardar el link vacío lo elimina (CC-007) | 26 nov 2026 | Brisa Aguayo | Si el tutor borra el texto y guarda, el link se elimina y el estudiante vuelve a ver "El tutor no ha adjuntado ningún link." | Mensaje "Link de la reunión eliminado."; la caja queda vacía y el estudiante ve el aviso en cursiva. | Ninguno | Media | No aplica | No aplica |
 
 ## Pruebas automatizadas (`npm test`)
 
@@ -70,9 +71,9 @@ Resultado: **19 de 19 aprobadas**.
 
 | Concepto | Resultado |
 |---|---|
-| Pruebas ejecutadas | 50 (19 automatizadas y 31 de punta a punta) |
-| Aprobadas en la primera ejecución | 35 de 37; las pruebas agregadas después (CC-005, CC-006, CC-007 y P-28) pasaron a la primera; en P-30 se ajustó el script de la prueba, no el sistema |
-| Defectos encontrados | 2 (D-01 prioridad alta, D-02 prioridad baja) |
-| Defectos corregidos y verificados | 2 de 2, el mismo día |
-| Aprobadas en la ejecución final | **50 de 50 (100 %)** |
+| Pruebas ejecutadas | 51 (19 automatizadas y 32 de punta a punta) |
+| Aprobadas en la primera ejecución | 35 de 37; las pruebas agregadas después (CC-005, CC-006, CC-007 y P-28) pasaron a la primera, salvo P-30 (D-04) |
+| Defectos encontrados | 4 (D-01 alta, D-02 baja, D-03 media y D-04 media) |
+| Defectos corregidos y verificados | 4 de 4, el mismo día |
+| Aprobadas en la ejecución final | **51 de 51 (100 %)** |
 | Defectos abiertos al entregar | 0 |

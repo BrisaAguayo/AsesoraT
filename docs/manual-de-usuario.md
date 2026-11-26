@@ -200,7 +200,7 @@ Las asesorías completadas son las que cuenta el reporte de horas.
 1. Pulsa **Calendario** en la barra superior o en tu panel.
 2. Verás el mes actual de lunes a domingo, con el día de hoy marcado en azul. Cada asesoría pendiente, confirmada o completada aparece en su día con un punto del color de su estado (amarillo, verde o azul). Las canceladas no aparecen.
 3. Usa las flechas **‹** y **›** para cambiar de mes y **Hoy** para regresar al mes actual.
-4. Haz clic en un día con asesorías para abrir un modal con la materia, el estado, el horario, el tutor o estudiante, el lugar y el tema. Pulsa **Ver detalle** para abrir la asesoría.
+4. Haz clic en un día con asesorías para abrir un modal con la materia, el estado, el horario, el tutor o estudiante, el lugar y el tema. Pulsa **Ver detalle** para abrir la asesoría; mientras carga, el botón dice **Abriendo...**.
 5. Cierra el modal con la **×**, con un clic fuera de él o con la tecla Esc.
 
 Si no tienes asesorías agendadas, el calendario se ve vacío y abajo aparece "No tienes asesorías agendadas por el momento."
@@ -210,13 +210,15 @@ Si no tienes asesorías agendadas, el calendario se ve vacío y abajo aparece "N
 **Tutor**
 
 1. Cuando confirmes una asesoría virtual, entra a **Mis asesorías** y abre su detalle con **Ver detalle ›**.
-2. En **Ingresa el link de la reunión**, pega el link de la videollamada (por ejemplo, de Google Meet o Microsoft Teams). Debe empezar con `https://`.
-3. Pulsa **Guardar link**. Verás el mensaje **Link de la reunión guardado.** Si necesitas cambiarlo, escribe el nuevo y vuelve a guardarlo.
+2. En la fila **Link de la reunión** pulsa el **lápiz** para escribir en la caja.
+3. Pega el link de la videollamada (por ejemplo, de Google Meet o Microsoft Teams). Debe empezar con `https://`.
+4. Pulsa la **palomita** para guardarlo. Verás el mensaje **Link de la reunión guardado.**
+5. Para cambiarlo, pulsa otra vez el lápiz. Para quitarlo, borra el texto y guarda: verás **Link de la reunión eliminado.**
 
 **Estudiante**
 
 1. Abre el detalle de tu asesoría virtual confirmada.
-2. En **Link de la reunión** aparece el link que publicó el tutor; al pulsarlo se abre en otra pestaña.
+2. En la fila **Link de la reunión** aparece el link que publicó el tutor; al pulsarlo se abre en otra pestaña.
 3. Si el tutor todavía no lo publica, verás en cursiva *El tutor no ha adjuntado ningún link.*
 
 El link solo aparece en el detalle de la asesoría, no en el calendario.
@@ -287,6 +289,9 @@ Capturas de la versión 1.0.0 con los datos de ejemplo.
 
 **El tutor ingresa el link de la reunión**
 ![Ingresar link](capturas/v1.0.0/39-tutor-ingresa-link.png)
+
+**El tutor guardó el link**
+![Link guardado](capturas/v1.0.0/41-tutor-link-guardado.png)
 
 **El estudiante sin link publicado**
 ![Sin link](capturas/v1.0.0/38-detalle-sin-link.png)

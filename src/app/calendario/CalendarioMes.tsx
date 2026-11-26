@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link, { useLinkStatus } from "next/link";
 import { nombreEstado } from "@/lib/formato";
 import { boton, colorEstado, etiqueta } from "@/components/estilos";
 
@@ -29,6 +29,12 @@ const colorPunto: Record<string, string> = {
   CONFIRMADA: "bg-marca-acento",
   COMPLETADA: "bg-marca",
 };
+
+// Mientras abre el detalle, el botón lo indica
+function TextoVerDetalle() {
+  const { pending } = useLinkStatus();
+  return <>{pending ? "Abriendo..." : "Ver detalle"}</>;
+}
 
 const diasSemana = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
 
@@ -143,7 +149,7 @@ export function CalendarioMes({
                     <dt className="text-slate-500">Lugar</dt><dd>{a.lugar}</dd>
                     <dt className="text-slate-500">Tema</dt><dd>{a.tema}</dd>
                   </dl>
-                  <Link href={`/mis-asesorias/${a.id}`} className={`${boton.primario} w-full`}>Ver detalle</Link>
+                  <Link href={`/mis-asesorias/${a.id}`} className={`${boton.primario} w-full`}><TextoVerDetalle /></Link>
                 </article>
               ))}
             </div>
