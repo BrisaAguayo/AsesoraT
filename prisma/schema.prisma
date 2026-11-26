@@ -89,6 +89,7 @@ model Asesoria {
   modalidad    Modalidad
   lugar        String?
   tema         String
+  enlaceReunion String? // link de la videollamada que publica el tutor (CC-007)
   estado       EstadoAsesoria @default(PENDIENTE)
   creadoEn     DateTime       @default(now())
 

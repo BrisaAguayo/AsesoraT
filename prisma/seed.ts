@@ -106,6 +106,7 @@ async function main() {
   // Las próximas se calculan desde el día en que se corre el seed
   const [proximoLunes] = proximasFechas(1, "13:00", 1);
   const [proximoMiercoles] = proximasFechas(3, "12:00", 1);
+  const [proximoMartes] = proximasFechas(2, "16:00", 1);
 
   const comun = { estudianteId: estudiante.id };
   await prisma.asesoria.deleteMany({ where: { estudianteId: estudiante.id } });
@@ -127,6 +128,9 @@ async function main() {
         modalidad: "PRESENCIAL", lugar: "Edificio J, aula 5", tema: "Fracciones parciales", estado: "PENDIENTE" },
       { ...comun, tutorId: andrea.id, materiaId: diferencial.id, fecha: proximoMiercoles, horaInicio: "12:00", horaFin: "13:00",
         modalidad: "PRESENCIAL", lugar: "Biblioteca, cubículo 2", tema: "Regla de la cadena", estado: "CONFIRMADA" },
+      // Virtual confirmada sin link: el tutor publica el link de la reunión desde el detalle (CC-007)
+      { ...comun, tutorId: diego.id, materiaId: estructuras.id, fecha: proximoMartes, horaInicio: "16:00", horaFin: "17:00",
+        modalidad: "VIRTUAL", lugar: "Google Meet", tema: "Pilas y colas", estado: "CONFIRMADA" },
     ],
   });
 
@@ -139,7 +143,7 @@ async function main() {
     },
   });
 
-  console.log(`Seed listo: ${materias.length} materias, ${tutores.length} tutores, 1 estudiante, 8 asesorías y 1 coordinación.`);
+  console.log(`Seed listo: ${materias.length} materias, ${tutores.length} tutores, 1 estudiante, 9 asesorías y 1 coordinación.`);
 }
 
 main()
