@@ -13,7 +13,9 @@ const SEMANAS_A_MOSTRAR = 4;
 // HU-05, paso 2: el estudiante elige la fecha y escribe el tema
 export default async function Agendar({ searchParams }: { searchParams: Promise<{ bloque?: string; materia?: string }> }) {
   const sesion = await obtenerSesion();
-  if (!sesion || sesion.user.rol !== "ESTUDIANTE") redirect("/login");
+  if (!sesion) redirect("/login");
+  // Con sesión pero de otro rol: al panel con aviso
+  if (sesion.user.rol !== "ESTUDIANTE") redirect("/panel?aviso=sin-acceso");
 
   const { bloque: bloqueId = "", materia: materiaId = "" } = await searchParams;
   const [bloque, materia] = await Promise.all([

@@ -10,7 +10,9 @@ export const dynamic = "force-dynamic";
 // HU-06: el tutor ve sus solicitudes pendientes y las confirma o rechaza
 export default async function Solicitudes({ searchParams }: { searchParams: Promise<{ respuesta?: string }> }) {
   const sesion = await obtenerSesion();
-  if (!sesion || sesion.user.rol !== "TUTOR") redirect("/login");
+  if (!sesion) redirect("/login");
+  // Con sesión pero de otro rol: al panel con aviso
+  if (sesion.user.rol !== "TUTOR") redirect("/panel?aviso=sin-acceso");
 
   const [pendientes, { respuesta }] = await Promise.all([
     prisma.asesoria.findMany({
