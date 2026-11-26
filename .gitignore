@@ -10,5 +10,6 @@ next-env.d.ts
 # Documentos de la entrega: se organizan aparte y no se suben
 PROYECTO_FINAL*/
 *.pdf
+*.doc
 *.docx
 *.pptx
