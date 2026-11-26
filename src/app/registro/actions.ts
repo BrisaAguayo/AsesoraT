@@ -3,11 +3,11 @@
 import bcrypt from "bcryptjs";
 import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { validarRegistro, type ErroresRegistro } from "@/lib/validaciones";
+import { validarRegistro, type DatosRegistro } from "@/lib/validaciones";
 
 export type EstadoRegistro =
   | { ok: true }
-  | { ok: false; mensaje?: string; errores?: ErroresRegistro };
+  | { ok: false; mensaje?: string; errores?: Partial<Record<keyof DatosRegistro, string>> };
 
 // HU-01: crea la cuenta con la contraseña cifrada (RNF-04)
 export async function registrarUsuario(formData: FormData): Promise<EstadoRegistro> {

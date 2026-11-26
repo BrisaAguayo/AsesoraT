@@ -3,8 +3,7 @@ import assert from "node:assert/strict";
 import { esCorreoInstitucional, esEnlaceValido, esNumeroControlValido, esPasswordSegura, validarRegistro } from "./validaciones";
 
 const base = {
-  nombre: "Carlos",
-  apellidos: "Méndez",
+  nombre: "Carlos Méndez",
   correo: "l00000010@tectijuana.edu.mx",
   numeroControl: "00000010",
   carrera: "Ingeniería en Sistemas Computacionales",
@@ -61,13 +60,4 @@ test("CP-19 el link de la reunión debe ser una dirección web válida", () => {
   assert.equal(esEnlaceValido("meet.google.com/abc"), false);
   assert.equal(esEnlaceValido("javascript:alert(1)"), false);
   assert.equal(esEnlaceValido("https://localhost"), false);
-});
-
-test("CP-20 el nombre y los apellidos se piden por separado y se guardan juntos", () => {
-  const r = validarRegistro({ ...base, nombre: "  Carlos  Iván ", apellidos: "Méndez  Ruiz " });
-  assert.equal(r.ok, true);
-  if (r.ok) assert.equal(r.datos.nombre, "Carlos Iván Méndez Ruiz");
-  const sinApellidos = validarRegistro({ ...base, apellidos: "" });
-  assert.equal(sinApellidos.ok, false);
-  if (!sinApellidos.ok) assert.ok(sinApellidos.errores.apellidos && !sinApellidos.errores.nombre);
 });

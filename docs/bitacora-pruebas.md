@@ -6,7 +6,7 @@
 
 ## Cómo se probó
 
-1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (20 casos, CP-01 a CP-20).
+1. **Pruebas automatizadas** de las reglas de negocio con `npm test` (19 casos, CP-01 a CP-19).
 2. **Pruebas de punta a punta** en el navegador con las cuentas de ejemplo de los 3 roles (32 casos, P-01 a P-32). Cada prueba sigue los pasos que haría un usuario y revisa lo que aparece en pantalla y en la base de datos.
 3. **Revisión de código** antes de integrar cada rama: `npm run build`, `npm run typecheck` y `npm run lint` sin errores.
 4. Si una prueba falla, se registra el defecto, se corrige en una rama `fix/` y se vuelven a correr **todas** las pruebas.
@@ -18,7 +18,7 @@
 | P-01 | Búsqueda pública (HU-04) | 25 nov 2026 | Brisa Aguayo | Sin iniciar sesión se ven los horarios disponibles con tutor, semestre, horario y lugar. | Se muestran 9 horarios disponibles. | Ninguno | Alta | No aplica | No aplica |
 | P-02 | Filtro por tutor y búsqueda sin resultados (HU-04, RF-04) | 25 nov 2026 | Brisa Aguayo | Al filtrar por "Andrea López" solo aparecen sus horarios; sin coincidencias se muestra un mensaje claro. | Solo aparecen tarjetas de Andrea López; con viernes aparece "No hay horarios con esos filtros". | Ninguno | Alta | No aplica | No aplica |
 | P-03 | Agendar sin sesión (HU-05, RNF-04) | 25 nov 2026 | Brisa Aguayo | Al pulsar "Agendar" sin sesión se pide iniciar sesión y después regresa al horario elegido. | Redirige a `/login` con la dirección de regreso. | Ninguno | Media | No aplica | No aplica |
-| P-04 | Registro de estudiante (HU-01, regresión) | 26 nov 2026 | Brisa Aguayo | Sin apellidos no se crea la cuenta; con nombre, apellidos y los demás datos válidos se crea y entra a su panel. | Sin apellidos aparece "Escribe tus apellidos."; con los datos completos la cuenta se creó y mostró "Hola, Sofía". | Ninguno | Alta | No aplica | No aplica |
+| P-04 | Registro de estudiante (HU-01, regresión) | 25 nov 2026 | Brisa Aguayo | Con datos válidos se crea la cuenta y entra a su panel. | La cuenta se creó y mostró "Hola, Sofía". | Ninguno | Alta | No aplica | No aplica |
 | P-05 | Panel del tutor (HU-01) | 25 nov 2026 | Brisa Aguayo | El tutor ve Mis materias, Mi disponibilidad, Solicitudes y Mis asesorías, sin opciones "próximamente". | Se muestran las 4 opciones activas. | Ninguno | Media | No aplica | No aplica |
 | P-06 | Disponibilidad: bloque empalmado (HU-03) | 25 nov 2026 | Brisa Aguayo | Un bloque de lunes 13:30 a 14:30 se rechaza porque choca con el de 13:00 a 14:00; el formulario conserva los datos. | Mensaje "Se empalma con tu bloque de 13:00 a 14:00." y el lugar escrito se conserva. | Ninguno | Alta | No aplica | No aplica |
 | P-07 | Disponibilidad: horas invertidas (HU-03) | 25 nov 2026 | Brisa Aguayo | Un bloque de 15:00 a 14:00 se rechaza. | Mensaje "La hora de inicio debe ser antes de la hora de fin." | Ninguno | Media | No aplica | No aplica |
@@ -64,17 +64,16 @@
 | CP-17 | Mes del calendario y cambio de mes con las flechas (CC-006) | Aprobado |
 | CP-18 | Rejilla del calendario de lunes a domingo en semanas completas (CC-006) | Aprobado |
 | CP-19 | Link de la reunión válido: http o https y un dominio (CC-007) | Aprobado |
-| CP-20 | Nombre y apellidos por separado, guardados juntos como nombre completo (HU-01) | Aprobado |
 
-Resultado: **20 de 20 aprobadas**.
+Resultado: **19 de 19 aprobadas**.
 
 ## Resumen
 
 | Concepto | Resultado |
 |---|---|
-| Pruebas ejecutadas | 52 (20 automatizadas y 32 de punta a punta) |
+| Pruebas ejecutadas | 51 (19 automatizadas y 32 de punta a punta) |
 | Aprobadas en la primera ejecución | 35 de 37; las pruebas agregadas después (CC-005, CC-006, CC-007 y P-28) pasaron a la primera, salvo P-30 (D-04) |
 | Defectos encontrados | 4 (D-01 alta, D-02 baja, D-03 media y D-04 media) |
 | Defectos corregidos y verificados | 4 de 4, el mismo día |
-| Aprobadas en la ejecución final | **52 de 52 (100 %)** |
+| Aprobadas en la ejecución final | **51 de 51 (100 %)** |
 | Defectos abiertos al entregar | 0 |
