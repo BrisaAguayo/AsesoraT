@@ -45,7 +45,7 @@ export default async function Calendario({ searchParams }: { searchParams: Promi
     tema: a.tema,
   }));
 
-  const flecha = `${boton.claro} h-9 w-9 border border-slate-300 px-0`;
+  const flecha = `${boton.claro} h-9 w-9 border border-slate-300 !px-0`;
 
   return (
     <section className="flex flex-col gap-4">

@@ -65,10 +65,11 @@ export async function guardarEnlace(formData: FormData) {
     where: { id, tutorId: sesion.user.id, modalidad: "VIRTUAL", estado: "CONFIRMADA" },
   });
   if (!asesoria) redirect(`/mis-asesorias/${id}?aviso=enlace-no-permitido`);
-  if (!esEnlaceValido(enlace)) redirect(`/mis-asesorias/${id}?aviso=enlace-invalido`);
+  // Guardar la caja vacía elimina el link
+  if (enlace !== "" && !esEnlaceValido(enlace)) redirect(`/mis-asesorias/${id}?aviso=enlace-invalido`);
 
-  await prisma.asesoria.update({ where: { id }, data: { enlaceReunion: enlace } });
+  await prisma.asesoria.update({ where: { id }, data: { enlaceReunion: enlace === "" ? null : enlace } });
 
   revalidatePath(`/mis-asesorias/${id}`);
-  redirect(`/mis-asesorias/${id}?aviso=enlace-guardado`);
+  redirect(`/mis-asesorias/${id}?aviso=${enlace === "" ? "enlace-eliminado" : "enlace-guardado"}`);
 }

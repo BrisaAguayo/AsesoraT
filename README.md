@@ -10,7 +10,7 @@ Aplicación web para consultar y agendar asesorías académicas entre estudiante
 
 ## Estado actual
 
-**Versión 1.0.0 (26 nov 2026). Entrega final del proyecto.** Todas las historias de la versión 1.0.0 están terminadas y probadas (50 de 50 pruebas aprobadas).
+**Versión 1.0.0 (26 nov 2026). Entrega final del proyecto.** Todas las historias de la versión 1.0.0 están terminadas y probadas (51 de 51 pruebas aprobadas).
 
 | Módulo | Estado |
 |---|---|
