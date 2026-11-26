@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { obtenerSesion } from "@/lib/sesion";
-import { etiqueta } from "@/components/estilos";
+import { nombreDelUsuario, obtenerSesion } from "@/lib/sesion";
+import { aviso as estiloAviso, etiqueta } from "@/components/estilos";
+import { TarjetaNombre } from "./TarjetaNombre";
 
 export const dynamic = "force-dynamic";
 
@@ -28,26 +29,38 @@ const opcionesPorRol: Record<string, Opcion[]> = {
 
 const nombreRol: Record<string, string> = { ESTUDIANTE: "Estudiante", TUTOR: "Tutor", COORDINADOR: "Coordinación" };
 
-export default async function Panel() {
+// Avisos después de cambiar el nombre (CC-008)
+const avisosNombre: Record<string, { texto: string; error?: boolean }> = {
+  "nombre-cambiado": { texto: "El nombre ha sido cambiado con éxito." },
+  "nombre-invalido": { texto: "Escribe tu nombre completo.", error: true },
+};
+
+export default async function Panel({ searchParams }: { searchParams: Promise<{ aviso?: string }> }) {
   const sesion = await obtenerSesion();
   if (!sesion) redirect("/login");
 
-  const { name, rol } = sesion.user;
+  const { rol } = sesion.user;
+  const [name, { aviso }] = await Promise.all([nombreDelUsuario(sesion.user.id), searchParams]);
+  const mensaje = aviso ? avisosNombre[aviso] : undefined;
+  const puedeCambiarNombre = rol === "ESTUDIANTE" || rol === "TUTOR";
 
   return (
     <section className="flex flex-col gap-6">
+      {mensaje && <p role="status" className={mensaje.error ? estiloAviso.error : estiloAviso.exito}>{mensaje.texto}</p>}
       <div>
         <span className={`${etiqueta} bg-marca text-white`}>{nombreRol[rol]}</span>
         <h1 className="mt-3 text-2xl font-bold text-marca">Hola, {name?.split(" ")[0]}</h1>
         <p className="text-slate-500">¿Qué quieres hacer hoy?</p>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {/* items-start: al abrir "Cambiar nombre" solo crece esa tarjeta */}
+      <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {opcionesPorRol[rol].map((o) => (
           <Link key={o.titulo} href={o.href} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:border-marca">
             <h2 className="font-semibold text-marca">{o.titulo}</h2>
             <p className="mt-1 text-sm text-slate-500">{o.descripcion}</p>
           </Link>
         ))}
+        {puedeCambiarNombre && <TarjetaNombre key={name} nombre={name} abrirAlInicio={aviso === "nombre-invalido"} />}
       </div>
     </section>
   );

@@ -6,10 +6,10 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 
 | Concepto | Resultado |
 |---|---|
-| Actividades terminadas | 25 de 25 (100 %) |
+| Actividades terminadas | 26 de 26 (100 %) |
 | Historias de la versión 1.0.0 | 9 de 9 terminadas (40 de 40 puntos) |
 | Requerimientos funcionales de la versión 1.0.0 | 9 de 9 implementados (RF-01 a RF-07, RF-09 y RF-11) |
-| Casos de prueba aprobados | 51 de 51 (19 automatizados y 32 de punta a punta) |
+| Casos de prueba aprobados | 54 de 54 (20 automatizados y 34 de punta a punta) |
 | Defectos encontrados en la etapa final | 2, corregidos el mismo día |
 | Actividades pendientes | Ninguna de la versión 1.0.0. Las mejoras de la versión 1.1 se listan al final. |
 
@@ -42,13 +42,14 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 | A23 | Detalle de la asesoría y colores sólidos (CC-005) | No planeada | 25 nov | Terminada | 100 % | En la revisión de la interfaz se pidió ver el detalle de cada asesoría y botones más claros. | CC-005; 3 pruebas nuevas (P-22 a P-24). |
 | A24 | Calendario de asesorías (CC-006) y ajustes de la interfaz | No planeada | 26 nov | Terminada | 100 % | En la revisión se pidió ver las asesorías en un calendario, limitar el semestre del tutor en el registro y que la flecha de los selectores no sobresaliera. | CC-006; 5 pruebas nuevas (CP-17, CP-18 y P-25 a P-28). |
 | A25 | Link de la reunión en asesorías virtuales (CC-007) | No planeada | 26 nov | Terminada | 100 % | En la revisión se pidió que el tutor comparta el link de la videollamada. Las pruebas modificaban los datos del sistema en línea porque desarrollo y producción usaban la misma base. | CC-007; base local con `prisma dev` para las pruebas; 5 pruebas nuevas (CP-19 y P-29 a P-32); defectos D-03 y D-04 corregidos. |
+| A26 | Cambiar nombre desde el panel (CC-008) | No planeada | 26 nov | Terminada | 100 % | En la revisión se pidió que el estudiante y el tutor puedan corregir su nombre. | CC-008; 3 pruebas nuevas (CP-20, P-33 y P-34). |
 
 ## Indicadores
 
 | Métrica | Meta | Resultado final | Lectura |
 |---|---|---|---|
 | M1 Requerimientos funcionales implementados (versión 1.0.0) | 100 % | 9 de 9 (100 %) | Cumple |
-| M2 Casos de prueba aprobados | ≥ 90 % | 51 de 51 (100 %) después de las correcciones | Cumple |
+| M2 Casos de prueba aprobados | ≥ 90 % | 54 de 54 (100 %) después de las correcciones | Cumple |
 | M3 Defectos críticos abiertos al entregar | 0 | 0 | Cumple |
 | M8 Historias completadas por sprint | ≥ 80 % | Sprints 3 a 5: 7 de 7 historias (100 %) | Cumple |
 | M9 Desviación del cronograma | ≤ 10 % | Los Sprints 3 y 4 no avanzaron en sus fechas; la versión 1.0.0 se entregó el 26 nov, 8 días antes de la línea base del 4 dic | Se controló con CC-004 |
@@ -82,6 +83,7 @@ Corte final: 26 de noviembre de 2026 (entrega de la versión 1.0.0). Responsable
 | CC-005 | 25 nov | Detalle de cada asesoría y colores sólidos en la interfaz. | 1.0.0 |
 | CC-006 | 26 nov | Pantalla Calendario para el estudiante y el tutor. | 1.0.0 |
 | CC-007 | 26 nov | Link de la reunión en asesorías virtuales confirmadas. | 1.0.0 |
+| CC-008 | 26 nov | Cambiar nombre desde el panel. | 1.0.0 |
 
 Detalle completo en [bitacora-cambios.md](bitacora-cambios.md).
 

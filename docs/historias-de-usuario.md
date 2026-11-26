@@ -2,7 +2,7 @@
 
 | ID | Historia | Criterios de aceptación | RF | Prioridad | Puntos |
 |---|---|---|---|---|---|
-| HU-01 | Como **estudiante** quiero registrarme con mi correo institucional para usar la aplicación de forma segura. | Solo acepta correos @tectijuana.edu.mx · Muestra error si el correo ya existe · Al entrar me lleva a mi panel según mi rol | RF-01, RF-02 | Alta | 5 |
+| HU-01 | Como **estudiante** quiero registrarme con mi correo institucional para usar la aplicación de forma segura. | Solo acepta correos @tectijuana.edu.mx · Muestra error si el correo ya existe · Al entrar me lleva a mi panel según mi rol · Puedo corregir mi nombre desde el panel (CC-008) | RF-01, RF-02 | Alta | 5 |
 | HU-02 | Como **tutor** quiero indicar qué materias puedo asesorar para que los alumnos me encuentren. | Elijo materias de un catálogo · Puedo quitar una materia · Aparezco en las búsquedas de esa materia | RF-03 | Alta | 3 |
 | HU-03 | Como **tutor** quiero registrar mis horarios disponibles para que los alumnos reserven sin preguntarme por mensaje. | Registro día, hora de inicio y fin, modalidad y lugar · No se aceptan bloques que se empalmen · Puedo editar o borrar un bloque | RF-03 | Alta | 5 |
 | HU-04 | Como **estudiante** quiero buscar asesorías por materia para encontrar ayuda rápido. | Filtro por materia, día y modalidad · Veo tutor, semestre, horario y lugar · Si no hay resultados se muestra un mensaje claro | RF-04 | Alta | 5 |
