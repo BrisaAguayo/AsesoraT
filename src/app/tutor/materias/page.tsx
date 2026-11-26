@@ -8,7 +8,9 @@ export const dynamic = "force-dynamic";
 
 export default async function MisMaterias({ searchParams }: { searchParams: Promise<{ guardado?: string }> }) {
   const sesion = await obtenerSesion();
-  if (!sesion || sesion.user.rol !== "TUTOR") redirect("/login");
+  if (!sesion) redirect("/login");
+  // Con sesión pero de otro rol: al panel con aviso
+  if (sesion.user.rol !== "TUTOR") redirect("/panel?aviso=sin-acceso");
 
   const [catalogo, actuales, { guardado }] = await Promise.all([
     prisma.materia.findMany({ orderBy: [{ semestre: "asc" }, { nombre: "asc" }] }),

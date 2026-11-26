@@ -12,7 +12,9 @@ export const dynamic = "force-dynamic";
 // HU-03: el tutor registra, edita y borra sus horarios semanales
 export default async function MiDisponibilidad({ searchParams }: { searchParams: Promise<{ guardado?: string; editar?: string }> }) {
   const sesion = await obtenerSesion();
-  if (!sesion || sesion.user.rol !== "TUTOR") redirect("/login");
+  if (!sesion) redirect("/login");
+  // Con sesión pero de otro rol: al panel con aviso
+  if (sesion.user.rol !== "TUTOR") redirect("/panel?aviso=sin-acceso");
 
   const [bloques, { guardado, editar }] = await Promise.all([
     prisma.disponibilidad.findMany({ where: { tutorId: sesion.user.id }, orderBy: [{ diaSemana: "asc" }, { horaInicio: "asc" }] }),

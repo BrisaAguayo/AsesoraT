@@ -29,10 +29,11 @@ const opcionesPorRol: Record<string, Opcion[]> = {
 
 const nombreRol: Record<string, string> = { ESTUDIANTE: "Estudiante", TUTOR: "Tutor", COORDINADOR: "Coordinación" };
 
-// Avisos después de cambiar el nombre (CC-008)
-const avisosNombre: Record<string, { texto: string; error?: boolean }> = {
+// Avisos del panel: cambio de nombre (CC-008) y acceso a una pantalla de otro rol
+const avisosPanel: Record<string, { texto: string; error?: boolean }> = {
   "nombre-cambiado": { texto: "El nombre ha sido cambiado con éxito." },
   "nombre-invalido": { texto: "Escribe tu nombre completo.", error: true },
+  "sin-acceso": { texto: "No tienes acceso a esa pantalla.", error: true },
 };
 
 export default async function Panel({ searchParams }: { searchParams: Promise<{ aviso?: string }> }) {
@@ -41,7 +42,7 @@ export default async function Panel({ searchParams }: { searchParams: Promise<{ 
 
   const { rol } = sesion.user;
   const [name, { aviso }] = await Promise.all([nombreDelUsuario(sesion.user.id), searchParams]);
-  const mensaje = aviso ? avisosNombre[aviso] : undefined;
+  const mensaje = aviso ? avisosPanel[aviso] : undefined;
   const puedeCambiarNombre = rol === "ESTUDIANTE" || rol === "TUTOR";
 
   return (

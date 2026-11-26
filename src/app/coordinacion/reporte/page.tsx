@@ -8,7 +8,9 @@ export const dynamic = "force-dynamic";
 // HU-11: la coordinación consulta las asesorías completadas y las horas por tutor
 export default async function Reporte({ searchParams }: { searchParams: Promise<{ desde?: string; hasta?: string }> }) {
   const sesion = await obtenerSesion();
-  if (!sesion || sesion.user.rol !== "COORDINADOR") redirect("/login");
+  if (!sesion) redirect("/login");
+  // Con sesión pero de otro rol: al panel con aviso
+  if (sesion.user.rol !== "COORDINADOR") redirect("/panel?aviso=sin-acceso");
 
   const { desde: d, hasta: h } = await searchParams;
   const periodo = leerPeriodo(d, h);
