@@ -93,7 +93,7 @@ Todas usan la contraseña `Asesorat2026`.
 
 1. En la página de inicio pulsa **Crear cuenta**.
 2. Elige si te registras como **Estudiante** o **Tutor**.
-3. Escribe tu nombre y tus apellidos (en campos separados), correo institucional, número de control (8 dígitos), semestre y carrera. Si eliges **Tutor**, el selector solo permite del 6.º semestre en adelante.
+3. Escribe tu nombre completo, correo institucional, número de control (8 dígitos), semestre y carrera. Si eliges **Tutor**, el selector solo permite del 6.º semestre en adelante.
 4. Escribe una contraseña de al menos 8 caracteres con letras y números.
 5. Pulsa **Crear cuenta**. El sistema inicia tu sesión y te lleva a tu panel.
 
