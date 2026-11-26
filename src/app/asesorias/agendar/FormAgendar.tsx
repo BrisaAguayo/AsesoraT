@@ -12,9 +12,10 @@ interface Props {
   materiaId: string;
   resumen: { materia: string; tutor: string; horario: string; lugar: string };
   fechas: { valor: string; texto: string }[];
+  sinFechas: string; // aviso cuando no queda ninguna fecha libre
 }
 
-export function FormAgendar({ bloqueId, materiaId, resumen, fechas }: Props) {
+export function FormAgendar({ bloqueId, materiaId, resumen, fechas, sinFechas }: Props) {
   const router = useRouter();
   const [error, setError] = useState("");
   const [agendada, setAgendada] = useState<{ fecha: string; tema: string } | null>(null);
@@ -52,6 +53,14 @@ export function FormAgendar({ bloqueId, materiaId, resumen, fechas }: Props) {
           <Link href="/asesorias" className={`${boton.claro} ${enGrupo}`}>Buscar otra</Link>
         </div>
       </div>
+    );
+  }
+
+  if (fechas.length === 0) {
+    return (
+      <p className="rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center text-slate-500">
+        {sinFechas} <Link href="/asesorias" className="font-medium text-marca underline">Buscar otro</Link>
+      </p>
     );
   }
 

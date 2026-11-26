@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { boton, enGrupo, grupoBotones } from "@/components/estilos";
+import { obtenerSesion } from "@/lib/sesion";
 
-export default function Inicio() {
+export const dynamic = "force-dynamic";
+
+export default async function Inicio() {
+  const sesion = await obtenerSesion();
+
   return (
     <section className="flex flex-col gap-6 py-10">
       <h1 className="text-3xl font-bold text-marca sm:text-4xl">
@@ -15,8 +20,9 @@ export default function Inicio() {
         <Link href="/asesorias" className={`${boton.primario} ${enGrupo}`}>
           Buscar asesorías
         </Link>
-        <Link href="/registro" className={`${boton.exito} ${enGrupo}`}>
-          Crear cuenta
+        {/* Con sesión iniciada, el botón lleva al panel en lugar de crear cuenta */}
+        <Link href={sesion ? "/panel" : "/registro"} className={`${boton.exito} ${enGrupo}`}>
+          {sesion ? "Ir a mi panel" : "Crear cuenta"}
         </Link>
       </div>
     </section>
